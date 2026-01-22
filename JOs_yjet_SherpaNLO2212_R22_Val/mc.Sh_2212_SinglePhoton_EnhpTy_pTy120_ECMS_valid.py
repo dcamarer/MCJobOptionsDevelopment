@@ -1,0 +1,63 @@
+include("Sherpa_i/Base_Fragment.py")
+include("Sherpa_i/NNPDF30NNLO.py")
+
+evgenConfig.description = "Sherpa y + 1,2j@NLO + 3,4,5j@LO with pTy enhancement"
+evgenConfig.keywords = ["SM", "photon", "jets", "NLO" ]
+evgenConfig.contact  = [ "atlas-generators-sherpa@cern.ch", "chris.g@cern.ch" ]
+evgenConfig.nEventsPerJob = 1000
+
+genSeq.Sherpa_i.RunCard="""
+(run){
+  # perturbative scales
+  FSF:=1.; RSF:=1.; QSF:=1.;
+  SCALES STRICT_METS{FSF*MU_F2}{RSF*MU_R2}{QSF*MU_Q2};
+  CORE_SCALE VAR{PPerp2(p[2])}
+  ALPHAQED_DEFAULT_SCALE=0.0
+
+  # me generator settings
+  ME_SIGNAL_GENERATOR Comix Amegic LOOPGEN;
+  LOOPGEN:=OpenLoops
+  OL_PARAMETERS=ew_scheme=2 ew_renorm_scheme=1 write_parameters=1
+
+  # tags for process setup
+  NJET:=4; LJET:=2,3; QCUT:=20.;
+
+  # EW corrections setup
+  ASSOCIATED_CONTRIBUTIONS_VARIATIONS=EW EW|LO1 EW|LO1|LO2 EW|LO1|LO2|LO3;
+  METS_BBAR_MODE=5
+  EW_SCHEME=3
+  GF=1.166397e-5
+  KFACTOR VAR{128.802/137.03599976};
+
+  # speed and neg weight fraction improvements
+  PP_RS_SCALE VAR{H_T2/4};
+  NLO_CSS_PSMODE=1
+}(run)
+
+(processes){
+  Process 93 93 -> 22 93 93{NJET};
+  Order (*,1);
+  CKKW sqr(QCUT/E_CMS)/(1.0+sqr(QCUT/0.6)/PPerp2(p[2]));
+  Associated_Contributions EW|LO1|LO2|LO3 {LJET};
+  Enhance_Function VAR{PPerp(p[2])/20e4}
+  NLO_QCD_Mode MC@NLO {LJET};
+  ME_Generator Amegic {LJET};
+  RS_ME_Generator Comix {LJET};
+  Loop_Generator LOOPGEN {LJET};
+  Integration_Error 0.10 {2,3,4,5,6,7,8};
+  PSI_ItMin 30000 {2,3}
+  PSI_ItMin 50000 {4,5,6}
+  End process;
+}(processes)
+
+(selector){
+  IsolationCut  22  0.1  2  0.10
+  PTNLO 22  120.0 E_CMS
+  RapidityNLO  22  -2.7  2.7
+}(selector)
+"""
+
+genSeq.Sherpa_i.NCores = 256
+genSeq.Sherpa_i.Parameters += [ "OL_PARAMETERS=ew_scheme=2 ew_renorm_scheme=1 write_parameters=1" ]
+genSeq.Sherpa_i.Parameters += [ "EW_SCHEME=3", "GF=1.166397e-5" ]
+
