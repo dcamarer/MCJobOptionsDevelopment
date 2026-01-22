@@ -2,6 +2,11 @@ echo ""
 date
 echo ""
 
+# When running on the UIs
+export ATLAS_LOCAL_ROOT_BASE=/cvmfs/atlas.cern.ch/repo/ATLASLocalRootBase
+alias setupATLAS='source ${ATLAS_LOCAL_ROOT_BASE}/user/atlasLocalSetup.sh'
+export RUCIO_ACCOUNT=dcamarer
+
 setupATLAS -c
 asetup AthGeneration,23.6.50,here
 lsetup rucio
