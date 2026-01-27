@@ -7,43 +7,44 @@ evgenConfig.contact  = [ "atlas-generators-sherpa@cern.ch", "daniel.camarero.mun
 evgenConfig.nEventsPerJob = 1000
 
 genSeq.Sherpa_i.RunCard="""
+# Perturbative scales
+MEPS:
+  CORE_SCALE: VAR{PPerp2(p[2])}
+SCALES: METS{MU_F2}{MU_R2}{MU_Q2}
+ALPHAQED_DEFAULT_SCALE: 0.0
+
+# ME generator settings
+ME_GENERATORS: [Comix, Amegic, OpenLoops]
+
+# Tags for process setup
+TAGS: {QCUT: 20, NJET: 4, LJET:2,3}
+
+PROCESSES:
+- 93 93 -> 22 93 93{$(NJET)};
+  Order: {QCD: Any, EW: 1}
+  CKKW: ...
+
+  
 
 
 
 
+SELECTORS:
+- [IsolationCut, 22, 0.1, 2, 0.10]
+- [PT, 22, 17, 35]
+- [Y, 22, -2.7, 2.7]
+"""
 
+genSeq.Sherpa_i.NCores = 256
+genSeq.Sherpa_i.Parameters += [ "OL_PARAMETERS=write_parameters=1" ]
+genSeq.Sherpa_i.Parameters += [ "EW_SCHEME=3", "GF=1.166397e-5" ]
 
-
-
-
+/////////
+// OLD //
+/////////
 
 genSeq.Sherpa_i.RunCard="""
-(run){
-  # Perturbative scales
-  FSF:=1.; RSF:=1.; QSF:=1.;
-  SCALES STRICT_METS{FSF*MU_F2}{RSF*MU_R2}{QSF*MU_Q2};
-  CORE_SCALE VAR{PPerp2(p[2])};
-  ALPHAQED_DEFAULT_SCALE=0.0;
-  
-  # ME generator settings
-  ME_SIGNAL_GENERATOR Comix Amegic LOOPGEN;
-  LOOPGEN:=OpenLoops;
-  
-  # Tags for process setup
-  NJET:=4; LJET:=2,3; QCUT:=20.;
-
-  # EW corrections setup
-  ASSOCIATED_CONTRIBUTIONS_VARIATIONS=EW EW|LO1 EW|LO1|LO2;
-  EW|LO1|LO2|LO3;
-  METS_BBAR_MODE=5;
-  EW_SCHEME=3;
-  GF=1.166397e-5;
-  KFACTOR VAR{128.802/137.03599976};
-}(run)
-
 (processes){
-  Process 93 93 -> 22 93 93{NJET};
-  Order (*,1);
   CKKW sqr(QCUT/E_CMS)/(1.0+sqr(QCUT/0.6)/PPerp2(p[2]));
   Associated_Contributions EW|LO1|LO2|LO3 {LJET};
   NLO_QCD_Mode MC@NLO {LJET};
@@ -52,17 +53,6 @@ genSeq.Sherpa_i.RunCard="""
   Loop_Generator LOOPGEN {LJET};
   Integration_Error 0.10 {2,3,4,5,6,7,8};
   PSI_ItMin 30000 {2,3}
-  PSI_ItMin 50000 {4,5,6}
-  End process;
+  PSI_ItMin 50000 {4,5,6}  
 }(processes)
-
-(selector){
-  IsolationCut  22  0.1  2  0.10
-  PTNLO 22  17  35
-  RapidityNLO  22  -2.7  2.7
-}(selector)
 """
-
-genSeq.Sherpa_i.NCores = 256
-genSeq.Sherpa_i.Parameters += [ "OL_PARAMETERS=write_parameters=1" ]
-genSeq.Sherpa_i.Parameters += [ "EW_SCHEME=3", "GF=1.166397e-5" ]
