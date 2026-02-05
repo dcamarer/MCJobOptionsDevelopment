@@ -1,5 +1,9 @@
 #!/bin/bash
-source /usatlas/u/dcamarero/MCJobOptionsDevelopment/setup_sherpa3.sh  # Use latest or specific: asetup 23.6.61
+
+export ATLAS_LOCAL_ROOT_BASE=/cvmfs/atlas.cern.ch/repo/ATLASLocalRootBase
+source ${ATLAS_LOCAL_ROOT_BASE}/user/atlasLocalSetup.sh
+asetup AthGeneration,23.6.61,here
+
 WORKDIR="/usatlas/u/dcamarero/MCJobOptionsDevelopment/JOs_ssww_Sherpa303_DCMVal/13TeV/701382_gen" # Ensure working dir
 
 # Check if workdir exists, abort if not

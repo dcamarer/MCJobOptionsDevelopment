@@ -3,8 +3,8 @@ Executable = gen_701383.sh
 Output = gen_701383.$(Cluster).$(Process).out
 Error  = gen_701383.$(Cluster).$(Process).err
 Log    = gen_701383.log
-RequestMemory = 4GB
-RequestDisk   = 10GB
-+Experiment = "atlas"
-Requirements = ATLAS
+RequestMemory = 2GB
+#RequestDisk   = 10GB
+#+Experiment = "atlas"
+#Requirements = ATLAS
 Queue 1
