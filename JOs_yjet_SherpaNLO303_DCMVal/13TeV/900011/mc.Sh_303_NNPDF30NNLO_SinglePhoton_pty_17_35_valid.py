@@ -35,7 +35,7 @@ SELECTORS:
 - [Y, 22, -2.7, 2.7]
 """
 
-genSeq.Sherpa_i.NCores = 256
+genSeq.Sherpa_i.NCores = 32
 genSeq.Sherpa_i.Parameters += [ "OL_PARAMETERS=write_parameters=1" ]
 genSeq.Sherpa_i.Parameters += [ "EW_SCHEME=3", "GF=1.166397e-5" ]
 
