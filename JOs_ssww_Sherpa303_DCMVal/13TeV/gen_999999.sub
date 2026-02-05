@@ -1,0 +1,10 @@
+Universe = vanilla
+Executable = gen_999999.sh
+Output = gen_999999.$(Cluster).$(Process).out
+Error  = gen_999999.$(Cluster).$(Process).err
+Log    = gen_999999.log
+RequestMemory = 2GB
+#RequestDisk   = 10GB
+#+Experiment = "atlas"
+#Requirements = ATLAS
+Queue 1
