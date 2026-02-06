@@ -52,7 +52,6 @@ genSeq.Sherpa_i.RunCard="""
 }(selector)
 """
 
-genSeq.Sherpa_i.NCores = 24
-genSeq.Sherpa_i.MemoryMB = 3000
+genSeq.Sherpa_i.NCores = 32
 genSeq.Sherpa_i.Parameters += [ "OL_PARAMETERS=write_parameters=1" ]
 genSeq.Sherpa_i.Parameters += [ "EW_SCHEME=3", "GF=1.166397e-5" ]
