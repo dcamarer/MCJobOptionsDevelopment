@@ -17,7 +17,7 @@ genSeq.Sherpa_i.RunCard="""
   # ME generator settings
   ME_SIGNAL_GENERATOR Comix Amegic LOOPGEN;
   LOOPGEN:=OpenLoops;
-  
+
   # Tags for process setup
   NJET:=4; LJET:=2,3; QCUT:=20.;
 
@@ -28,6 +28,10 @@ genSeq.Sherpa_i.RunCard="""
   EW_SCHEME=3;
   GF=1.166397e-5;
   KFACTOR VAR{128.802/137.03599976};
+
+  # Speed and neg weight fraction improvements
+  PP_RS_SCALE VAR{H_T2/4};
+  NLO_CSS_PSMODE=1
 }(run)
 
 (processes){
@@ -40,8 +44,8 @@ genSeq.Sherpa_i.RunCard="""
   RS_ME_Generator Comix {LJET};
   Loop_Generator LOOPGEN {LJET};
   Integration_Error 0.10 {2,3,4,5,6,7,8};
-  PSI_ItMin 30000 {2,3}
-  PSI_ItMin 50000 {4,5,6}
+  PSI_ItMin 30000 {2,3};
+  PSI_ItMin 50000 {4,5,6};
   End process;
 }(processes)
 
