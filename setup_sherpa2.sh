@@ -8,7 +8,7 @@ alias setupATLAS='source ${ATLAS_LOCAL_ROOT_BASE}/user/atlasLocalSetup.sh'
 export RUCIO_ACCOUNT=dcamarer
 
 setupATLAS
-asetup AthGeneration,23.6.50,here
+asetup AthGeneration,23.6.49,here
 lsetup rucio
 lsetup "rucio -w"
 
