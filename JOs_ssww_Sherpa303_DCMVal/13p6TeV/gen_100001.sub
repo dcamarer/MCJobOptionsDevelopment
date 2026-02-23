@@ -4,7 +4,8 @@ Output = gen_100001.$(Cluster).$(Process).out
 Error  = gen_100001.$(Cluster).$(Process).err
 Log    = gen_100001.log
 RequestMemory = 2GB
-#RequestDisk   = 10GB
+RequestCpus = 4
+#RequestDisk = 10GB
 #+Experiment = "atlas"
 #Requirements = ATLAS
 Queue 1
