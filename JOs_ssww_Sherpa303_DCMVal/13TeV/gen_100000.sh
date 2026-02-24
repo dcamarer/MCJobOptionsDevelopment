@@ -4,7 +4,7 @@ export ATLAS_LOCAL_ROOT_BASE=/cvmfs/atlas.cern.ch/repo/ATLASLocalRootBase
 source ${ATLAS_LOCAL_ROOT_BASE}/user/atlasLocalSetup.sh
 asetup AthGeneration,23.6.60,here
 
-WORKDIR="/usatlas/u/dcamarero/MCJobOptionsDevelopment/JOs_ssww_Sherpa303_DCMVal/13TeV/100000_gen" # Ensure working dir
+WORKDIR="./100000_gen" # Ensure working dir
 
 # Check if workdir exists, abort if not
 if [ ! -d "$WORKDIR" ]; then
