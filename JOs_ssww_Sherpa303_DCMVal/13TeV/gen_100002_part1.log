@@ -1,18 +1,14 @@
-000 (41159.000.000) 2026-02-24 01:55:26 Job submitted from host: <130.199.48.147:9618?addrs=[2620-0-210-a002--147]-9618+130.199.48.147-9618&alias=attsub02.usatlas.bnl.gov&noUDP&sock=schedd_438289_08f4>
+000 (41162.000.000) 2026-02-24 02:05:58 Job submitted from host: <130.199.48.147:9618?addrs=[2620-0-210-a002--147]-9618+130.199.48.147-9618&alias=attsub02.usatlas.bnl.gov&noUDP&sock=schedd_438289_08f4>
 ...
-001 (41159.000.000) 2026-02-24 01:55:41 Job executing on host: <130.199.156.110:9618?addrs=[2620-0-210-9001--110]-9618+130.199.156.110-9618&alias=spool0871.sdcc.bnl.gov&noUDP&sock=startd_372377_b814>
-	SlotName: slot1_55@spool0871.sdcc.bnl.gov
-	CondorScratchDir = "/home/condor/local/sdcc/execute/dir_375123"
+001 (41162.000.000) 2026-02-24 02:06:03 Job executing on host: <130.199.157.204:9618?addrs=[2620-0-210-9017--204]-9618+130.199.157.204-9618&alias=spool0863.sdcc.bnl.gov&noUDP&sock=startd_372884_2d9b>
+	SlotName: slot1_62@spool0863.sdcc.bnl.gov
+	CondorScratchDir = "/home/condor/local/sdcc/execute/dir_2235619"
 	Cpus = 10
 	Disk = 7408
 	Memory = 2048
 	xferslots = 0
 ...
-006 (41159.000.000) 2026-02-24 01:55:55 Image size of job updated: 41772
+006 (41162.000.000) 2026-02-24 02:06:17 Image size of job updated: 41736
 	41  -  MemoryUsage of job (MB)
-	41772  -  ResidentSetSize of job (KB)
-...
-006 (41159.000.000) 2026-02-24 02:00:56 Image size of job updated: 1036976
-	1013  -  MemoryUsage of job (MB)
-	1036976  -  ResidentSetSize of job (KB)
+	41736  -  ResidentSetSize of job (KB)
 ...

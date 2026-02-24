@@ -1,2 +1,0 @@
-/cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.60/InstallArea/x86_64-el9-gcc14-opt/share/Gen_tf.py:44: DeprecationWarning: Python 3.14 will, by default, filter extracted tar archives and reject files or modify their metadata. Use the filter argument to control this behavior.
-  tf.extractall()
