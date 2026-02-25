@@ -4,6 +4,7 @@ Output = gen_701380.$(Cluster).$(Process).out
 Error  = gen_701380.$(Cluster).$(Process).err
 Log    = gen_701380.log
 RequestMemory = 2GB
++JobFlavour = "testmatch"  # 72h walltime
 #RequestDisk   = 10GB
 #+Experiment = "atlas"
 #Requirements = ATLAS
