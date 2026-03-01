@@ -5,6 +5,7 @@ Error  = gen_100002_part2.$(Cluster).$(Process).err
 Log    = gen_100002_part2.log
 RequestMemory = 2GB
 RequestCpus = 10
+MaxRuntime=604800
 +JobFlavour = "testmatch"
 #RequestDisk = 10GB
 #+Experiment = "atlas"

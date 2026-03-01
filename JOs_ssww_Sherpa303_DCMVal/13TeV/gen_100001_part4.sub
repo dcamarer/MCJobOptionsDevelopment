@@ -1,8 +1,8 @@
 Universe = vanilla
-Executable = gen_100002_part1.sh
-Output = gen_100002_part1.$(Cluster).$(Process).out
-Error  = gen_100002_part1.$(Cluster).$(Process).err
-Log    = gen_100002_part1.log
+Executable = gen_100001_part4.sh
+Output = gen_100001_part4.$(Cluster).$(Process).out
+Error  = gen_100001_part4.$(Cluster).$(Process).err
+Log    = gen_100001_part4.log
 RequestMemory = 2GB
 RequestCpus = 10
 MaxRuntime=604800
