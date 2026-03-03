@@ -19,7 +19,7 @@ genSeq.Sherpa_i.RunCard="""
   LOOPGEN:=OpenLoops;
 
   # Tags for process setup
-  NJET:=4; LJET:=2,3; QCUT:=20.;
+  NJET:=3; LJET:=2,3; QCUT:=20.;
 
   # EW corrections setup
   ASSOCIATED_CONTRIBUTIONS_VARIATIONS=EW EW|LO1 EW|LO1|LO2;
@@ -45,7 +45,7 @@ genSeq.Sherpa_i.RunCard="""
   Loop_Generator LOOPGEN {LJET};
   Integration_Error 0.10 {2,3,4,5,6,7,8};
   PSI_ItMin 30000 {2,3};
-  PSI_ItMin 50000 {4,5,6};
+  PSI_ItMin 50000 {4,5};
   End process;
 }(processes)
 
@@ -56,6 +56,6 @@ genSeq.Sherpa_i.RunCard="""
 }(selector)
 """
 
-genSeq.Sherpa_i.NCores = 6
+genSeq.Sherpa_i.NCores = 10
 genSeq.Sherpa_i.Parameters += [ "OL_PARAMETERS=write_parameters=1" ]
 genSeq.Sherpa_i.Parameters += [ "EW_SCHEME=3", "GF=1.166397e-5" ]
