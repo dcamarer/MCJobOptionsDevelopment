@@ -16,7 +16,7 @@ fi
 cd "$WORKDIR" || exit 1
 
 Gen_tf.py --ecmEnergy=13000.0 \
-          --randomSeed=9202 \
+          --randomSeed=92021 \
           --jobConfig=../100002 \
           --outputEVNTFile=run2_100002_part8.EVNT.root \
-          --maxEvents=1000
+          --maxEvents=500
