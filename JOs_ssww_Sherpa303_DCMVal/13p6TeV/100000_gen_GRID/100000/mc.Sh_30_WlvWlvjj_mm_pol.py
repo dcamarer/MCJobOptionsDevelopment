@@ -39,6 +39,7 @@ HARD_DECAYS:
   Pol_Cross_Section:
     Enabled: true
     Reference_System: [COM, PPFr]
+    Number_Of_Custom_Weights: 83
     Weight1: W-.0_W-.T, W-.T_W-.0
     Weight2: W-.0_W-.T, W-.T_W-.0, W-.0_W-.0
     Weight3:  W-.--_W-.++    
