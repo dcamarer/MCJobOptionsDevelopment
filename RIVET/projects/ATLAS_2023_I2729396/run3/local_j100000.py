@@ -7,8 +7,8 @@ xssum=0.
 effsum=0.
 nfiles=0
 
-period="run2"
-joboption="100001"
+period="run3"
+joboption="100000"
 rangelimit=6
 
 if period == "run2":

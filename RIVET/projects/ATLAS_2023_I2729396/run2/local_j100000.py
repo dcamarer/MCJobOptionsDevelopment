@@ -56,9 +56,9 @@ from Rivet_i.Rivet_iConf import Rivet_i
 rivet = Rivet_i()
 rivet.Analyses += [ 'ATLAS_2023_I2729396' ]
 rivet.RunName = ''
-rivet.HistoFile = 'run2_' + joboption + '_' + joboption_msg + '.yoda.gz'
+rivet.HistoFile = period + '_' + joboption + '_' + joboption_msg + '.yoda.gz'
 print (xssum/float(nfiles) * effsum/float(nfiles))
-rivet.CrossSection = xssum/nfiles * effsum/nfiles
+rivet.CrossSection = 1000 * xssum/nfiles * effsum/nfiles # The factor 1000 is needed to move from nb to pb
 #rivet.IgnoreBeamCheck = True
 #rivet.SkipWeights=True
 job += rivet

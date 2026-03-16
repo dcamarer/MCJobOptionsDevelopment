@@ -42,13 +42,18 @@ echo $RIVET_DATA_PATH
 ```Console
 rivet-mkhtml --no-errs -o my_plots prediction1.yoda:"Title=MC 1" prediction2.yoda:"Title=MC 2"
 
-rivet-mkhtml --no-errs -c Routine/ATLAS_2023_I2729396.plot -o my_plots_MC run2/run2_100000_WmWm.yoda.gz:"Title=100000 W-W-" run2/run2_100001_WpWp.yoda.gz:"Title=100001 W+W+"
+rivet-mkhtml -o my_plots run2/run2_stacked.yoda.gz:"Title=Slices 1-5"
+
+rivet-mkhtml -c Routine/ATLAS_2023_I2729396.plot -o my_plots_MC run2/run2_100000_WmWm.yoda.gz:"Title=100000 W-W-" run2/run2_100001_WpWp.yoda.gz:"Title=100001 W+W+"
 ```
 
-## Merge YODA files (probably not needed ⚠️)
+## Merge YODA files
 
 ```Console
-rivet-merge -e -o my_merged_output.yoda.gz MY_GRID_OUTPUT/*
+rivet-merge --help
+```
+
+```Console
 rivet-merge -o my_stacked_outpyt.yoda.gz process1.yoda.gz:12.34 process2.yoda.gz:4.56
 ```
 
@@ -65,7 +70,7 @@ Hopefully not needed due to the new EVNT -> YODA conversion step above.
 To scale a YODA file by factor 10:
 
 ```Console
-yodascale -c '.* 10x' file_original.yoda
+yodascale -c '.* 1000x' file_original.yoda
 ```
 
 ## Output further studies (YODA -> ROOT)

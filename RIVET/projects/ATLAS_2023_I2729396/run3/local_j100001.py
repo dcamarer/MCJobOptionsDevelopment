@@ -7,7 +7,7 @@ xssum=0.
 effsum=0.
 nfiles=0
 
-period="run2"
+period="run3"
 joboption="100001"
 rangelimit=6
 
