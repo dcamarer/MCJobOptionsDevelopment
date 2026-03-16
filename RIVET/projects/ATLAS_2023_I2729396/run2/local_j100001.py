@@ -8,7 +8,7 @@ effsum=0.
 nfiles=0
 
 period="run2"
-joboption="100000"
+joboption="100001"
 rangelimit=6
 
 dir="/eos/user/d/dcamarer/PostDoc/Run3_ssWW_polarisation/Sherpa3/13TeV/v1/" + joboption + "_merging/" + joboption + "_parts"

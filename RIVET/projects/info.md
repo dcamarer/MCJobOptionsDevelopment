@@ -16,16 +16,39 @@ rivet-build Rivet_MY_ANALYSIS.so MY_ANALYSIS.cc
 
 https://gitlab.cern.ch/atlas/athena/-/blob/main/Generators/Rivet_i/README.md?ref_type=heads#running-rivet-over-a-local-evnt-file
 
+Under the different projects I use scripts e.g. `athena local_j100000.py` to make this conversion
+
 ## Make plots
 
 ```Console
 rivet-mkhtml --help
 ```
 
-## HTML
-
 ```Console
 rivet-mkhtml --no-weights --errs -c ATLAS_2020_I1772071.plot -o my_plots_MC prediction1-scaled.yoda.gz:"Title=MC 1" prediction2-scaled.yoda.gz:"Title=MC 2"
+```
+
+## Merge YODA files
+
+```Console
+rivet-merge -e -o my_merged_output.yoda.gz MY_GRID_OUTPUT/*
+rivet-merge -o my_stacked_outpyt.yoda.gz process1.yoda.gz:12.34 process2.yoda.gz:4.56
+```
+
+Alternative option (if the previous gives something like "Rivet.AnalysisHandler: WARN  Analysis 'ATLAS_2020_I1772071' not found.")
+
+```Console
+yodamerge -o my_merged_output.yoda.gz MY_GRID_OUTPUT/*
+```
+
+## Scale a YODA file
+
+Hopefully not needed due to the new EVNT -> YODA conversion step above.
+
+To scale a YODA file by factor 10:
+
+```Console
+yodascale -c '.* 10x' file_original.yoda
 ```
 
 ## Output further studies (YODA -> ROOT)
