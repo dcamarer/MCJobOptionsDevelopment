@@ -30,7 +30,7 @@ Under the different projects I use scripts e.g. `athena local_j100000.py` to mak
 rivet-mkhtml --help
 ```
 
-Environment variables are needed if you want to plot the data, otherwise pass the config *.plot
+For a custom routine (⚠️): Environment variables are needed if you want to plot the data, otherwise pass the config *.plot
 
 ```Console
 export RIVET_ANALYSIS_PATH=/afs/cern.ch/user/d/dcamarer/MCJobOptionsDevelopment/RIVET/projects/ATLAS_2023_I2729396/Routine
@@ -42,7 +42,7 @@ echo $RIVET_DATA_PATH
 ```Console
 rivet-mkhtml --no-errs -o my_plots prediction1.yoda:"Title=MC 1" prediction2.yoda:"Title=MC 2"
 
-rivet-mkhtml -o my_plots run2/run2_stacked.yoda.gz:"Title=Slices 1-5"
+rivet-mkhtml -o my_plots run2/run2_stacked-scaled.yoda.gz:"Title=SNLO 2.2.16 [1-5]"
 
 rivet-mkhtml -c Routine/ATLAS_2023_I2729396.plot -o my_plots_MC run2/run2_100000_WmWm.yoda.gz:"Title=100000 W-W-" run2/run2_100001_WpWp.yoda.gz:"Title=100001 W+W+"
 ```
@@ -60,7 +60,7 @@ rivet-merge -o my_stacked_outpyt.yoda.gz process1.yoda.gz:12.34 process2.yoda.gz
 Alternative option (if the previous gives something like "Rivet.AnalysisHandler: WARN  Analysis 'ATLAS_2020_I1772071' not found.")
 
 ```Console
-yodamerge -o my_merged_output.yoda.gz MY_GRID_OUTPUT/*
+yodamerge -o run2_stacked.yoda.gz run2_*
 ```
 
 ## Scale a YODA file (probably not needed ⚠️)

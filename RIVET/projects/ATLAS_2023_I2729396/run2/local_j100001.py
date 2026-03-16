@@ -58,7 +58,7 @@ rivet.Analyses += [ 'ATLAS_2023_I2729396' ]
 rivet.RunName = ''
 rivet.HistoFile = period + '_' + joboption + '_' + joboption_msg + '.yoda.gz'
 print (xssum/float(nfiles) * effsum/float(nfiles))
-rivet.CrossSection = 1000 * xssum/nfiles * effsum/nfiles # The factor 1000 is needed to move from nb to pb
+rivet.CrossSection = xssum/nfiles * effsum/nfiles
 #rivet.IgnoreBeamCheck = True
 #rivet.SkipWeights=True
 job += rivet
