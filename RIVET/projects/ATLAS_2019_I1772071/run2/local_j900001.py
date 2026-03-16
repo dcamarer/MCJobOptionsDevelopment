@@ -33,7 +33,7 @@ elif joboption == "900007":
 else:
     joboption_msg = "unknown"
 
-dir="/eos/user/d/dcamarer/PostDoc/Run3_ssWW_polarisation/Sherpa3/" + energy + "/v1/" + joboption + "_merging/" + joboption + "_parts"
+dir="/eos/user/d/dcamarer/PostDoc/PMG/SherpaNLO2216/" + energy + "/" + joboption + "_merging/" + joboption + "_parts"
 for part in range(1, rangelimit+1):  # 1 to 6 inclusive
     evntfile=dir+"/" + period + "_" + joboption + "_part" + str(part) + ".EVNT.root"
     if os.path.exists(evntfile):
