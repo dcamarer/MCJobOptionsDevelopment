@@ -6,10 +6,16 @@
 - [ATLAS_2019_I1772071 y+2j](https://rivet.hepforge.org/analyses/ATLAS_2019_I1772071)
 - [ATLAS_2023_I2729396 ssWW 139/fb -- not yet official](https://gitlab.cern.ch/atlas-physics/pmg/rivet-routines/-/tree/master/STDM-2018-32_ssWWjj_139ifb)
 
-### Compile a custom analysis (for not official routines)
+### Compile a custom analysis (for non-official routines ⚠️)
 
 ```Console
-rivet-build Rivet_MY_ANALYSIS.so MY_ANALYSIS.cc
+rivet-build RivetMY_ANALYSIS.so MY_ANALYSIS.cc
+```
+
+For example, for the ssWW Run 2 analysis:
+
+```Console
+rivet-build RivetATLAS_2023_I2729396.so ATLAS_2023_I2729396.cc
 ```
 
 ## Input preparation (EVNT -> YODA)
@@ -24,11 +30,22 @@ Under the different projects I use scripts e.g. `athena local_j100000.py` to mak
 rivet-mkhtml --help
 ```
 
+Environment variables are needed if you want to plot the data, otherwise pass the config *.plot
+
 ```Console
-rivet-mkhtml --no-weights --errs -c ATLAS_2023_I2729396.plot -o my_plots_MC prediction1-scaled.yoda.gz:"Title=MC 1" prediction2-scaled.yoda.gz:"Title=MC 2"
+export RIVET_ANALYSIS_PATH=/afs/cern.ch/user/d/dcamarer/MCJobOptionsDevelopment/RIVET/projects/ATLAS_2023_I2729396/Routine
+echo $RIVET_ANALYSIS_PATH
+export RIVET_DATA_PATH=/afs/cern.ch/user/d/dcamarer/MCJobOptionsDevelopment/RIVET/projects/ATLAS_2023_I2729396/Routine
+echo $RIVET_DATA_PATH
 ```
 
-## Merge YODA files (probably not needed)
+```Console
+rivet-mkhtml --no-errs -o my_plots prediction1.yoda:"Title=MC 1" prediction2.yoda:"Title=MC 2"
+
+rivet-mkhtml --no-errs -c Routine/ATLAS_2023_I2729396.plot -o my_plots_MC run2/run2_100000_WmWm.yoda.gz:"Title=100000 W-W-" run2/run2_100001_WpWp.yoda.gz:"Title=100001 W+W+"
+```
+
+## Merge YODA files (probably not needed ⚠️)
 
 ```Console
 rivet-merge -e -o my_merged_output.yoda.gz MY_GRID_OUTPUT/*
@@ -41,7 +58,7 @@ Alternative option (if the previous gives something like "Rivet.AnalysisHandler:
 yodamerge -o my_merged_output.yoda.gz MY_GRID_OUTPUT/*
 ```
 
-## Scale a YODA file (probably not needed)
+## Scale a YODA file (probably not needed ⚠️)
 
 Hopefully not needed due to the new EVNT -> YODA conversion step above.
 
