@@ -9,5 +9,5 @@
 lsetup panda
 pathena --extOutFile=run2_snlo222_pty_500_1000.yoda.gz \
         --inDS=mc15_13TeV.364546.Sherpa_222_NNPDF30NNLO_SinglePhoton_pty_500_1000.evgen.EVNT.e5938 \
-        --outDS=user.dcamarer.364546.Sherpa_222_NNPDF30NNLO_SinglePhoton_pty_500_1000.analph2jets.v0 \
+        --outDS=user.dcamarer.364546.Sherpa_222_NNPDF30NNLO_SinglePhoton_pty_500_1000.analph2jets.v1 \
         RivetAnalysis_13TeV_ph2jets_slice6.py
