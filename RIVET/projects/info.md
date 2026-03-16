@@ -25,10 +25,10 @@ rivet-mkhtml --help
 ```
 
 ```Console
-rivet-mkhtml --no-weights --errs -c ATLAS_2020_I1772071.plot -o my_plots_MC prediction1-scaled.yoda.gz:"Title=MC 1" prediction2-scaled.yoda.gz:"Title=MC 2"
+rivet-mkhtml --no-weights --errs -c ATLAS_2023_I2729396.plot -o my_plots_MC prediction1-scaled.yoda.gz:"Title=MC 1" prediction2-scaled.yoda.gz:"Title=MC 2"
 ```
 
-## Merge YODA files
+## Merge YODA files (probably not needed)
 
 ```Console
 rivet-merge -e -o my_merged_output.yoda.gz MY_GRID_OUTPUT/*
@@ -41,7 +41,7 @@ Alternative option (if the previous gives something like "Rivet.AnalysisHandler:
 yodamerge -o my_merged_output.yoda.gz MY_GRID_OUTPUT/*
 ```
 
-## Scale a YODA file
+## Scale a YODA file (probably not needed)
 
 Hopefully not needed due to the new EVNT -> YODA conversion step above.
 
