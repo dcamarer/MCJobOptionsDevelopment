@@ -54,7 +54,7 @@ rivet-merge --help
 ```
 
 ```Console
-rivet-merge -o my_stacked_outpyt.yoda.gz process1.yoda.gz:12.34 process2.yoda.gz:4.56
+rivet-merge -e -o run2_stacked.yoda.gz run2_*
 ```
 
 Alternative option (if the previous gives something like "Rivet.AnalysisHandler: WARN  Analysis 'ATLAS_2020_I1772071' not found.")
