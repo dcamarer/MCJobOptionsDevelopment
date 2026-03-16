@@ -2,6 +2,7 @@ echo ""
 date
 echo ""
 
+setupATLAS
 lsetup asetup
 
 ### Sherpa 2.2.16
@@ -11,7 +12,7 @@ lsetup asetup
 ### Latest
 asetup main,latest,AthGeneration
 
-source setupRivet.sh
+source setupRivet
 rivet --version
 
 echo ""
