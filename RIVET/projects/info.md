@@ -42,7 +42,7 @@ echo $RIVET_DATA_PATH
 ```Console
 rivet-mkhtml --no-errs -o my_plots prediction1.yoda:"Title=MC 1" prediction2.yoda:"Title=MC 2"
 
-rivet-mkhtml -o my_plots run2/run2_stacked.yoda.gz:"Title=SNLO 2.2.16 [1-5]"
+rivet-mkhtml -o my_plots run2/run2_stacked.yoda.gz:"Title=SNLO 2.2.16 [1-5]" run2/run2_900004_pty_140_280.yoda.gz:"Title=Slice 4" run2/run2_900005_pty_280_500.yoda.gz:"Title=Slice 5"
 
 rivet-mkhtml -c Routine/ATLAS_2023_I2729396.plot -o my_plots_MC run2/run2_100000_WmWm.yoda.gz:"Title=100000 W-W-" run2/run2_100001_WpWp.yoda.gz:"Title=100001 W+W+"
 ```
@@ -54,7 +54,7 @@ rivet-merge --help
 ```
 
 ```Console
-rivet-merge -e -o run2_stacked.yoda.gz run2_*
+rivet-merge -o run2_stacked.yoda.gz run2_*
 ```
 
 Alternative option (if the previous gives something like "Rivet.AnalysisHandler: WARN  Analysis 'ATLAS_2020_I1772071' not found.")
