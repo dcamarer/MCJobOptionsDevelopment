@@ -9,7 +9,7 @@ nfiles=0
 
 period="run3"
 joboption="900006"
-rangelimit=1
+rangelimit=2
 
 if period == "run2":
     energy = "13TeV"
