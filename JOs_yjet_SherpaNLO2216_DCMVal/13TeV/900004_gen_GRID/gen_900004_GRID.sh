@@ -2,7 +2,7 @@ echo ""
 date
 echo ""
 
-pathena --trf "Gen_tf.py --ecmEnergy=13000 --randomSeed %RNDM:1234 --outputEVNTFile %OUT.EVNT.root --jobConfig=900004 --maxEvents=2000" --outDS user.dcamarer.run2_900004_260313 --split 10 --maxCpuCount 259200
+pathena --trf "Gen_tf.py --ecmEnergy=13000 --randomSeed %RNDM:1234 --outputEVNTFile %OUT.EVNT.root --jobConfig=900004 --maxEvents=10000" --outDS user.dcamarer.run2_900004_260319 --split 10 --maxCpuCount 259200
 
 # --nFilesPerJob 1
 
