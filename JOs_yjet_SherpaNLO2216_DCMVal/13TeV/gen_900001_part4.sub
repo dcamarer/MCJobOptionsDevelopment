@@ -6,7 +6,7 @@ Log    = gen_900001_part4.log
 RequestMemory = 2GB
 RequestCpus = 10
 +JobFlavour = "nextweek"
++Experiment = "atlas"
++VO_Name = "atlas"
 #RequestDisk = 10GB
-#+Experiment = "atlas"
-#Requirements = ATLAS
 Queue 1
