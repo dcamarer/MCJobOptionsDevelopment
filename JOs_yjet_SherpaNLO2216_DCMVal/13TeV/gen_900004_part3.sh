@@ -20,4 +20,4 @@ Gen_tf.py --ecmEnergy=13000.0 \
           --randomSeed=9101 \
           --jobConfig=../900004 \
           --outputEVNTFile=run2_900004_part3.EVNT.root \
-          --maxEvents=10000
+          --maxEvents=4000
