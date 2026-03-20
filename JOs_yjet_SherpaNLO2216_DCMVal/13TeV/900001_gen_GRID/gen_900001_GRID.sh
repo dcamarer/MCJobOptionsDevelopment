@@ -2,21 +2,12 @@ echo ""
 date
 echo ""
 
-# Needed to unpack and avoid libraries issues (e.g. Have to compile Amegic libraries, you probably want to run ./makelibs)
-Gen_tf.py --ecmEnergy=13000 --randomSeed=9999 --jobConfig=900001 --outputEVNTFile=test.EVNT.root --maxEvents=1
+# Need to create and make the libs for the GRID
+#sherpaTarCreator.py 900001 --ecm 13.0 -o getOpenLoops
+#sherpaTarCreator.py 900001 --ecm 13.0 -o createLibs
+#sherpaTarCreator.py 900001 --ecm 13.0 -o makelibs
 
-echo ""
-echo " ===> DCM : Local generation done"
-
-./makelibs
-
-echo ""
-echo " ===> DCM : ./makelibs done"
-
-pathena --trf "Gen_tf.py --ecmEnergy=13000 --randomSeed %RNDM:9999 --outputEVNTFile %OUT.EVNT.root --jobConfig=900001 --maxEvents=15000" --outDS user.dcamarer.run2_900001_260319 --split 10 --maxCpuCount 259200
-
-echo ""
-echo " ===> DCM : Grid generation job submission"
+pathena --trf "Gen_tf.py --ecmEnergy=13000 --randomSeed %RNDM:9999 --outputEVNTFile %OUT.EVNT.root --jobConfig=900001 --maxEvents=15000" --outDS user.dcamarer.run2_900001_260320 --split 10 --maxCpuCount 259200
 
 # --nFilesPerJob 1
 
