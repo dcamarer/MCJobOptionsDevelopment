@@ -12,6 +12,8 @@ lsetup asetup
 ### Latest
 asetup main,latest,AthGeneration
 
+### Setup Rivet
+# Rivet 4 is not backwards compatible with Rivet 3 and crucially the DressedLeptons projection was removed https://gitlab.com/hepcedar/rivet/-/blob/release-4-1-x/doc/tutorials/mig3to4.md
 source setupRivet
 rivet --version
 
