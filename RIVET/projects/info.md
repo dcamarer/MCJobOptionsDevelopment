@@ -60,7 +60,7 @@ When the inputs are independent (diff processes)
 rivet-merge run2_* -o run2_stacked.yoda.gz
 ```
 
-When the inputs are equivalent, with same random number
+When the inputs are equivalent, with same random number (i.e. GRID outputs from a single DSID)
 
 ```Console
 rivet-merge -e run2_* -o run2_stacked.yoda.gz
