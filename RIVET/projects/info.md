@@ -42,7 +42,7 @@ echo $RIVET_DATA_PATH
 ```Console
 rivet-mkhtml --no-errs -o my_plots prediction1.yoda:"Title=MC 1" prediction2.yoda:"Title=MC 2"
 
-rivet-mkhtml -o my_plots run2_snlo222/run2_sh222_stacked.yoda.gz:"Title=SNLO 2.2.2" run2/run2_stacked.yoda.gz:"Title=SNLO 2.2.16 [2-5]"
+rivet-mkhtml -o my_plots run2_snlo222/run2_sh222_stacked.yoda.gz:"Title=SNLO 2.2.2" run2/run2_stacked.yoda.gz:"Title=SNLO 2.2.16 [1-5]"
 
 rivet-mkhtml -c Routine/ATLAS_2023_I2729396.plot -o my_plots_MC run2/run2_100000_WmWm.yoda.gz:"Title=100000 W-W-" run2/run2_100001_WpWp.yoda.gz:"Title=100001 W+W+"
 rivet-mkhtml -c Routine/ATLAS_2023_I2729396.plot -o my_plots_MC run2/run2_polarised_stacked.yoda.gz:"Title=Polar W-W- + W+W+" run2/run2_100002_inclusive.yoda.gz:"Title=Inclusive ssWW"
