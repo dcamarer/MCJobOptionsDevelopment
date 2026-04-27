@@ -1,24 +1,24 @@
 #!/bin/bash
 
-MODE="${1:-EL9}"
+MODE="${1:-el9}"
 
 echo ""
 date
 echo ""
 
 case "$MODE" in
-  C7)
+  c7)
     echo "Starting CentOS7 container..."
     setupATLAS -c centos7
     ;;
-  EL9)
+  el9)
     setupATLAS
     lsetup asetup
     source ./inside_el9.sh
     ;;
   *)
     echo "ERROR: unknown mode '$MODE'"
-    echo "Usage: $0 [C7|EL9]"
+    echo "Usage: $0 [c7|el9]"
     exit 1
     ;;
 esac
