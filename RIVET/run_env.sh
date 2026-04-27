@@ -19,6 +19,5 @@ case "$MODE" in
   *)
     echo "ERROR: unknown mode '$MODE'"
     echo "Usage: $0 [c7|el9]"
-    exit 1
     ;;
 esac
