@@ -41,8 +41,14 @@ export RIVET_REF_PATH=/afs/cern.ch/user/d/dcamarer/MCJobOptionsDevelopment/RIVET
 Check that the custom routine is identified:
 
 ```Console
-Apptainer> rivet --pwd --list-analyses ATLAS_2023_I2729396
+rivet --pwd --list-analyses ATLAS_2023_I2729396
 > ATLAS_2023_I2729396         Electroweak same-sign WW production at 13 TeV
+```
+
+In addition, the yoda.gz file variables can be inspected using:
+
+```Console
+zcat run2/filename.yoda.gz
 ```
 
 Now you can produce some plots:
@@ -50,11 +56,17 @@ Now you can produce some plots:
 ```Console
 rivet-mkhtml --no-errs -o my_plots prediction1.yoda:"Title=MC 1" prediction2.yoda:"Title=MC 2"
 
+// Commands for the photon+2jets analysis
+
 rivet-mkhtml -o my_plots run2_snlo222/run2_sh222_stacked.yoda.gz:"Title=SNLO 2.2.2" run2/run2_stacked.yoda.gz:"Title=SNLO 2.2.16 [1-5]"
 
-rivet-mkhtml -c Routine/ATLAS_2023_I2729396.plot -o my_plots_run2 run2/run2_100000_WmWm.yoda.gz:"Title=100000 W-W-" run2/run2_100001_WpWp.yoda.gz:"Title=100001 W+W+" run2/run2_100002_inclusive.yoda.gz:"Title=Inclusive ssWW"
+// Commands for the ssWW analysis
 
-rivet-mkhtml -c Routine/ATLAS_2023_I2729396.plot -o my_plots_MC run2/run2_polarised_stacked.yoda.gz:"Title=Polar W-W- + W+W+" run2/run2_100002_inclusive.yoda.gz:"Title=Inclusive ssWW"
+rivet-mkhtml-mpl -c Routine/ATLAS_2023_I2729396.plot -o my_plots_run2 run2/run2_100002_inclusive.yoda.gz:"Title=Inclusive ssWW"
+
+rivet-mkhtml-mpl -c Routine/ATLAS_2023_I2729396.plot -o my_plots_run2 run2/run2_100000_WmWm.yoda.gz:"Title=100000 W-W-" run2/run2_100001_WpWp.yoda.gz:"Title=100001 W+W+" run2/run2_100002_inclusive.yoda.gz:"Title=Inclusive ssWW"
+
+rivet-mkhtml-mpl -c Routine/ATLAS_2023_I2729396.plot -o my_plots_MC run2/run2_polarised_stacked.yoda.gz:"Title=Polar W-W- + W+W+" run2/run2_100002_inclusive.yoda.gz:"Title=Inclusive ssWW"
 ```
 
 ## Merge YODA files
@@ -63,7 +75,7 @@ rivet-mkhtml -c Routine/ATLAS_2023_I2729396.plot -o my_plots_MC run2/run2_polari
 rivet-merge --help
 ```
 
-When the inputs are independent (diff processes)
+When the inputs are independent (diff DSIDs)
 
 ```Console
 rivet-merge run2_* -o run2_stacked.yoda.gz

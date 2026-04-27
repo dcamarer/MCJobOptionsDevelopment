@@ -83,6 +83,6 @@ rivet.RunName = ''
 rivet.HistoFile = period + '_' + joboption + '_' + joboption_msg + '.yoda.gz'
 print (f"  → CrossSection = {1000 * xssum/float(nfiles) * effsum/float(nfiles)} pb")
 rivet.CrossSection = 1000 * xssum/nfiles * effsum/nfiles # The factor 1000 is needed to move from nb to pb
-#rivet.IgnoreBeamCheck = True
+rivet.IgnoreBeamCheck = True
 #rivet.SkipWeights=True
 job += rivet
