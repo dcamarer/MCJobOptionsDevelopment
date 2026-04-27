@@ -2,6 +2,9 @@ theApp.EvtMax = -1
 
 import re, os, glob
 
+# Ensure the folder containing your RivetATLAS_2023_I2729396.so is in the path
+os.environ['RIVET_ANALYSIS_PATH'] = '/afs/cern.ch/user/d/dcamarer/MCJobOptionsDevelopment/RIVET/projects/ATLAS_2023_I2729396/Routine'
+
 evntfiles=[]
 xssum=0.
 effsum=0.
