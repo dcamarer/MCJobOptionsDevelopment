@@ -70,13 +70,17 @@ rivet-mkhtml-mpl --no-weights --reflabel "Data Run 2" -c Routine/ATLAS_2023_I272
 
 rivet-mkhtml-mpl --no-weights --reflabel "Data Run 2" -c Routine/ATLAS_2023_I2729396.plot -o my_plots_run2 run2/run2_100002_inclusive.yoda.gz:"Title=Inclusive ssWW Run 2" run2/run2_polarised_stacked.yoda.gz:"Title=Polar W-W- + W+W+ Run 2"
 
+rivet-mkhtml-mpl --no-weights -c Routine/ATLAS_2023_I2729396.plot -o my_plots_run2_nodata run2/run2_100002_inclusive.yoda.gz:"Title=Inclusive ssWW Run 2" run2/run2_polarised_stacked.yoda.gz:"Title=Polar W-W- + W+W+ Run 2"
+
 // Run 3:
 
 rivet-mkhtml-mpl --no-weights --reflabel "Data Run 2" -c Routine/ATLAS_2023_I2729396.plot -o my_plots_run3_test run3/run3_100002_inclusive.yoda.gz:"Title=Inclusive ssWW Run 3"
 
 rivet-mkhtml-mpl --no-weights --reflabel "Data Run 2" -c Routine/ATLAS_2023_I2729396.plot -o my_plots_run3_separate run3/run3_100002_inclusive.yoda.gz:"Title=Inclusive ssWW Run 3" run3/run3_100000_WmWm.yoda.gz:"Title=100000 W-W- Run 3" run3/run3_100001_WpWp.yoda.gz:"Title=100001 W+W+ Run 3"
 
-rivet-mkhtml-mpl --no-weights --reflabel "Data Run 2" -c Routine/ATLAS_2023_I2729396.plot -o my_plots_run3 run3/run3_100002_inclusive.yoda.gz:"Title=Inclusive ssWW Run 3" run3/run3_polarised_stacked.yoda.gz:"Title=Polar W-W- + W+W+ Run 3" 
+rivet-mkhtml-mpl --no-weights --reflabel "Data Run 2" -c Routine/ATLAS_2023_I2729396.plot -o my_plots_run3 run3/run3_100002_inclusive.yoda.gz:"Title=Inclusive ssWW Run 3" run3/run3_polarised_stacked.yoda.gz:"Title=Polar W-W- + W+W+ Run 3"
+
+rivet-mkhtml-mpl --no-weights -c Routine/ATLAS_2023_I2729396.plot -o my_plots_run3_nodata run3/run3_100002_inclusive.yoda.gz:"Title=Inclusive ssWW Run 3" run3/run3_polarised_stacked.yoda.gz:"Title=Polar W-W- + W+W+ Run 3" 
 ```
 
 ## Merge YODA files
