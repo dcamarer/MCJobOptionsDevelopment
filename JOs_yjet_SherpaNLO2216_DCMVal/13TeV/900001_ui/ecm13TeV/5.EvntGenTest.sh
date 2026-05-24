@@ -20,7 +20,7 @@ echo "$BASE_DIR_ext"
 if [ "$1" != "--really" ]; then 
   exec singularity exec -e --no-home -B /cvmfs -B /var -B ${BASE_DIR_ext} -B $(pwd | cut -d '/' -f 1-2) -B ${BASE_DIR} /cvmfs/atlas.cern.ch/repo/containers/fs/singularity/x86_64-almalinux9 /bin/bash -- "$0" --really "$@";
 fi
-shift;
+#shift;
 
 export ATLAS_LOCAL_ROOT_BASE=/cvmfs/atlas.cern.ch/repo/ATLASLocalRootBase
 source ${ATLAS_LOCAL_ROOT_BASE}/user/atlasLocalSetup.sh
