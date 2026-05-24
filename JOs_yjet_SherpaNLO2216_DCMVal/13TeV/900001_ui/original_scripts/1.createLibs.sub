@@ -1,7 +1,0 @@
-executable = /afs/cern.ch/work/d/dcamarer/private/PostDoc/PMG/MCJobOptionsDevelopment/JOs_yjet_SherpaNLO2216_DCMVal/13TeV/900006/1.createLibs.sh
-output = /afs/cern.ch/work/d/dcamarer/private/PostDoc/PMG/MCJobOptionsDevelopment/JOs_yjet_SherpaNLO2216_DCMVal/13TeV/900006/1.createLibs.log
-error = /afs/cern.ch/work/d/dcamarer/private/PostDoc/PMG/MCJobOptionsDevelopment/JOs_yjet_SherpaNLO2216_DCMVal/13TeV/900006/1.createLibs.log
-log = outHTC.log
-+MaxRuntime = 172800
-RequestCpus = 1
-queue

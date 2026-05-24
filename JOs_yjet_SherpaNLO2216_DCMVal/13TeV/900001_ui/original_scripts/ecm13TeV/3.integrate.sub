@@ -1,8 +1,0 @@
-executable = /afs/cern.ch/work/d/dcamarer/private/PostDoc/PMG/MCJobOptionsDevelopment/JOs_yjet_SherpaNLO2216_DCMVal/13TeV/900006/ecm13TeV/3.integrate.sh
-output = /afs/cern.ch/work/d/dcamarer/private/PostDoc/PMG/MCJobOptionsDevelopment/JOs_yjet_SherpaNLO2216_DCMVal/13TeV/900006/ecm13TeV/3.integrate.log
-error = /afs/cern.ch/work/d/dcamarer/private/PostDoc/PMG/MCJobOptionsDevelopment/JOs_yjet_SherpaNLO2216_DCMVal/13TeV/900006/ecm13TeV/3.integrate.log
-log = outHTC.log
-+MaxRuntime = 1814400
-RequestMemory = 10
-RequestCpus = 30
-queue
