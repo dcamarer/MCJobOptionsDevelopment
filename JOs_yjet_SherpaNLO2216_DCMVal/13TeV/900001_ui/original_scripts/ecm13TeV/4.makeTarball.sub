@@ -1,0 +1,7 @@
+executable = /afs/cern.ch/work/d/dcamarer/private/PostDoc/PMG/MCJobOptionsDevelopment/JOs_yjet_SherpaNLO2216_DCMVal/13TeV/900006/ecm13TeV/4.makeTarball.sh
+output = /afs/cern.ch/work/d/dcamarer/private/PostDoc/PMG/MCJobOptionsDevelopment/JOs_yjet_SherpaNLO2216_DCMVal/13TeV/900006/ecm13TeV/4.makeTarball.log
+error = /afs/cern.ch/work/d/dcamarer/private/PostDoc/PMG/MCJobOptionsDevelopment/JOs_yjet_SherpaNLO2216_DCMVal/13TeV/900006/ecm13TeV/4.makeTarball.log
+log = outHTC.log
++MaxRuntime = 3600
+RequestCpus = 1
+queue
