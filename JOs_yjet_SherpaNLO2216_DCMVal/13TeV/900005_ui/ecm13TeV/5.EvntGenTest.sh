@@ -35,7 +35,7 @@ mkdir 5.EvntGenTest
 cd 5.EvntGenTest
 echo 'genSeq.Sherpa_i.Parameters += [ "LOG_FILE=" ]' > events.py
 outputEVNTFile=$(mktemp -u /tmp/XXXXXXXX.pool.root)
-Gen_tf.py --ecmEnergy=${ENERGY_CM} --maxEvents=1 --firstEvent=1 --randomSeed=10 --jobConfig=${BASE_DIR} --postInclude=events.py --outputEVNTFile=${outputEVNTFile} --maxEvents=100
+Gen_tf.py --ecmEnergy=${ENERGY_CM} --maxEvents=1 --firstEvent=1 --randomSeed=10 --jobConfig=${BASE_DIR} --postInclude=events.py --outputEVNTFile=${outputEVNTFile}
 cat log.generate
 post_ini_time=$(grep snapshot_post_ini log.generate | awk '{ print $5}')
 post_lastevt_time=$(grep snapshot_post_lastevt log.generate | awk '{ print $5}')
