@@ -3,14 +3,13 @@
 # Default configuration
 BASE_DIR="/home/dcamarero/PostDoc/PMG/MCJobOptionsDevelopment/JOs_yjet_SherpaNLO2216_DCMVal/13TeV/900001_ui"
 BASE_DIR_ext="${BASE_DIR}/ecm13TeV"
-DEFAULT_NCORES=48
+DEFAULT_NCORES=1
 DEFAULT_ENERGY_BEAM=6500.0
-DEFAULT_ENERGY_CM=13000.0
 
 # Optional overrides from command line
 NCORES="${1:-$DEFAULT_NCORES}"
 ENERGY_BEAM="${2:-$DEFAULT_ENERGY_BEAM}"
-ENERGY_CM="${3:-$DEFAULT_ENERGY_CM}"
+ENERGY_CM="$(awk -v ebeam="$ENERGY_BEAM" 'BEGIN {print 2*ebeam}')"
 
 if [ "$1" != "--really" ]; then 
   exec singularity exec -e --no-home -B /cvmfs -B /var -B ${BASE_DIR} -B $(pwd | cut -d '/' -f 1-2) /cvmfs/atlas.cern.ch/repo/containers/fs/singularity/x86_64-almalinux9 /bin/bash -- "$0" --really "$@";
@@ -22,7 +21,7 @@ source ${ATLAS_LOCAL_ROOT_BASE}/user/atlasLocalSetup.sh
 ulimit -f 1000000;
 cd ${BASE_DIR}
 
-echo "ncores=1 nhours=48 ${BASE_DIR}/1.createLibs.sh";
+echo "ncores=${NCORES} nhours=48 ${BASE_DIR}/1.createLibs.sh";
 source $AtlasSetup/scripts/asetup.sh 23.6.49,AthGeneration
 set -e
 rm -rf Process/Amegic.db Process/Comix.db Process/Sherpa.db Process/Amegic
