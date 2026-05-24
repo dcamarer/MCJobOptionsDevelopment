@@ -1,5 +1,7 @@
 # Work on the UIs
 
+The first (second) parameter is the number of cores (beam energy).
+
 ## Run 2 sequence:
 
 ```Console
