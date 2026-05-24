@@ -1,15 +1,28 @@
 #!/bin/sh -
+
+# Default configuration
+BASE_DIR="/home/dcamarero/PostDoc/PMG/MCJobOptionsDevelopment/JOs_yjet_SherpaNLO2216_DCMVal/13TeV/900001_ui"
+BASE_DIR_ext="${BASE_DIR}/ecm13TeV"
+DEFAULT_NCORES=48
+DEFAULT_ENERGY_BEAM=6500.0
+DEFAULT_ENERGY_CM=13000.0
+
+# Optional overrides from command line
+NCORES="${1:-$DEFAULT_NCORES}"
+ENERGY_BEAM="${2:-$DEFAULT_ENERGY_BEAM}"
+ENERGY_CM="${3:-$DEFAULT_ENERGY_CM}"
+
 if [ "$1" != "--really" ]; then 
-  exec singularity exec -e --no-home -B /cvmfs -B /var -B /home/dcamarero/PostDoc/PMG/MCJobOptionsDevelopment/JOs_yjet_SherpaNLO2216_DCMVal/13TeV/900001_ui -B $(pwd | cut -d '/' -f 1-2) /cvmfs/atlas.cern.ch/repo/containers/fs/singularity/x86_64-almalinux9 /bin/bash -- "$0" --really "$@";
+  exec singularity exec -e --no-home -B /cvmfs -B /var -B ${BASE_DIR} -B $(pwd | cut -d '/' -f 1-2) /cvmfs/atlas.cern.ch/repo/containers/fs/singularity/x86_64-almalinux9 /bin/bash -- "$0" --really "$@";
 fi
 shift;
 
 export ATLAS_LOCAL_ROOT_BASE=/cvmfs/atlas.cern.ch/repo/ATLASLocalRootBase
 source ${ATLAS_LOCAL_ROOT_BASE}/user/atlasLocalSetup.sh
 ulimit -f 1000000;
-cd /home/dcamarero/PostDoc/PMG/MCJobOptionsDevelopment/JOs_yjet_SherpaNLO2216_DCMVal/13TeV/900001_ui
+cd ${BASE_DIR}
 
-echo 'ncores=4 nhours=48 /home/dcamarero/PostDoc/PMG/MCJobOptionsDevelopment/JOs_yjet_SherpaNLO2216_DCMVal/13TeV/900001_ui/2.makelibs.sh';
+echo "ncores=4 nhours=48 ${BASE_DIR}/2.makelibs.sh";
 if ! test -f makelibs; then echo INFO: No makelibs file found; exit 0; fi
 source $AtlasSetup/scripts/asetup.sh 23.6.49,AthGeneration
 wget http://prdownloads.sourceforge.net/scons/scons-local-3.1.2.tar.gz

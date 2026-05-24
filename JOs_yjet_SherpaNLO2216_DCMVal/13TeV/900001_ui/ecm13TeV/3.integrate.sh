@@ -1,15 +1,28 @@
 #!/bin/sh -
+
+# Default configuration
+BASE_DIR="/home/dcamarero/PostDoc/PMG/MCJobOptionsDevelopment/JOs_yjet_SherpaNLO2216_DCMVal/13TeV/900001_ui"
+BASE_DIR_ext="${BASE_DIR}/ecm13TeV"
+DEFAULT_NCORES=48
+DEFAULT_ENERGY_BEAM=6500.0
+DEFAULT_ENERGY_CM=13000.0
+
+# Optional overrides from command line
+NCORES="${1:-$DEFAULT_NCORES}"
+ENERGY_BEAM="${2:-$DEFAULT_ENERGY_BEAM}"
+ENERGY_CM="${3:-$DEFAULT_ENERGY_CM}"
+
 if [ "$1" != "--really" ]; then 
-  exec singularity exec -e --no-home -B /cvmfs -B /var -B /home/dcamarero/PostDoc/PMG/MCJobOptionsDevelopment/JOs_yjet_SherpaNLO2216_DCMVal/13TeV/900001_ui/ecm13TeV -B $(pwd | cut -d '/' -f 1-2) -B /home/dcamarero/PostDoc/PMG/MCJobOptionsDevelopment/JOs_yjet_SherpaNLO2216_DCMVal/13TeV/900001_ui /cvmfs/atlas.cern.ch/repo/containers/fs/singularity/x86_64-almalinux9 /bin/bash -- "$0" --really "$@";
+  exec singularity exec -e --no-home -B /cvmfs -B /var -B ${BASE_DIR_ext} -B $(pwd | cut -d '/' -f 1-2) -B ${BASE_DIR} /cvmfs/atlas.cern.ch/repo/containers/fs/singularity/x86_64-almalinux9 /bin/bash -- "$0" --really "$@";
 fi
 shift;
 
 export ATLAS_LOCAL_ROOT_BASE=/cvmfs/atlas.cern.ch/repo/ATLASLocalRootBase
 source ${ATLAS_LOCAL_ROOT_BASE}/user/atlasLocalSetup.sh
 ulimit -f 1000000;
-cd /home/dcamarero/PostDoc/PMG/MCJobOptionsDevelopment/JOs_yjet_SherpaNLO2216_DCMVal/13TeV/900001_ui/ecm13TeV
+cd ${BASE_DIR_ext}
 
-echo 'ncores=90 nhours=336 /home/dcamarero/PostDoc/PMG/MCJobOptionsDevelopment/JOs_yjet_SherpaNLO2216_DCMVal/13TeV/900001_ui/ecm13TeV/3.integrate.sh';
+echo "ncores=${NCORES} nhours=336 ${BASE_DIR_ext}/3.integrate.sh"
 source $AtlasSetup/scripts/asetup.sh 23.6.49,AthGeneration
 set -e
 cat > Run.dat <<EOL
@@ -125,12 +138,12 @@ sed '/.*\}(run).*/i\ \ PDF_VARIATIONS=NNPDF30_nnlo_as_0118_hessian[all] NNPDF30_
 sed '/.*\}(run).*/i\ \ OL_PARAMETERS=write_parameters=1' -i Run.dat
 sed '/.*\}(run).*/i\ \ EW_SCHEME=3' -i Run.dat
 sed '/.*\}(run).*/i\ \ GF=1.166397e-5' -i Run.dat
-sed '/.*\}(run).*/i\ \ BEAM_ENERGY_1=6500.0' -i Run.dat
-sed '/.*\}(run).*/i\ \ BEAM_ENERGY_2=6500.0' -i Run.dat
+sed "/.*\\}(run).*/i\\  BEAM_ENERGY_1=${ENERGY_BEAM}" -i Run.dat
+sed "/.*\\}(run).*/i\\  BEAM_ENERGY_2=${ENERGY_BEAM}" -i Run.dat
 source /cvmfs/sft.cern.ch/lcg/releases/gcc/13.1.0-b3d18/x86_64-el9/setup.sh
 export PATH=/cvmfs/sft.cern.ch/lcg/releases/LCG_107a/openmpi/4.1.6/x86_64-el9-gcc13-opt/bin:$PATH
 export LHAPATH=/cvmfs/sft.cern.ch/lcg/external/lhapdfsets/current:/cvmfs/atlas.cern.ch/repo/sw/Generators/lhapdfsets/current/
 export OPAL_PREFIX=/cvmfs/sft.cern.ch/lcg/releases/LCG_107a/openmpi/4.1.6/x86_64-el9-gcc13-opt
 export LD_LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/LCG_107a/openmpi/4.1.6/x86_64-el9-gcc13-opt/lib:/cvmfs/sft.cern.ch/lcg/releases/LCG_107a/zlib/*/${LCG_PLATFORM}/lib:/cvmfs/sft.cern.ch/lcg/releases/LCG_107a/sqlite/*/${LCG_PLATFORM}/lib:/cvmfs/sft.cern.ch/lcg/releases/LCG_107a/HepMC/*/${LCG_PLATFORM}/lib:/cvmfs/sft.cern.ch/lcg/releases/LCG_107a_ATLAS_9/MCGenerators/lhapdf/*/${LCG_PLATFORM}/lib:/cvmfs/sft.cern.ch/lcg/releases/LCG_107a_ATLAS_9/fastjet/*/${LCG_PLATFORM}/lib:/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_107a_ATLAS_9/MCGenerators/openloops/2.1.4/x86_64-el9-gcc13-opt/lib:/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_107a_ATLAS_9/MCGenerators/openloops/2.1.4/x86_64-el9-gcc13-opt/proclib:/cvmfs/sft.cern.ch/lcg/releases/LCG_107a_ATLAS_9/MCGenerators/sherpa/${SHERPAVER}.openmpi3/${LCG_PLATFORM}/lib64/SHERPA-MC:/cvmfs/sft.cern.ch/lcg/releases/LCG_107a_ATLAS_9/MCGenerators/sherpa/${SHERPAVER}.openmpi3/${LCG_PLATFORM}/lib/SHERPA-MC:$LD_LIBRARY_PATH
-mpirun -n 10 /cvmfs/sft.cern.ch/lcg/releases/LCG_107a_ATLAS_9/MCGenerators/sherpa/${SHERPAVER}.openmpi3/${LCG_PLATFORM}/bin/Sherpa EVENTS=0 FRAGMENTATION=Off MI_HANDLER=None BEAM_ENERGY_1=6500.0 BEAM_ENERGY_2=6500.0
+mpirun -n "$NCORES" /cvmfs/sft.cern.ch/lcg/releases/LCG_107a_ATLAS_9/MCGenerators/sherpa/${SHERPAVER}.openmpi3/${LCG_PLATFORM}/bin/Sherpa EVENTS=0 FRAGMENTATION=Off MI_HANDLER=None BEAM_ENERGY_1=${ENERGY_BEAM} BEAM_ENERGY_2=${ENERGY_BEAM}
 exit 0
