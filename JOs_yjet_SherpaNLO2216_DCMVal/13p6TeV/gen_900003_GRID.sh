@@ -2,7 +2,7 @@ echo ""
 date
 echo ""
 
-pathena --trf "Gen_tf.py --ecmEnergy=13600 --randomSeed %RNDM:8888 --outputEVNTFile %OUT.EVNT.root --jobConfig=900003 --maxEvents=6250" --extFile 900003/mc_13p6TeV.Sh_2216_NNPDF30NNLO_SinglePhoton_pty_70_140.GRID.tar.gz --outDS user.dcamarer.run3_900003_260517 --split 20 --maxCpuCount 259200
+pathena --trf "Gen_tf.py --ecmEnergy=13600 --randomSeed %RNDM:7777 --outputEVNTFile %OUT.EVNT.root --jobConfig=900003_ui --maxEvents=5000" --extFile 900003_ui/mc_13p6TeV.Sh_2216_NNPDF30NNLO_SinglePhoton_pty_70_140.GRID.tar.gz --outDS user.dcamarer.run3_900003_ui_260524 --split 20 --maxCpuCount 259200
 
 echo ""
 date
