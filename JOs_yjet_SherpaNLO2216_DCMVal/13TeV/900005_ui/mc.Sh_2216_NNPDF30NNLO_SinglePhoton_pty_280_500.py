@@ -42,7 +42,8 @@ genSeq.Sherpa_i.RunCard="""
   ME_Generator Amegic {LJET};
   RS_ME_Generator Comix {LJET};
   Loop_Generator LOOPGEN {LJET};
-  Integration_Error 0.10 {2,3,4,5,6,7,8};
+  Integration_Error 0.20 {2,3};  # 20% for 2-jet NLO (was 0.99 in old)
+  Integration_Error 0.10 {4,5,6,7,8};  # Keep 10% for higher jets
   PSI_ItMin 30000 {2,3};
   PSI_ItMin 50000 {4,5};
   End process;
@@ -56,5 +57,5 @@ genSeq.Sherpa_i.RunCard="""
 """
 
 genSeq.Sherpa_i.NCores = 10
-genSeq.Sherpa_i.Parameters += [ "OL_PARAMETERS=write_parameters=1" ]
+genSeq.Sherpa_i.Parameters += [ "OL_PARAMETERS=redlib1=5=redlib2=5=write_parameters=1" ]
 genSeq.Sherpa_i.Parameters += [ "EW_SCHEME=3", "GF=1.166397e-5" ]
