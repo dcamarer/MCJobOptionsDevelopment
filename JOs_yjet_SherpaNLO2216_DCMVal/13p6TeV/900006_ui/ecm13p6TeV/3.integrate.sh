@@ -67,7 +67,8 @@ cat > Run.dat <<EOL
   ME_Generator Amegic {LJET};
   RS_ME_Generator Comix {LJET};
   Loop_Generator LOOPGEN {LJET};
-  Integration_Error 0.10 {2,3,4,5,6,7,8};
+  Integration_Error 0.20 {2,3};  # 20% for 2-jet NLO (was 0.99 in old)
+  Integration_Error 0.10 {4,5,6,7,8};  # Keep 10% for higher jets
   PSI_ItMin 30000 {2,3};
   PSI_ItMin 50000 {4,5};
   End process;
@@ -157,7 +158,7 @@ sed '/.*\}(run).*/i\ \ PDF_LIBRARY=LHAPDFSherpa' -i Run.dat
 sed '/.*\}(run).*/i\ \ USE_PDF_ALPHAS=1' -i Run.dat
 sed '/.*\}(run).*/i\ \ PDF_SET=NNPDF30_nnlo_as_0118_hessian' -i Run.dat
 sed '/.*\}(run).*/i\ \ PDF_VARIATIONS=NNPDF30_nnlo_as_0118_hessian[all] NNPDF30_nnlo_as_0117 NNPDF30_nnlo_as_0119 MSHT20nnlo_as118 CT18NNLO_as_0118 PDF4LHC21_40_pdfas[all] NNPDF31_nnlo_as_0118_hessian NNPDF40_nnlo_as_01180_hessian CT18ANNLO CT18XNNLO CT18ZNNLO' -i Run.dat
-sed '/.*\}(run).*/i\ \ OL_PARAMETERS=write_parameters=1' -i Run.dat
+sed '/.*\}(run).*/i\ \ OL_PARAMETERS=redlib1=5=redlib2=5=write_parameters=1' -i Run.dat
 sed '/.*\}(run).*/i\ \ EW_SCHEME=3' -i Run.dat
 sed '/.*\}(run).*/i\ \ GF=1.166397e-5' -i Run.dat
 sed "/.*\\}(run).*/i\\  BEAM_ENERGY_1=${ENERGY_BEAM}" -i Run.dat
