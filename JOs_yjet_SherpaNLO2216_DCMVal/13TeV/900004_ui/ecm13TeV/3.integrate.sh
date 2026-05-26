@@ -67,10 +67,12 @@ cat > Run.dat <<EOL
   ME_Generator Amegic {LJET};
   RS_ME_Generator Comix {LJET};
   Loop_Generator LOOPGEN {LJET};
-  Integration_Error 0.25 {2,3};  # 25% for 2-jet NLO (was 0.99 in old)
-  Integration_Error 0.10 {4,5,6,7,8};  # Keep 10% for higher jets
-  PSI_ItMin 30000 {2,3};
-  PSI_ItMin 50000 {4,5};
+  PSI_ItMin 30000 {3};
+  Integration_Error 0.10 {3};
+  PSI_ItMin 50000 {4};
+  Integration_Error 0.10 {4};
+  PSI_ItMin 100000 {5};
+  Integration_Error 0.10 {5};
   End process;
 }(processes)
 
