@@ -141,7 +141,8 @@ sed '/.*\}(run).*/i\ \ PDF_LIBRARY=LHAPDFSherpa' -i Run.dat
 sed '/.*\}(run).*/i\ \ USE_PDF_ALPHAS=1' -i Run.dat
 sed '/.*\}(run).*/i\ \ PDF_SET=NNPDF30_nnlo_as_0118_hessian' -i Run.dat
 sed '/.*\}(run).*/i\ \ PDF_VARIATIONS=NNPDF30_nnlo_as_0118_hessian[all] NNPDF30_nnlo_as_0117 NNPDF30_nnlo_as_0119 MSHT20nnlo_as118 CT18NNLO_as_0118 PDF4LHC21_40_pdfas[all] NNPDF31_nnlo_as_0118_hessian NNPDF40_nnlo_as_01180_hessian CT18ANNLO CT18XNNLO CT18ZNNLO' -i Run.dat
-sed '/.*\}(run).*/i\ \ OL_PARAMETERS=write_parameters=1' -i Run.dat
+sed '/.*\}(run).*/i\ \ OPENLOOP_EXPERT_MODE=1' -i Run.dat
+sed '/.*\}(run).*/i\ \ OL_PARAMETERS=redlib1=5=redlib2=5=write_parameters=1' -i Run.dat
 sed '/.*\}(run).*/i\ \ EW_SCHEME=3' -i Run.dat
 sed '/.*\}(run).*/i\ \ GF=1.166397e-5' -i Run.dat
 sed "/.*\\}(run).*/i\\  BEAM_ENERGY_1=${ENERGY_BEAM}" -i Run.dat
