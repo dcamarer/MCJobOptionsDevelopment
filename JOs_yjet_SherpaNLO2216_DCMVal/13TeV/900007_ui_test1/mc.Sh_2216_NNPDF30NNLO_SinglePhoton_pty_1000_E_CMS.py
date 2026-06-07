@@ -43,11 +43,11 @@ genSeq.Sherpa_i.RunCard="""
   RS_ME_Generator Comix {LJET};
   Loop_Generator LOOPGEN {LJET};
   PSI_ItMin 30000 {2,3};
-  Integration_Error 0.10 {2,3};
+  Integration_Error 0.25 {2,3};
   PSI_ItMin 50000 {4};
-  Integration_Error 0.10 {4};
+  Integration_Error 0.25 {4};
   PSI_ItMin 100000 {5};
-  Integration_Error 0.10 {5};
+  Integration_Error 0.25 {5};
   End process;
 }(processes)
 
