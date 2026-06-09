@@ -59,5 +59,5 @@ genSeq.Sherpa_i.RunCard="""
 """
 
 genSeq.Sherpa_i.NCores = 3
-genSeq.Sherpa_i.Parameters += [ "OL_PARAMETERS=redlib1=5=redlib2=5=write_parameters=1" ]
+genSeq.Sherpa_i.Parameters += [ "OL_PARAMETERS=write_parameters=1" ]
 genSeq.Sherpa_i.Parameters += [ "EW_SCHEME=3", "GF=1.166397e-5" ]
