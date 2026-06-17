@@ -9,7 +9,7 @@ nfiles=0
 
 period="run3"
 joboption="900004"
-rangelimit=2
+rangelimit=20
 
 if period == "run2":
     energy = "13TeV"
@@ -39,7 +39,7 @@ for part in range(1, rangelimit+1):
     print(f"Checking part {part}: {evntfile}")
     if os.path.exists(evntfile):
         print(f"  → EVNT file exists")
-        with open(dir+"/log.generate_part" + str(part)) as logfile:
+        with open(dir + "/log.generate_part" + str(part).zfill(2)) as logfile:
             line_num = 0
             for line in logfile:
                 line_num += 1
