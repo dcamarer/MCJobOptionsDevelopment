@@ -35,17 +35,11 @@ else:
 
 dir="/eos/user/d/dcamarer/PostDoc/PMG/SherpaNLO2216/" + energy + "/PROD_sherpaTarCreator/" + joboption + "_merging"
 for part in range(1, rangelimit+1):
-    evntfile=dir+"/" + period + "_" + joboption + "_part" + str(part) + ".EVNT.root"
+    evntfile=dir+"/" + period + "_" + joboption + "_part" + str(part).zfill(2) + ".EVNT.root"
     print(f"Checking part {part}: {evntfile}")
     if os.path.exists(evntfile):
         print(f"  → EVNT file exists")
-        
-        if part < 10:
-            part_str = "0" + str(part)
-        else:
-            part_str = str(part)
-
-        with open(dir + "/log.generate_part" + part_str) as logfile:
+        with open(dir + "/log.generate_part" + str(part).zfill(2)) as logfile:
             line_num = 0
             for line in logfile:
                 line_num += 1
