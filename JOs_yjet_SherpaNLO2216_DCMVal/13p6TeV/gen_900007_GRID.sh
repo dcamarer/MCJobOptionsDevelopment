@@ -2,9 +2,10 @@ echo ""
 date
 echo ""
 
-# Production of 200 * 20 = 4000 events
-# Events / second = 0.006, per day = 518.4, per week = 3628.8
-pathena --trf "Gen_tf.py --ecmEnergy=13600 --randomSeed %RNDM:7777 --outputEVNTFile %OUT.EVNT.root --jobConfig=900007_ui --maxEvents=200" --extFile 900007_ui/mc_13p6TeV.Sh_2216_NNPDF30NNLO_SinglePhoton_pty_1000_E_CMS.GRID.tar.gz --outDS user.dcamarer.run3_900007_ui_260611 --split 20 --maxCpuCount 259200
+# Production of 400 * 20 = 8000 events
+# Part 1 - 7777
+# Part 2 - 6666
+pathena --trf "Gen_tf.py --ecmEnergy=13600 --randomSeed %RNDM:6666 --outputEVNTFile %OUT.EVNT.root --jobConfig=900007_ui --maxEvents=400" --extFile 900007_ui/mc_13p6TeV.Sh_2216_NNPDF30NNLO_SinglePhoton_pty_1000_E_CMS.GRID.tar.gz --outDS user.dcamarer.run3_900007_ui_260617 --split 20 --maxCpuCount 259200
 
 echo ""
 date

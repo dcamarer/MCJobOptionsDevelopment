@@ -1,5 +1,6 @@
 # Practical instructions
 
+
 ## Analyses of interest
 
 - [ATLAS_2017_I1645627 y+j](https://rivet.hepforge.org/analyses/ATLAS_2017_I1645627)
@@ -23,6 +24,7 @@ rivet-build RivetATLAS_2023_I2729396.so ATLAS_2023_I2729396.cc
 https://gitlab.cern.ch/atlas/athena/-/blob/main/Generators/Rivet_i/README.md?ref_type=heads#running-rivet-over-a-local-evnt-file
 
 Under the different projects I use scripts e.g. `athena local_j100000.py` to make this conversion
+
 
 ## Make plots
 
@@ -58,7 +60,9 @@ rivet-mkhtml --no-errs -o my_plots prediction1.yoda:"Title=MC 1" prediction2.yod
 
 //// Commands for the photon+2jets analysis
 
-rivet-mkhtml -o my_plots run2_snlo222/run2_sh222_stacked.yoda.gz:"Title=SNLO 2.2.2" run2/run2_stacked.yoda.gz:"Title=SNLO 2.2.16 [1-5]"
+rivet-mkhtml -o my_plots_run2 run2_snlo222/run2_sh222_stacked.yoda.gz:"Title=SNLO 2.2.2" run2/run2_stacked.yoda.gz:"Title=SNLO 2.2.16 [1-7]"
+
+rivet-mkhtml -o my_plots_run3 --no-rivet-refs run2/run2_stacked.yoda.gz:"Title=SNLO 2.2.16 [1-7], 13 TeV" run3/run3_stacked.yoda.gz:"Title=SNLO 2.2.16 [1-7], 13.6 TeV"
 
 //// Commands for the ssWW analysis
 
@@ -82,6 +86,7 @@ rivet-mkhtml-mpl --no-weights --reflabel "Data Run 2" -c Routine/ATLAS_2023_I272
 
 rivet-mkhtml-mpl --no-weights -c Routine/ATLAS_2023_I2729396.plot -o my_plots_run3_nodata run3/run3_100002_inclusive.yoda.gz:"Title=Inclusive ssWW Run 3" run3/run3_polarised_stacked.yoda.gz:"Title=Polar W-W- + W+W+ Run 3" 
 ```
+
 
 ## Merge YODA files
 
