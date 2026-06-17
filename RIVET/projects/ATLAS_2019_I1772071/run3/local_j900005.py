@@ -33,7 +33,7 @@ elif joboption == "900007":
 else:
     joboption_msg = "unknown"
 
-dir="/eos/user/d/dcamarer/PostDoc/PMG/SherpaNLO2216/" + energy + "/" + joboption + "_merging/" + joboption + "_parts"
+dir="/eos/user/d/dcamarer/PostDoc/PMG/SherpaNLO2216/" + energy + "/PROD_sherpaTarCreator/" + joboption + "_merging/"
 for part in range(1, rangelimit+1):
     evntfile=dir+"/" + period + "_" + joboption + "_part" + str(part) + ".EVNT.root"
     print(f"Checking part {part}: {evntfile}")
