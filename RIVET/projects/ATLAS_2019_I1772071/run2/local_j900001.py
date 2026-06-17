@@ -33,13 +33,13 @@ elif joboption == "900007":
 else:
     joboption_msg = "unknown"
 
-dir="/eos/user/d/dcamarer/PostDoc/PMG/SherpaNLO2216/" + energy + "/PROD_sherpaTarCreator/" + joboption + "_merging/"
+dir="/eos/user/d/dcamarer/PostDoc/PMG/SherpaNLO2216/" + energy + "/PROD_sherpaTarCreator/" + joboption + "_merging"
 for part in range(1, rangelimit+1):
     evntfile=dir+"/" + period + "_" + joboption + "_part" + str(part) + ".EVNT.root"
     print(f"Checking part {part}: {evntfile}")
     if os.path.exists(evntfile):
-        print(f"  → EVNT file exists")
-        with open(dir + "/log.generate_part" + str(part).zfill(2)) as logfile:
+        print(f"  → EVNT file exists")        
+        with open(f"{dir}/log.generate_part{part:02d}") as logfile:
             line_num = 0
             for line in logfile:
                 line_num += 1
