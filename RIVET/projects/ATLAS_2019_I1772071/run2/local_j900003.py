@@ -39,7 +39,13 @@ for part in range(1, rangelimit+1):
     print(f"Checking part {part}: {evntfile}")
     if os.path.exists(evntfile):
         print(f"  → EVNT file exists")
-        with open(dir + "/log.generate_part" + str(part).zfill(2)) as logfile:
+        
+        if part < 10:
+            part_str = "0" + str(part)
+        else:
+            part_str = str(part)
+
+        with open(dir + "/log.generate_part" + part_str) as logfile:
             line_num = 0
             for line in logfile:
                 line_num += 1
