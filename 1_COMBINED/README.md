@@ -37,7 +37,7 @@ EVNTMerge_tf.py --inputEVNTFile ../run3_900006_part* --outputEVNT_MRGFile run3_S
 EVNTMerge_tf.py --inputEVNTFile ../run3_900007_part* --outputEVNT_MRGFile run3_Sh2216_900007.EVNT.root
 ```
 
-## Compute the cross-section of the sample from the averaging of the log.generate parts
+## Compute the sample cross-section by averaging the log.generate parts
 
 For the Run 2 samples:
 
