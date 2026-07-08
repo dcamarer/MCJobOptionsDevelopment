@@ -37,7 +37,7 @@ EVNTMerge_tf.py --inputEVNTFile ../run3_900006_part* --outputEVNT_MRGFile run3_S
 EVNTMerge_tf.py --inputEVNTFile ../run3_900007_part* --outputEVNT_MRGFile run3_Sh2216_900007.EVNT.root
 ```
 
-## You'll need to compute the cross-section of the sample from the averaging of the log.generate parts
+## Compute the cross-section of the sample from the averaging of the log.generate parts
 
 For the Run 2 samples:
 
@@ -53,13 +53,13 @@ root -l -q 'averagexsec.C("/eos/home-d/dcamarer/PostDoc/PMG/SherpaNLO2216/13TeV/
 
 Results:
 
-- 900001 : events = 300000, xsec (nb) = 296.1161446776
-- 900002 : events = 230000, xsec (nb) = 33.5378645278883
-- 900003 : events = 300000, xsec (nb) = 3.575765450338
-- 900004 : events = 150000, xsec (nb) = 0.29805978056574
-- 900005 : events = 35000, xsec (nb) = 0.0173283436938171
-- 900006 : events = 30000, xsec (nb) = 0.00111853366340933
-- 900007 : events = 12000, xsec (nb) = 2.08355533615433e-05
+- **900001 :** events = 300000, xsec (nb) = 296.1161446776
+- **900002 :** events = 230000, xsec (nb) = 33.5378645278883
+- **900003 :** events = 300000, xsec (nb) = 3.575765450338
+- **900004 :** events = 150000, xsec (nb) = 0.29805978056574
+- **900005 :** events = 35000, xsec (nb) = 0.0173283436938171
+- **900006 :** events = 30000, xsec (nb) = 0.00111853366340933
+- **900007 :** events = 12000, xsec (nb) = 2.08355533615433e-05
 
 For the Run 3 samples:
 
@@ -75,10 +75,10 @@ root -l -q 'averagexsec.C("/eos/home-d/dcamarer/PostDoc/PMG/SherpaNLO2216/13p6Te
 
 Results:
 
-- 900001 : events = 300000, xsec (nb) = 
-- 900002 : events = 230000, xsec (nb) = 
-- 900003 : events = 300000, xsec (nb) = 
-- 900004 : events = 150000, xsec (nb) = 
-- 900005 : events = 35000, xsec (nb) = 
-- 900006 : events = 30000, xsec (nb) = 
-- 900007 : events = 12000, xsec (nb) = 
+- **900001 :** events = 300000, xsec (nb) = 310.32386595705
+- **900002 :** events = 230000, xsec (nb) = 35.423878046302
+- **900003 :** events = 300000, xsec (nb) = 3.79918676603325
+- **900004 :** events = 150000, xsec (nb) = 0.32366425630798
+- **900005 :** events = 35000, xsec (nb) = 0.0185982042850464
+- **900006 :** events = 30000, xsec (nb) = 0.001278100925494
+- **900007 :** events = 12000, xsec (nb) = 2.7071366785235e-05
