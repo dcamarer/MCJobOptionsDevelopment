@@ -3,6 +3,7 @@
 #include <string>
 #include <regex>
 #include <iomanip>
+#include <sstream>
 
 struct SampleInfo {
   double xsec_nb = -1.0;
@@ -15,7 +16,7 @@ SampleInfo parseLogFile(const std::string& filename) {
   SampleInfo info;
   std::ifstream infile(filename);
   if (!infile.is_open()) {
-    std::cerr << "ERROR: cannot open file " << filename << std::endl;
+    std::cerr << "WARNING: cannot open file " << filename << std::endl;
     return info;
   }
 
@@ -41,43 +42,54 @@ SampleInfo parseLogFile(const std::string& filename) {
   return info;
 }
 
-void weighted_xsec() {
+void averagexsec(std::string inputfolder = ".", int nFiles = 2) {
+  if (!inputfolder.empty() && inputfolder.back() != '/')
+    inputfolder += "/";
 
-  const std::string inputfolder = "./eos/home-d/dcamarer/PostDoc/PMG/SherpaNLO2216/13TeV/PROD_sherpaTarCreator/900007_merging/";
+  double weightedSum = 0.0;
+  long long totalEvents = 0;
+  int nValidFiles = 0;
 
-  const std::string file1 = inputfolder + "log.generate_part01";
-  const std::string file2 = inputfolder + "log.generate_part02";
+  std::cout << std::endl;
+  std::cout << std::setprecision(15);
+  std::cout << "Reading files from: " << inputfolder << std::endl;
+  std::cout << std::endl;
+  std::cout << "--------------------------------------------------" << std::endl;
 
-  SampleInfo s1 = parseLogFile(file1);
-  SampleInfo s2 = parseLogFile(file2);
+  for (int i = 1; i <= nFiles; ++i) {
+    std::ostringstream fname;
+    fname << inputfolder << "log.generate_part"
+          << std::setw(2) << std::setfill('0') << i;
 
-  if (!s1.foundXsec || !s1.foundNevt) {
-    std::cerr << "ERROR: missing cross-section or event count in " << file1 << std::endl;
-    return;
+    SampleInfo s = parseLogFile(fname.str());
+
+    if (!s.foundXsec || !s.foundNevt) {
+      std::cerr << "WARNING: missing info in " << fname.str()
+                << "  (xsec found=" << s.foundXsec
+                << ", nevt found=" << s.foundNevt << ")" << std::endl;
+      continue;
+    }
+
+    std::cout << fname.str() << "\n"
+              << "  xsec (nb) = " << s.xsec_nb << "\n"
+              << "  nevt      = " << s.nevt << "\n";
+
+    weightedSum += s.xsec_nb * s.nevt;
+    totalEvents += s.nevt;
+    ++nValidFiles;
   }
-  if (!s2.foundXsec || !s2.foundNevt) {
-    std::cerr << "ERROR: missing cross-section or event count in " << file2 << std::endl;
-    return;
-  }
 
-  long long totalEvents = s1.nevt + s2.nevt;
+  std::cout << "--------------------------------------------------" << std::endl;
+  std::cout << std::endl;
+  std::cout << "Valid files   = " << nValidFiles << " / " << nFiles << std::endl;
+  std::cout << "Total events  = " << totalEvents << std::endl;
+
   if (totalEvents <= 0) {
     std::cerr << "ERROR: total number of events is <= 0" << std::endl;
     return;
   }
 
-  double weightedXsec =
-    (s1.nevt * s1.xsec_nb + s2.nevt * s2.xsec_nb) / double(totalEvents);
-
-  std::cout << std::setprecision(15);
-  std::cout << "File 1: " << file1 << "\n"
-            << "  xsec (nb) = " << s1.xsec_nb << "\n"
-            << "  nevt      = " << s1.nevt << "\n";
-
-  std::cout << "File 2: " << file2 << "\n"
-            << "  xsec (nb) = " << s2.xsec_nb << "\n"
-            << "  nevt      = " << s2.nevt << "\n";
-
-  std::cout << "Total events = " << totalEvents << "\n";
-  std::cout << "Weighted cross-section (nb) = " << weightedXsec << std::endl;
+  double finalXsec = weightedSum / double(totalEvents);
+  std::cout << "Weighted cross-section (nb) = " << finalXsec << std::endl;
+  std::cout << std::endl;
 }
