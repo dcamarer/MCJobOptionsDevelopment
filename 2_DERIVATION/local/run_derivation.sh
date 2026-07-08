@@ -1,55 +1,105 @@
 #!/bin/bash
 
+# Note: this script needs to be run in the same folder where the inputs are located. The script will create the output files in the same folder.
+# - ATLAS Instructions here: https://atlas-software.docs.cern.ch/analysis/analysis_tutorial/AnalysisSWTutorial/mc_truth_derivation/
+
 echo ""
 date
 echo ""
 
-#  eq -> equal to
-# -ne -> not equal to
-# -lt -> less than
-# -le -> less than or equal to
-# -gt -> greater than
-# -ge -> greater than or equal
+# Working mode from input argument
+wmode=${1}
 
-# Working mode
-wmode=1 # SHERPA 2.2.16 Run 2 samples
-#wmode=2 # SHERPA 2.2.16 Run 3 samples
-#wmode=3 # SHERPA 2.2.2 
+if [[ -z "${wmode}" ]]; then
+	echo "ERROR: missing working mode"
+	echo "Usage: $0 <wmode>"
+	echo "  1 = SHERPA 2.2.16 Run 2 samples"
+	echo "  2 = SHERPA 2.2.16 Run 3 samples"
+	echo "  3 = SHERPA 2.2.2"
+	exit 1
+fi
+
+if [[ "${wmode}" != "1" && "${wmode}" != "2" && "${wmode}" != "3" ]]; then
+	echo "ERROR: invalid working mode '${wmode}'"
+	echo "Allowed values: 1, 2, 3"
+	exit 1
+fi
+
+echo "Running with wmode = ${wmode}"
+echo ""
 
 if [ $wmode -eq "1" ]; then
     
-	OUTNAME=Sh_2211_SinglePhoton_EnhPTV2_valid
+	OUTNAME=Sh_2216_SinglePhoton_valid
 
-	for ((k=950195;k<=950195;k++))    
+	for ((k=900001;k<=900007;k++))
 	do
 		echo "OUTPUTNAME = ${OUTNAME}"
 		
-		if [ $k -eq "950195" ]; then
-			#ptstring=8_17
-			tags=e8312
+		if [ $k -eq "900001" ]; then
+				ptstring=17_35
+		elif [ $k -eq "900002" ]; then
+				ptstring=35_70
+		elif [ $k -eq "900003" ]; then
+				ptstring=70_140
+		elif [ $k -eq "900004" ]; then
+				ptstring=140_280
+		elif [ $k -eq "900005" ]; then
+				ptstring=280_500
+		elif [ $k -eq "900006" ]; then
+				ptstring=500_1000
+		elif [ $k -eq "900007" ]; then
+				ptstring=1000_E_CMS			
 		fi
+
+		FILE_IN=run2_Sh2216_${k}.EVNT.root
+		FILE_OUT=run2.${k}.${OUTNAME}_pty_${ptstring}.TRUTH1_v01.root		
+
+		echo "FILE IN      = ${FILE_IN}"
+		echo "FILE OUT     = ${FILE_OUT}"
+		echo ""
 		
-		FILE_IN=/userdata3/dcamarero/samples/sherpanlo_valid950195/mc15_valid.950195.Sh_2211_SinglePhoton_EnhPTV2_valid.evgen.EVNT.e8312/EVNT.24216481._000001.pool.root.1
-		FILE_OUT=user.dcamarer.${k}.${OUTNAME}.TRUTH1_v01.root
-
-		echo "INDS       = ${FILE_IN}"
-		echo "OUTDS      = ${FILE_OUT}"
+		Derivation_tf.py --inputAODFile ${FILE_IN} --outputDAODFile ${FILE_OUT} --formats TRUTH1
+		
 		echo ""
-				
-		Reco_tf.py --inputEVNTFile ${FILE_IN} --outputDAODFile ${FILE_OUT} --reductionConf TRUTH1
 
-		echo ""
 	done
     
 elif [ $wmode -eq "2" ]; then
     
-	OUTNAME=Sh_2211_SinglePhoton_EnhMaxHTPTV2_valid
+	OUTNAME=Sh_2216_SinglePhoton_valid
 
-	for ((k=950196;k<=950196;k++))    
+	for ((k=900001;k<=900007;k++))
 	do
-
-		echo ""
+		echo "OUTPUTNAME = ${OUTNAME}"
+		
+		if [ $k -eq "900001" ]; then
+				ptstring=17_35
+		elif [ $k -eq "900002" ]; then
+				ptstring=35_70
+		elif [ $k -eq "900003" ]; then
+				ptstring=70_140
+		elif [ $k -eq "900004" ]; then
+				ptstring=140_280
+		elif [ $k -eq "900005" ]; then
+				ptstring=280_500
+		elif [ $k -eq "900006" ]; then
+				ptstring=500_1000
+		elif [ $k -eq "900007" ]; then
+				ptstring=1000_E_CMS			
+		fi
 	
+		FILE_IN=run3_Sh2216_${k}.EVNT.root
+		FILE_OUT=run3.${k}.${OUTNAME}_pty_${ptstring}.TRUTH1_v01.root
+
+		echo "FILE IN      = ${FILE_IN}"
+		echo "FILE OUT     = ${FILE_OUT}"
+		echo ""
+		
+		Derivation_tf.py --inputAODFile ${FILE_IN} --outputDAODFile ${FILE_OUT} --formats TRUTH1
+		
+		echo ""
+
 	done
     
 elif [ $wmode -eq "3" ]; then
@@ -83,14 +133,14 @@ elif [ $wmode -eq "3" ]; then
 				tags=e6068_s3126_r10724
 		fi
 		
-		#FILE_IN=mc20_13TeV.${k}.${OUTNAME}_pty_${ptstring}.recon.AOD.${tags}
+		FILE_IN=mc20_13TeV.${k}.${OUTNAME}_pty_${ptstring}.recon.AOD.${tags}
 		FILE_OUT=user.dcamarer.${k}.${OUTNAME}_pty_${ptstring}.TRUTH1_v01.root		
 
 		echo "INDS       = ${FILE_IN}"
 		echo "OUTDS      = ${FILE_OUT}"
 		echo ""
 		
-		Reco_tf.py --inputAODFile ${FILE_IN} --outputDAODFile ${FILE_OUT} --reductionConf TRUTH1
+		Derivation_tf.py --inputAODFile ${FILE_IN} --outputDAODFile ${FILE_OUT} --formats TRUTH1
 		
 		echo ""
 
