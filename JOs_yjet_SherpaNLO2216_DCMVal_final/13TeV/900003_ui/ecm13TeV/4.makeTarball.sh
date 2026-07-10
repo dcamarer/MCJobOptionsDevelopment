@@ -1,7 +1,7 @@
 #!/bin/sh -
 
 # Default configuration
-BASE_DIR="/home/dcamarero/PostDoc/PMG/MCJobOptionsDevelopment/JOs_yjet_SherpaNLO2216_DCMVal/13TeV/900003_ui"
+BASE_DIR="/home/dcamarero/PostDoc/PMG/MCJobOptionsDevelopment/JOs_yjet_SherpaNLO2216_DCMVal_final/13TeV/900003_ui"
 BASE_DIR_ext="${BASE_DIR}/ecm13TeV"
 BASE_JO="Sh_216_NNPDF30NNLO_SinglePhoton_pty_70_140"
 

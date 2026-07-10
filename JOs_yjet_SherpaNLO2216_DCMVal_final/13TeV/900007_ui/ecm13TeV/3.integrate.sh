@@ -1,7 +1,7 @@
 #!/bin/sh -
 
 # Default configuration
-BASE_DIR="/home/dcamarero/PostDoc/PMG/MCJobOptionsDevelopment/JOs_yjet_SherpaNLO2216_DCMVal/13TeV/900007_ui"
+BASE_DIR="/home/dcamarero/PostDoc/PMG/MCJobOptionsDevelopment/JOs_yjet_SherpaNLO2216_DCMVal_final/13TeV/900007_ui"
 BASE_DIR_ext="${BASE_DIR}/ecm13TeV"
 DEFAULT_NCORES=48
 DEFAULT_ENERGY_BEAM=6500.0
