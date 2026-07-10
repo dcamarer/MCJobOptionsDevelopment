@@ -4,14 +4,14 @@ echo ""
 date
 echo ""
 
-mc="run2_sherpa2216_TRUTH1"
-#mc="run3_sherpa2216_TRUTH1"
+#mc="run2_sherpa2216_TRUTH1"
+mc="run3_sherpa2216_TRUTH1"
 
 echo "Running over: "$mc
 echo ""
 
-for run in 01
-#for run in 01 02 03 04 05 06 07 # SNLO 2216
+#for run in 01
+for run in 01 02 03 04 05 06 07 # SNLO 2216
 do
 
     dir1=/home/dcamarero/PostDoc/PMG/MCJobOptionsDevelopment/3-DxAOD/source/MyAnalysis/Root/configFile
