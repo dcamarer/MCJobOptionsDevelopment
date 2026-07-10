@@ -30,7 +30,7 @@ genSeq.Sherpa_i.RunCard="""
 
   # Speed and neg weight fraction improvements
   PP_RS_SCALE VAR{H_T2/4};
-  NLO_CSS_PSMODE=1
+  NLO_CSS_PSMODE=1;
 }(run)
 
 (processes){
