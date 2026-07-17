@@ -70,6 +70,21 @@ then
         # creating it empty
         touch files.txt
 
+        for i in `cat nrootfiles.txt`
+        do
+            echo "fChain->Add(\"${i}\");" >> files.txt
+        done
+        
+        for j in 01
+        do
+            ./run_ph_validation_mc.sh $program $j $mc $ptmccut $rad $rew $sfac $swgt >& run_ph_validation_${mc}_pt${ptmccut}_r${rad}_wS${swgt}_wR${rew}_wSF${sfac}.log
+            rm -f files.txt nrootfiles.txt
+        done
+        
+        echo "Processed"
+        echo $ptmccut
+        echo ""
+
     done
 
 fi
@@ -100,10 +115,8 @@ then
         
         for j in 01
         do
-            #
             ./run_ph_validation_mc.sh $program $j $mc $ptmccut $rad $rew $sfac $swgt >& run_ph_validation_${mc}_pt${ptmccut}_r${rad}_wS${swgt}_wR${rew}_wSF${sfac}.log
             rm -f files.txt nrootfiles.txt
-            #
         done
         
         echo "Processed"
