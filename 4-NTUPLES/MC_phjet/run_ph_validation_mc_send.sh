@@ -5,7 +5,7 @@ date
 echo ""
 
 # Choose radius
-rad="4"
+rad="2"
 
 ######################
 
@@ -39,7 +39,7 @@ program=ph_validation_mc
 if [ $mc = "run2_sherpa2216" ]
 then
     
-    for ptmccut in 17 35 70 140 280 500 1000    
+    for ptmccut in 17 35 70 140 280 500 1000
     do
         
         slcnum="00"
@@ -93,7 +93,7 @@ fi
 if [ $mc = "run3_sherpa2216" ]
 then
     
-    for ptmccut in 17 35 70 140 280 500 1000    
+    for ptmccut in 17 35 70 140 280 500 1000
     do
         
         slcnum="00"
