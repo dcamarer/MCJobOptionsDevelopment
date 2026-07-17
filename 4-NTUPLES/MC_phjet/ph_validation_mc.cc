@@ -13,17 +13,17 @@
 #include <string> // string constructor
 // ifstream constructors
 #include <iostream> // std::cout
-#include <fstream>	// std::ifstream
-#include <sstream>	// std::stringstream
+#include <fstream>  // std::ifstream
+#include <sstream>  // std::stringstream
 // libraries
 #include <cstdlib> // C standard general utilities library
-#include <cmath>	 // C mathematical library
+#include <cmath>   // C mathematical library
 // root constructors
-#include <TH1.h>						// one-dimensional histogram constructor
-#include <TH2.h>						// two-dimensional histogram constructor
-#include <TTree.h>					// a TTree object is a list of TBranch - TTree constructor
-#include <TChain.h>					// a collection of files containing TTree objects -- TChain constructor
-#include <TFile.h>					// file default constructor
+#include <TH1.h>            // one-dimensional histogram constructor
+#include <TH2.h>            // two-dimensional histogram constructor
+#include <TTree.h>          // a TTree object is a list of TBranch - TTree constructor
+#include <TChain.h>         // a collection of files containing TTree objects -- TChain constructor
+#include <TFile.h>          // file default constructor
 #include <TLorentzVector.h> // general four-vector class - uses: (x,y,z,t) or (px,py,pz,E)
 
 // Functions
@@ -263,11 +263,11 @@ int main(int argc, char *argv[])
   int k = 0;
   int k2 = 0; // Different studies
 
-  TH1 *m_TH1_m[1000][3] = {};				// General parameters
-  TH1 *m_TH1_h[1000][50][3] = {};		// General histograms
-  TH1 *m_TH1_hf[100][3] = {};				// General histograms
+  TH1 *m_TH1_m[1000][3] = {};       // General parameters
+  TH1 *m_TH1_h[1000][50][3] = {};   // General histograms
+  TH1 *m_TH1_hf[100][3] = {};       // General histograms
   TH1 *m_TH1_hsnlo[1000][350] = {}; // Snlo theoretical predictions
-  TH1 *m_TH1_g[350][3] = {};				// Sherpa NLO weights
+  TH1 *m_TH1_g[350][3] = {};        // Sherpa NLO weights
 
   TH2 *m_TH2_h[100][50][3] = {}; // General histograms
 
@@ -973,8 +973,8 @@ int main(int argc, char *argv[])
       outfile << " ------------------------------------- " << endl;
     }
 
-    long int run_number = RunNumber;				 // run number
-    long int event_number = EventNumber;		 // event number
+    long int run_number = RunNumber;         // run number
+    long int event_number = EventNumber;     // event number
     long int channel_number = ChannelNumber; // channel number (DSID of the slice)
 
     // cout << " run_number: " << run_number << "; event_number: " << event_number << endl;
@@ -993,19 +993,19 @@ int main(int argc, char *argv[])
 
     // 2015 + 2016 datasets
     double lum1516 = 36214.46; // pb-1
-    double elum1516 = 0.017;	 // This is valid for 2015-2018
+    double elum1516 = 0.017;   // This is valid for 2015-2018
 
     // 2017 dataset
     double lum17 = 44307.4; // pb-1
-    double elum17 = 0.017;	// This is valid for 2015-2018
+    double elum17 = 0.017;  // This is valid for 2015-2018
 
     // 2018 dataset
     double lum18 = 58450.1; // pb-1
-    double elum18 = 0.017;	// This is valid for 2015-2018
+    double elum18 = 0.017;  // This is valid for 2015-2018
 
     // Run-2
     double lumR2 = 138971.96; // pb-1
-    double elumR2 = 0.017;		// This is valid for 2015-2018
+    double elumR2 = 0.017;    // This is valid for 2015-2018
 
     double scale_factor_d1516 = lum1516 / lumR2;
     double scale_factor_d17 = lum17 / lumR2;
@@ -1015,7 +1015,7 @@ int main(int argc, char *argv[])
     // WEIGHTS //
     /////////////
 
-    double ww = 1.0;			 // EVENT weight
+    double ww = 1.0;       // EVENT weight
     double ww_slice = 1.0; // SLICE weight
     double wVAR[350] = {}; // weights for theoretical variations
 
@@ -1033,6 +1033,7 @@ int main(int argc, char *argv[])
     double samplexsec = 1;
     double filtereff = 1;
     double sow = 1;
+    double nevents = 1;
 
     if (debug)
       cout << endl;
@@ -1042,75 +1043,204 @@ int main(int argc, char *argv[])
     if (SWGTflag == true)
     {
 
-      if (mc == "sherpa222")
-      {
-
-        // Normalised to events
-        /*
-          weightsherpanlo[1] = (4.1548E+02) * (1.0000E+00) * 1000 / 34984000.; // units [pb]
-          weightsherpanlo[2] = (4.3976E+01) * (1.0000E+00) * 1000 / 34977000.; // units [pb]
-          weightsherpanlo[3] = (4.5265E+00) * (1.0000E+00) * 1000 / 43234000.; // units [pb]
-          weightsherpanlo[4] = (3.7605E-01) * (1.0000E+00) * 1000 / 43223800.; // units [pb]
-          weightsherpanlo[5] = (2.1851E-02) * (1.0000E+00) * 1000 / 12965400.; // units [pb]
-          weightsherpanlo[6] = (1.4637E-03) * (1.0000E+00) * 1000 / 8320100.;  // units [pb]
-          weightsherpanlo[7] = (2.9867E-05) * (1.0000E+00) * 1000 / 6138020.;  // units [pb]
-        */
-
-        // Normalised to sum of weights
-        weightsherpanlo[1] = (4.1548E+02) * (1.0000E+00) * 1000 / 17928844.;
-        weightsherpanlo[2] = (4.3976E+01) * (1.0000E+00) * 1000 / 19179839.;
-        weightsherpanlo[3] = (4.5265E+00) * (1.0000E+00) * 1000 / 25993602.;
-        weightsherpanlo[4] = (3.7605E-01) * (1.0000E+00) * 1000 / 28013604.;
-        weightsherpanlo[5] = (2.1851E-02) * (1.0000E+00) * 1000 / 8670886.3;
-        weightsherpanlo[6] = (1.4637E-03) * (1.0000E+00) * 1000 / 5670074.8;
-        weightsherpanlo[7] = (2.9867E-05) * (1.0000E+00) * 1000 / 4274294.2;
-      }
-
       // Assigning weights:
 
       if (mc == "sherpa222")
       {
         if (ptmccut == 17)
         {
-          ww_slice = weightsherpanlo[1];
           samplexsec = 4.1548E+02;
+          filtereff = 1;
           sow = 17928844.;
+          nevents = 34984000;
+          ww_slice = samplexsec * filtereff * 1000 / sow;
+          //ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 35)
         {
-          ww_slice = weightsherpanlo[2];
           samplexsec = 4.3976E+01;
+          filtereff = 1;
           sow = 19179839.;
+          nevents = 34977000;
+          ww_slice = samplexsec * filtereff * 1000 / sow;
+          //ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 70)
         {
-          ww_slice = weightsherpanlo[3];
           samplexsec = 4.5265E+00;
+          filtereff = 1;
           sow = 25993602.;
+          nevents = 43234000;
+          ww_slice = samplexsec * filtereff * 1000 / sow;
+          //ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 140)
         {
-          ww_slice = weightsherpanlo[4];
           samplexsec = 3.7605E-01;
+          filtereff = 1;
           sow = 28013604.;
+          nevents = 43223800;
+          ww_slice = samplexsec * filtereff * 1000 / sow;
+          //ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 280)
         {
-          ww_slice = weightsherpanlo[5];
           samplexsec = 2.1851E-02;
+          filtereff = 1;
           sow = 8670886.3;
+          nevents = 12965400;
+          ww_slice = samplexsec * filtereff * 1000 / sow;
+          //ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 500)
         {
-          ww_slice = weightsherpanlo[6];
           samplexsec = 1.4637E-03;
+          filtereff = 1;
           sow = 5670074.8;
+          nevents = 8320100;
+          ww_slice = samplexsec * filtereff * 1000 / sow;
+          //ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 1000)
         {
-          ww_slice = weightsherpanlo[7];
           samplexsec = 2.9867E-05;
+          filtereff = 1;
           sow = 4274294.2;
+          nevents = 6138020;
+          ww_slice = samplexsec * filtereff * 1000 / sow;
+          //ww_slice = samplexsec * filtereff * 1000 / nevents;
+        }
+      }
+      else if (mc == "run2_sherpa2216")
+      {
+        if (ptmccut == 17)
+        {
+          samplexsec = 296.1161446776;
+          filtereff = 1;
+          sow = 0;
+          nevents = 300000;
+          //ww_slice = samplexsec * filtereff * 1000 / sow;
+          ww_slice = samplexsec * filtereff * 1000 / nevents;
+        }
+        else if (ptmccut == 35)
+        {
+          samplexsec = 33.5378645278883;
+          filtereff = 1;
+          sow = 0;
+          nevents = 230000;
+          //ww_slice = samplexsec * filtereff * 1000 / sow;
+          ww_slice = samplexsec * filtereff * 1000 / nevents;
+        }
+        else if (ptmccut == 70)
+        {
+          samplexsec = 3.575765450338;
+          filtereff = 1;
+          sow = 0;
+          nevents = 300000;
+          //ww_slice = samplexsec * filtereff * 1000 / sow;
+          ww_slice = samplexsec * filtereff * 1000 / nevents;
+        }
+        else if (ptmccut == 140)
+        {
+          samplexsec = 0.29805978056574;
+          filtereff = 1;
+          sow = 4.9664862e+12;
+          nevents = 150000;
+          ww_slice = samplexsec * filtereff * 1000 / sow;
+          //ww_slice = samplexsec * filtereff * 1000 / nevents;
+        }
+        else if (ptmccut == 280)
+        {
+          samplexsec = 0.0173283436938171;
+          filtereff = 1;
+          sow = 0;
+          nevents = 35000;
+          //ww_slice = samplexsec * filtereff * 1000 / sow;
+          ww_slice = samplexsec * filtereff * 1000 / nevents;
+        }
+        else if (ptmccut == 500)
+        {
+          samplexsec = 0.00111853366340933;
+          filtereff = 1;
+          sow = 0;
+          nevents = 30000;
+          //ww_slice = samplexsec * filtereff * 1000 / sow;
+          ww_slice = samplexsec * filtereff * 1000 / nevents;
+        }
+        else if (ptmccut == 1000)
+        {
+          samplexsec = 2.08355533615433e-05;
+          filtereff = 1;
+          sow = 0;
+          nevents = 12000;
+          //ww_slice = samplexsec * filtereff * 1000 / sow;
+          ww_slice = samplexsec * filtereff * 1000 / nevents;
+        }
+      }
+      else if (mc == "run3_sherpa2216")
+      {
+        if (ptmccut == 17)
+        {
+          samplexsec = 310.32386595705;
+          filtereff = 1;
+          sow = 0;
+          nevents = 300000;
+          //ww_slice = samplexsec * filtereff * 1000 / sow;
+          ww_slice = samplexsec * filtereff * 1000 / nevents;
+        }
+        else if (ptmccut == 35)
+        {
+          samplexsec = 35.423878046302;
+          filtereff = 1;
+          sow = 0;
+          nevents = 230000;
+          //ww_slice = samplexsec * filtereff * 1000 / sow;
+          ww_slice = samplexsec * filtereff * 1000 / nevents;
+        }
+        else if (ptmccut == 70)
+        {
+          samplexsec = 3.79918676603325;
+          filtereff = 1;
+          sow = 0;
+          nevents = 300000;
+          //ww_slice = samplexsec * filtereff * 1000 / sow;
+          ww_slice = samplexsec * filtereff * 1000 / nevents;
+        }
+        else if (ptmccut == 140)
+        {
+          samplexsec = 0.32366425630798;
+          filtereff = 1;
+          sow = 0;
+          nevents = 150000;
+          //ww_slice = samplexsec * filtereff * 1000 / sow;
+          ww_slice = samplexsec * filtereff * 1000 / nevents;
+        }
+        else if (ptmccut == 280)
+        {
+          samplexsec = 0.0185982042850464;
+          filtereff = 1;
+          sow = 0;
+          nevents = 35000;
+          //ww_slice = samplexsec * filtereff * 1000 / sow;
+          ww_slice = samplexsec * filtereff * 1000 / nevents;
+        }
+        else if (ptmccut == 500)
+        {
+          samplexsec = 0.001278100925494;
+          filtereff = 1;
+          sow = 0;
+          nevents = 30000;
+          //ww_slice = samplexsec * filtereff * 1000 / sow;
+          ww_slice = samplexsec * filtereff * 1000 / nevents;
+        }
+        else if (ptmccut == 1000)
+        {
+          samplexsec = 2.7071366785235e-05;
+          filtereff = 1;
+          sow = 0;
+          nevents = 12000;
+          //ww_slice = samplexsec * filtereff * 1000 / sow;
+          ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
       }
 
@@ -1195,7 +1325,7 @@ int main(int argc, char *argv[])
 
     // Average number of interactions
     double m_mu = 0.;
-    m_mu = MU;
+    // m_mu = MU;
 
     /////////////////
     // Truth level //
@@ -1210,15 +1340,15 @@ int main(int argc, char *argv[])
     {
 
       // get leading photon properties
-      photg[7] = PhotgET;		// ntuple photg[7] -> MeV
-      photg[6] = PhotgPHI;	// phi
+      photg[7] = PhotgET;   // ntuple photg[7] -> MeV
+      photg[6] = PhotgPHI;  // phi
       photg[10] = PhotgETA; // eta
 
-      photg[5] = 2. * atan(exp(-photg[10]));							 // theta
-      photg[4] = photg[7] / sin(photg[5]);								 // energy
+      photg[5] = 2. * atan(exp(-photg[10]));               // theta
+      photg[4] = photg[7] / sin(photg[5]);                 // energy
       photg[1] = photg[4] * sin(photg[5]) * cos(photg[6]); // px
       photg[2] = photg[4] * sin(photg[5]) * sin(photg[6]); // py
-      photg[3] = photg[4] * cos(photg[5]);								 // pz
+      photg[3] = photg[4] * cos(photg[5]);                 // pz
       if (rad == 4)
       {
         photg[11] = double(PhotgETISO_40); // Etiso
@@ -1303,7 +1433,7 @@ int main(int argc, char *argv[])
 
         // Isolation distribution histogram
         m_TH1_h[500][0][idn]->Fill(photg[11], ww); // eTiso
-        m_TH1_h[400][0][idn]->Fill(photg[11], 1);	 // eTiso
+        m_TH1_h[400][0][idn]->Fill(photg[11], 1);  // eTiso
 
         // truth eTiso
         m_etisocut = 4.2e-3 * photg[7] + 4.8;
@@ -1322,19 +1452,19 @@ int main(int argc, char *argv[])
           //////////////////////////////////////
 
           // Luminosity study
-          m_TH1_h[540][0][idn]->Fill(photg[7], ww);							 // pt for lumi study
+          m_TH1_h[540][0][idn]->Fill(photg[7], ww);              // pt for lumi study
           m_TH1_h[440][0][idn]->Fill(photg[7], weightmc_only_0); // pt for lumi study
-          m_TH1_h[340][0][idn]->Fill(photg[7], 1);							 // pt for lumi study
+          m_TH1_h[340][0][idn]->Fill(photg[7], 1);               // pt for lumi study
           //
           // Stitching points study (I)
-          m_TH1_h[541][0][idn]->Fill(photg[7], ww);							 // pt for stitching study
+          m_TH1_h[541][0][idn]->Fill(photg[7], ww);              // pt for stitching study
           m_TH1_h[441][0][idn]->Fill(photg[7], weightmc_only_0); // pt for stitching study
-          m_TH1_h[341][0][idn]->Fill(photg[7], 1);							 // pt for stitching study
+          m_TH1_h[341][0][idn]->Fill(photg[7], 1);               // pt for stitching study
           //
-          m_TH1_h[500 + 1][0][idn]->Fill(photg[7], ww);				 // pt
-          m_TH1_h[400 + 1][0][idn]->Fill(photg[7], 1);				 // pt
+          m_TH1_h[500 + 1][0][idn]->Fill(photg[7], ww);        // pt
+          m_TH1_h[400 + 1][0][idn]->Fill(photg[7], 1);         // pt
           m_TH1_h[500 + 2][0][idn]->Fill(fabs(photg[10]), ww); // eta
-          m_TH1_h[400 + 2][0][idn]->Fill(fabs(photg[10]), 1);	 // eta
+          m_TH1_h[400 + 2][0][idn]->Fill(fabs(photg[10]), 1);  // eta
           //
           m_TH1_hf[1][idn]->Fill(photg[10], ww);
           m_TH1_hf[2][idn]->Fill(photg[10], ww);
@@ -1343,7 +1473,7 @@ int main(int argc, char *argv[])
           m_TH1_hf[5][idn]->Fill(photg[10], ww);
           //
           m_TH1_h[500 + 3][0][idn]->Fill(photg[6], ww); // phi
-          m_TH1_h[400 + 3][0][idn]->Fill(photg[6], 1);	// phi
+          m_TH1_h[400 + 3][0][idn]->Fill(photg[6], 1);  // phi
           //
           m_TH1_hf[11][idn]->Fill(photg[6], ww);
           m_TH1_hf[12][idn]->Fill(photg[6], ww);
@@ -1363,7 +1493,7 @@ int main(int argc, char *argv[])
           if (fabs(photg[10]) > 0.0 and fabs(photg[10]) <= 0.6)
           {
             m_TH1_h[530 + 1][0][idn]->Fill(photg[7], ww); // pt
-            m_TH1_h[430 + 1][0][idn]->Fill(photg[7], 1);	// pt
+            m_TH1_h[430 + 1][0][idn]->Fill(photg[7], 1);  // pt
             for (unsigned int i = 0; i < weightmcVAR->size(); i++)
             {
               m_TH1_hsnlo[530 + 1][i]->Fill(photg[7], double(wVAR[i] * ww_slice));
@@ -1372,7 +1502,7 @@ int main(int argc, char *argv[])
           if (fabs(photg[10]) > 0.6 and fabs(photg[10]) <= 0.8)
           {
             m_TH1_h[530 + 2][0][idn]->Fill(photg[7], ww); // pt
-            m_TH1_h[430 + 2][0][idn]->Fill(photg[7], 1);	// pt
+            m_TH1_h[430 + 2][0][idn]->Fill(photg[7], 1);  // pt
             for (unsigned int i = 0; i < weightmcVAR->size(); i++)
             {
               m_TH1_hsnlo[530 + 2][i]->Fill(photg[7], double(wVAR[i] * ww_slice));
@@ -1381,7 +1511,7 @@ int main(int argc, char *argv[])
           if (fabs(photg[10]) > 0.8 and fabs(photg[10]) <= 1.37)
           {
             m_TH1_h[530 + 3][0][idn]->Fill(photg[7], ww); // pt
-            m_TH1_h[430 + 3][0][idn]->Fill(photg[7], 1);	// pt
+            m_TH1_h[430 + 3][0][idn]->Fill(photg[7], 1);  // pt
             for (unsigned int i = 0; i < weightmcVAR->size(); i++)
             {
               m_TH1_hsnlo[530 + 3][i]->Fill(photg[7], double(wVAR[i] * ww_slice));
@@ -1390,7 +1520,7 @@ int main(int argc, char *argv[])
           if (fabs(photg[10]) > 1.52 and fabs(photg[10]) <= 1.81)
           {
             m_TH1_h[530 + 4][0][idn]->Fill(photg[7], ww); // pt
-            m_TH1_h[430 + 4][0][idn]->Fill(photg[7], 1);	// pt
+            m_TH1_h[430 + 4][0][idn]->Fill(photg[7], 1);  // pt
             for (unsigned int i = 0; i < weightmcVAR->size(); i++)
             {
               m_TH1_hsnlo[530 + 4][i]->Fill(photg[7], double(wVAR[i] * ww_slice));
@@ -1399,7 +1529,7 @@ int main(int argc, char *argv[])
           if (fabs(photg[10]) > 1.81 and fabs(photg[10]) <= 2.01)
           {
             m_TH1_h[530 + 5][0][idn]->Fill(photg[7], ww); // pt
-            m_TH1_h[430 + 5][0][idn]->Fill(photg[7], 1);	// pt
+            m_TH1_h[430 + 5][0][idn]->Fill(photg[7], 1);  // pt
             for (unsigned int i = 0; i < weightmcVAR->size(); i++)
             {
               m_TH1_hsnlo[530 + 5][i]->Fill(photg[7], double(wVAR[i] * ww_slice));
@@ -1408,7 +1538,7 @@ int main(int argc, char *argv[])
           if (fabs(photg[10]) > 2.01 and fabs(photg[10]) <= 2.37)
           {
             m_TH1_h[530 + 6][0][idn]->Fill(photg[7], ww); // pt
-            m_TH1_h[430 + 6][0][idn]->Fill(photg[7], 1);	// pt
+            m_TH1_h[430 + 6][0][idn]->Fill(photg[7], 1);  // pt
             for (unsigned int i = 0; i < weightmcVAR->size(); i++)
             {
               m_TH1_hsnlo[530 + 6][i]->Fill(photg[7], double(wVAR[i] * ww_slice));
@@ -1523,17 +1653,17 @@ int main(int argc, char *argv[])
             ///////////////////////////////
 
             // Stitching points study (II)
-            m_TH1_h[542][0][idn]->Fill(photg[7], ww);							 // pt for stitching study
+            m_TH1_h[542][0][idn]->Fill(photg[7], ww);              // pt for stitching study
             m_TH1_h[442][0][idn]->Fill(photg[7], weightmc_only_0); // pt for stitching study
-            m_TH1_h[342][0][idn]->Fill(photg[7], 1);							 // pt for stitching study
+            m_TH1_h[342][0][idn]->Fill(photg[7], 1);               // pt for stitching study
 
             // histograms photon + jet
-            m_TH1_h[500 + 10 + 1][0][idn]->Fill(photg[7], ww);				// pt
-            m_TH1_h[400 + 10 + 1][0][idn]->Fill(photg[7], 1);					// pt
+            m_TH1_h[500 + 10 + 1][0][idn]->Fill(photg[7], ww);        // pt
+            m_TH1_h[400 + 10 + 1][0][idn]->Fill(photg[7], 1);         // pt
             m_TH1_h[500 + 10 + 2][0][idn]->Fill(fabs(photg[10]), ww); // eta
-            m_TH1_h[400 + 10 + 2][0][idn]->Fill(fabs(photg[10]), 1);	// eta
-            m_TH1_h[500 + 10 + 3][0][idn]->Fill(photg[6], ww);				// phi
-            m_TH1_h[400 + 10 + 3][0][idn]->Fill(photg[6], 1);					// phi
+            m_TH1_h[400 + 10 + 2][0][idn]->Fill(fabs(photg[10]), 1);  // eta
+            m_TH1_h[500 + 10 + 3][0][idn]->Fill(photg[6], ww);        // phi
+            m_TH1_h[400 + 10 + 3][0][idn]->Fill(photg[6], 1);         // phi
 
             // Histograms for theoretical variations
             for (unsigned int i = 0; i < weightmcVAR->size(); i++)
@@ -1544,12 +1674,12 @@ int main(int argc, char *argv[])
             }
 
             // histograms jet
-            m_TH1_h[500 + 10 + 4][0][idn]->Fill(jetg[7][ipjt], ww);				// pt
-            m_TH1_h[400 + 10 + 4][0][idn]->Fill(jetg[7][ipjt], 1);				// pt
+            m_TH1_h[500 + 10 + 4][0][idn]->Fill(jetg[7][ipjt], ww);       // pt
+            m_TH1_h[400 + 10 + 4][0][idn]->Fill(jetg[7][ipjt], 1);        // pt
             m_TH1_h[500 + 10 + 5][0][idn]->Fill(fabs(jetg[8][ipjt]), ww); // rapidity
-            m_TH1_h[400 + 10 + 5][0][idn]->Fill(fabs(jetg[8][ipjt]), 1);	// rapidity
-            m_TH1_h[500 + 10 + 6][0][idn]->Fill(jetg[6][ipjt], ww);				// phi
-            m_TH1_h[400 + 10 + 6][0][idn]->Fill(jetg[6][ipjt], 1);				// phi
+            m_TH1_h[400 + 10 + 5][0][idn]->Fill(fabs(jetg[8][ipjt]), 1);  // rapidity
+            m_TH1_h[500 + 10 + 6][0][idn]->Fill(jetg[6][ipjt], ww);       // phi
+            m_TH1_h[400 + 10 + 6][0][idn]->Fill(jetg[6][ipjt], 1);        // phi
             // Histograms for theoretical variations
             for (unsigned int i = 0; i < weightmcVAR->size(); i++)
             {
@@ -1586,9 +1716,9 @@ int main(int argc, char *argv[])
             m_TH2_h[23][0][idn]->Fill(htsum, photg[7], 1);
             m_TH2_h[24][0][idn]->Fill(photg[7], htsum, 1);
             //
-            m_TH1_h[551][0][idn]->Fill(htsum, 1);			// HT
-            m_TH1_h[552][0][idn]->Fill(photg[7], 1);	// PT
-            m_TH1_h[553][0][idn]->Fill(htsum, ww);		// HT
+            m_TH1_h[551][0][idn]->Fill(htsum, 1);     // HT
+            m_TH1_h[552][0][idn]->Fill(photg[7], 1);  // PT
+            m_TH1_h[553][0][idn]->Fill(htsum, ww);    // HT
             m_TH1_h[554][0][idn]->Fill(photg[7], ww); // PT
 
             ////// New histograms
@@ -1602,9 +1732,9 @@ int main(int argc, char *argv[])
             {
               mpjg[i][ipjt] = photg[i] + jetg[i][ipjt]; // 4-vector components
             }
-            mpjg[7][ipjt] = fabs(photg[10] + jetg[8][ipjt]);																																		 // eta sum
+            mpjg[7][ipjt] = fabs(photg[10] + jetg[8][ipjt]);                                                                     // eta sum
             mpjg[9][ipjt] = sqrt(mpjg[1][ipjt] * mpjg[1][ipjt] + mpjg[2][ipjt] * mpjg[2][ipjt] + mpjg[3][ipjt] * mpjg[3][ipjt]); // |p|
-            mpjg[10][ipjt] = sqrt(mpjg[4][ipjt] * mpjg[4][ipjt] - mpjg[9][ipjt] * mpjg[9][ipjt]);																 // mass = sqrt(m^2 - |p|^2)
+            mpjg[10][ipjt] = sqrt(mpjg[4][ipjt] * mpjg[4][ipjt] - mpjg[9][ipjt] * mpjg[9][ipjt]);                                // mass = sqrt(m^2 - |p|^2)
 
             // DeltaPhi_gammajet
             double DeltaPhi = get_deltaphi(photg[6], jetg[6][ipjt]);
@@ -1615,7 +1745,7 @@ int main(int argc, char *argv[])
             mpjg[13][ipjt] = cosThetaStar;
 
             m_TH1_h[500 + 10 + 7][0][idn]->Fill(mpjg[11][ipjt], ww); // DeltaRapidity_gammajet
-            m_TH1_h[400 + 10 + 7][0][idn]->Fill(mpjg[11][ipjt], 1);	 // DeltaRapidity_gammajet
+            m_TH1_h[400 + 10 + 7][0][idn]->Fill(mpjg[11][ipjt], 1);  // DeltaRapidity_gammajet
             // Histograms for theoretical variations
             for (unsigned int i = 0; i < weightmcVAR->size(); i++)
             {
@@ -1625,7 +1755,7 @@ int main(int argc, char *argv[])
             if (m_pi / 2. < DeltaPhi and DeltaPhi < m_pi)
             {
               m_TH1_h[500 + 10 + 8][0][idn]->Fill(mpjg[12][ipjt], ww); // DeltaPhi_gammajet
-              m_TH1_h[400 + 10 + 8][0][idn]->Fill(mpjg[12][ipjt], 1);	 // DeltaPhi_gammajet
+              m_TH1_h[400 + 10 + 8][0][idn]->Fill(mpjg[12][ipjt], 1);  // DeltaPhi_gammajet
               // Histograms for theoretical variations
               for (unsigned int i = 0; i < weightmcVAR->size(); i++)
               {
@@ -1635,10 +1765,10 @@ int main(int argc, char *argv[])
 
             if (mpjg[10][ipjt] > mcut and mpjg[13][ipjt] < cc and mpjg[7][ipjt] < ce)
             {
-              m_TH1_h[500 + 10 + 9][0][idn]->Fill(mpjg[10][ipjt], ww);	// m_gammajet
-              m_TH1_h[400 + 10 + 9][0][idn]->Fill(mpjg[10][ipjt], 1);		// m_gammajet
+              m_TH1_h[500 + 10 + 9][0][idn]->Fill(mpjg[10][ipjt], ww);  // m_gammajet
+              m_TH1_h[400 + 10 + 9][0][idn]->Fill(mpjg[10][ipjt], 1);   // m_gammajet
               m_TH1_h[500 + 10 + 10][0][idn]->Fill(mpjg[13][ipjt], ww); // cos(theta*)
-              m_TH1_h[400 + 10 + 10][0][idn]->Fill(mpjg[13][ipjt], 1);	// cos(theta*)
+              m_TH1_h[400 + 10 + 10][0][idn]->Fill(mpjg[13][ipjt], 1);  // cos(theta*)
               // Histograms for theoretical variations
               for (unsigned int i = 0; i < weightmcVAR->size(); i++)
               {
@@ -1655,7 +1785,7 @@ int main(int argc, char *argv[])
               if (jetg[8][ipjt] * photg[10] > 0)
               {
                 m_TH1_h[500 + 20 + 1][0][idn]->Fill(photg[7], ww); // pt
-                m_TH1_h[400 + 20 + 1][0][idn]->Fill(photg[7], 1);	 // pt
+                m_TH1_h[400 + 20 + 1][0][idn]->Fill(photg[7], 1);  // pt
                 // Histograms for theoretical variations
                 for (unsigned int i = 0; i < weightmcVAR->size(); i++)
                 {
@@ -1667,7 +1797,7 @@ int main(int argc, char *argv[])
               if (jetg[8][ipjt] * photg[10] < 0)
               {
                 m_TH1_h[500 + 20 + 2][0][idn]->Fill(photg[7], ww); // pt
-                m_TH1_h[400 + 20 + 2][0][idn]->Fill(photg[7], 1);	 // pt
+                m_TH1_h[400 + 20 + 2][0][idn]->Fill(photg[7], 1);  // pt
                 // Histograms for theoretical variations
                 for (unsigned int i = 0; i < weightmcVAR->size(); i++)
                 {
@@ -1684,7 +1814,7 @@ int main(int argc, char *argv[])
               if (jetg[8][ipjt] * photg[10] > 0)
               {
                 m_TH1_h[500 + 20 + 3][0][idn]->Fill(photg[7], ww); // pt
-                m_TH1_h[400 + 20 + 3][0][idn]->Fill(photg[7], 1);	 // pt
+                m_TH1_h[400 + 20 + 3][0][idn]->Fill(photg[7], 1);  // pt
                 // Histograms for theoretical variations
                 for (unsigned int i = 0; i < weightmcVAR->size(); i++)
                 {
@@ -1696,7 +1826,7 @@ int main(int argc, char *argv[])
               if (jetg[8][ipjt] * photg[10] < 0)
               {
                 m_TH1_h[500 + 20 + 4][0][idn]->Fill(photg[7], ww); // pt
-                m_TH1_h[400 + 20 + 4][0][idn]->Fill(photg[7], 1);	 // pt
+                m_TH1_h[400 + 20 + 4][0][idn]->Fill(photg[7], 1);  // pt
                 // Histograms for theoretical variations
                 for (unsigned int i = 0; i < weightmcVAR->size(); i++)
                 {
@@ -1713,7 +1843,7 @@ int main(int argc, char *argv[])
               if (jetg[8][ipjt] * photg[10] > 0)
               {
                 m_TH1_h[500 + 20 + 5][0][idn]->Fill(photg[7], ww); // pt
-                m_TH1_h[400 + 20 + 5][0][idn]->Fill(photg[7], 1);	 // pt
+                m_TH1_h[400 + 20 + 5][0][idn]->Fill(photg[7], 1);  // pt
                 // Histograms for theoretical variations
                 for (unsigned int i = 0; i < weightmcVAR->size(); i++)
                 {
@@ -1725,7 +1855,7 @@ int main(int argc, char *argv[])
               if (jetg[8][ipjt] * photg[10] < 0)
               {
                 m_TH1_h[500 + 20 + 6][0][idn]->Fill(photg[7], ww); // pt
-                m_TH1_h[400 + 20 + 6][0][idn]->Fill(photg[7], 1);	 // pt
+                m_TH1_h[400 + 20 + 6][0][idn]->Fill(photg[7], 1);  // pt
                 // Histograms for theoretical variations
                 for (unsigned int i = 0; i < weightmcVAR->size(); i++)
                 {
