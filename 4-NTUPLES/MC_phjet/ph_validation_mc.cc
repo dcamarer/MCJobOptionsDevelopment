@@ -948,7 +948,7 @@ int main(int argc, char *argv[])
   unsigned int nentries = fChain->GetEntries();
 
   // Checking purposes
-  // nentries = 100000;
+  nentries = 1;
   bool debug = false;
 
   outfile << " ************************* " << endl;
@@ -1054,7 +1054,7 @@ int main(int argc, char *argv[])
           sow = 17928844.;
           nevents = 34984000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
-          //ww_slice = samplexsec * filtereff * 1000 / nevents;
+          // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 35)
         {
@@ -1063,7 +1063,7 @@ int main(int argc, char *argv[])
           sow = 19179839.;
           nevents = 34977000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
-          //ww_slice = samplexsec * filtereff * 1000 / nevents;
+          // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 70)
         {
@@ -1072,7 +1072,7 @@ int main(int argc, char *argv[])
           sow = 25993602.;
           nevents = 43234000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
-          //ww_slice = samplexsec * filtereff * 1000 / nevents;
+          // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 140)
         {
@@ -1081,7 +1081,7 @@ int main(int argc, char *argv[])
           sow = 28013604.;
           nevents = 43223800;
           ww_slice = samplexsec * filtereff * 1000 / sow;
-          //ww_slice = samplexsec * filtereff * 1000 / nevents;
+          // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 280)
         {
@@ -1090,7 +1090,7 @@ int main(int argc, char *argv[])
           sow = 8670886.3;
           nevents = 12965400;
           ww_slice = samplexsec * filtereff * 1000 / sow;
-          //ww_slice = samplexsec * filtereff * 1000 / nevents;
+          // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 500)
         {
@@ -1099,7 +1099,7 @@ int main(int argc, char *argv[])
           sow = 5670074.8;
           nevents = 8320100;
           ww_slice = samplexsec * filtereff * 1000 / sow;
-          //ww_slice = samplexsec * filtereff * 1000 / nevents;
+          // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 1000)
         {
@@ -1108,7 +1108,7 @@ int main(int argc, char *argv[])
           sow = 4274294.2;
           nevents = 6138020;
           ww_slice = samplexsec * filtereff * 1000 / sow;
-          //ww_slice = samplexsec * filtereff * 1000 / nevents;
+          // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
       }
       else if (mc == "run2_sherpa2216")
@@ -1120,7 +1120,7 @@ int main(int argc, char *argv[])
           sow = 5.5197207e+15;
           nevents = 300000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
-          //ww_slice = samplexsec * filtereff * 1000 / nevents;
+          // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 35)
         {
@@ -1129,7 +1129,7 @@ int main(int argc, char *argv[])
           sow = 3.5580971e+14;
           nevents = 230000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
-          //ww_slice = samplexsec * filtereff * 1000 / nevents;
+          // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 70)
         {
@@ -1138,7 +1138,7 @@ int main(int argc, char *argv[])
           sow = 6.6317324e+13;
           nevents = 300000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
-          //ww_slice = samplexsec * filtereff * 1000 / nevents;
+          // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 140)
         {
@@ -1147,7 +1147,7 @@ int main(int argc, char *argv[])
           sow = 4.9664862e+12;
           nevents = 150000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
-          //ww_slice = samplexsec * filtereff * 1000 / nevents;
+          // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 280)
         {
@@ -1156,7 +1156,7 @@ int main(int argc, char *argv[])
           sow = 1.2293309e+11;
           nevents = 35000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
-          //ww_slice = samplexsec * filtereff * 1000 / nevents;
+          // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 500)
         {
@@ -1165,7 +1165,7 @@ int main(int argc, char *argv[])
           sow = 8.4008953e+09;
           nevents = 30000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
-          //ww_slice = samplexsec * filtereff * 1000 / nevents;
+          // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 1000)
         {
@@ -1174,7 +1174,7 @@ int main(int argc, char *argv[])
           sow = 2.0933516e+08;
           nevents = 12000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
-          //ww_slice = samplexsec * filtereff * 1000 / nevents;
+          // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
       }
       else if (mc == "run3_sherpa2216")
@@ -1186,7 +1186,7 @@ int main(int argc, char *argv[])
           sow = 4.5326852e+15;
           nevents = 300000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
-          //ww_slice = samplexsec * filtereff * 1000 / nevents;
+          // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 35)
         {
@@ -1195,7 +1195,7 @@ int main(int argc, char *argv[])
           sow = 5.0174638e+14;
           nevents = 230000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
-          //ww_slice = samplexsec * filtereff * 1000 / nevents;
+          // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 70)
         {
@@ -1204,7 +1204,7 @@ int main(int argc, char *argv[])
           sow = 8.1171275e+13;
           nevents = 300000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
-          //ww_slice = samplexsec * filtereff * 1000 / nevents;
+          // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 140)
         {
@@ -1213,7 +1213,7 @@ int main(int argc, char *argv[])
           sow = 3.8816069e+12;
           nevents = 150000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
-          //ww_slice = samplexsec * filtereff * 1000 / nevents;
+          // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 280)
         {
@@ -1222,7 +1222,7 @@ int main(int argc, char *argv[])
           sow = 9.7788403e+10;
           nevents = 35000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
-          //ww_slice = samplexsec * filtereff * 1000 / nevents;
+          // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 500)
         {
@@ -1231,7 +1231,7 @@ int main(int argc, char *argv[])
           sow = 1.3447262e+10;
           nevents = 30000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
-          //ww_slice = samplexsec * filtereff * 1000 / nevents;
+          // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 1000)
         {
@@ -1240,13 +1240,11 @@ int main(int argc, char *argv[])
           sow = 3.6156054e+08;
           nevents = 12000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
-          //ww_slice = samplexsec * filtereff * 1000 / nevents;
+          // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
       }
 
     } // Slice weighting flag
-
-    // cout << " ww = " <<ww<< " ww_slice = " <<ww_slice<< endl;
 
     m_TH1_m[1][2]->Fill(ww_slice, ww);
 
@@ -1281,7 +1279,8 @@ int main(int argc, char *argv[])
     }
 
     // Theory uncertainties
-    // [From 0 to 317]
+    //  - From 0 to 317 for Sherpa 2.2.2 NLO
+    //  - From 0 to 345 for Sherpa 2.2.16 NLO
     for (unsigned int i = 0; i < weightmcVAR->size(); i++)
     {
 
@@ -1303,6 +1302,19 @@ int main(int argc, char *argv[])
     }
 
     m_TH1_m[5][2]->Fill(m_count_events, ww);
+
+    if (jentry == 0)
+    {
+      cout << endl;
+      cout << " w[0] (Weight)              = " << wVAR[0] << " (check: "<<ww<<")" << endl;
+      cout << " w[2] (WeightNormalisation) = " << wVAR[0] << endl;
+      cout << " w[0]/w[2]                  = " << wVAR[0]/wVAR[2] << endl;
+      cout << " - samplexsec = " << samplexsec << endl;
+      cout << " - filtereff  = " << filtereff << endl;
+      cout << " - nEvents    = " << nevents << endl;
+      cout << " - SoW        = " << sow << endl;
+      cout << " - ww_slice   = " << ww_slice << endl;      
+    }
 
     ////// Define nominal weight
     const double weightmc_only_0 = ww;
