@@ -26,9 +26,9 @@ sfac="no"
 # Choose mc campaign
 
 # SNLO
-mc="run2_sherpa2216"
+#mc="run2_sherpa2216"
 #mc="run3_sherpa2216"
-#mc="sherpa222"
+mc="sherpa222"
 
 echo "Running over mc" $mc
 echo ""
