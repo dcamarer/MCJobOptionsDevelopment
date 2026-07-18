@@ -2,26 +2,12 @@
 // Control plots //
 ///////////////////
 
-void phjet_05_scaleunc()
+void phjet_04_ewcor()
 {
 
   // std::cout << std::scientific;
 
   string data_mode = "run2";
-
-  // ME_ONLY condition
-  int ikadd = 0; // 1: ME_ONLY, 0: ME+PS
-  string tag = "";
-  if (ikadd == 1)
-  {
-    cout << "\nRunning " << data_mode << " with ME_ONLY condition" << endl;
-    tag = "ME";
-  }
-  else
-  {
-    cout << "\nRunning " << data_mode << " with ME+PS condition" << endl;
-    tag = "MEPS";
-  }
 
   string mmc[10];
   string epp = "pdf";
@@ -169,6 +155,26 @@ void phjet_05_scaleunc()
     wt[1] = "#sqrt{s} = 13.6 TeV";
   }
 
+  // This will be selected afterwards
+  double lum = 0.;
+  double elum = 0.;
+
+  // 2015 + 2016 datasets
+  double lum1516 = 36214.46; // pb-1
+  double elum1516 = 0.017;   // This is valid for 2015-2018
+
+  // 2017 dataset
+  double lum17 = 44307.4; // pb-1
+  double elum17 = 0.017;  // This is valid for 2015-2018
+
+  // 2018 dataset
+  double lum18 = 58450.1; // pb-1
+  double elum18 = 0.017;  // This is valid for 2015-2018
+
+  // Run-2
+  double lumR2 = 138971.96; // pb-1
+  double elumR2 = 0.017;    // This is valid for 2015-2018
+
   double maxi[200] = {0};
   double mini[200] = {0};
 
@@ -186,7 +192,7 @@ void phjet_05_scaleunc()
 
   // TFile for each of the inputs
   TFile *snlo_standard;
-  TFile *snlo_2216;
+  TFile *snlo_sherpa16;
 
   int ik = 0;
   int ij = 0;
@@ -314,28 +320,27 @@ void phjet_05_scaleunc()
     // SNLO 2.2.16
 
     histo.str(""); histo << "/Users/danielcamarero/PostDoc/PMG/MCJobOptionsDevelopment/4-NTUPLES/MC_phjet/pos/ph_validation_" << data_mode << "_sherpa2216_r2_wSyes_wRno_wSFno_01.root";
-    snlo_2216 = new TFile(histo.str().c_str(), "read");
+    snlo_sherpa16 = new TFile(histo.str().c_str(), "read");
 
     // nominal prediction
     for (unsigned int ij = 2; ij <= 2; ij++)
     {
       histo.str("");
       histo << "TH1_h_" << k << "_" << ik << "_" << ij;
-      hh_sherpa16[ip] = (TH1 *)snlo_2216->Get(histo.str().c_str());
+      hh_sherpa16[ip] = (TH1 *)snlo_sherpa16->Get(histo.str().c_str());
     }
     // ew-corrected prediction
     for (unsigned int iv = 0; iv <= 345; iv++)
     {
       histo.str("");
       histo << "TH1_h_snlo" << k << "_" << iv << "_" << ik;
-      hh_sherpa16_ww[iv] = (TH1 *)snlo_2216->Get(histo.str().c_str());
+      hh_sherpa16_ww[iv] = (TH1 *)snlo_sherpa16->Get(histo.str().c_str());
     }
 
     // SNLO 2.2.2 MC
 
     histo.str(""); histo << "/Users/danielcamarero/PostDoc/PMG/MCJobOptionsDevelopment/4-NTUPLES/MC_phjet/SAMPLES/sherpa222/ph_validation_sherpa222_TRUTH1_r2_wSyes_wRno_wSFno_01.root";
     snlo_standard = new TFile(histo.str().c_str(), "read");
-
 
     // nominal prediction
     for (unsigned int ij = 2; ij <= 2; ij++)
@@ -354,57 +359,25 @@ void phjet_05_scaleunc()
 
     // Ratios
     hhr_sherpa16[ip] = (TH1 *)hh_standard[ip]->Clone(histo.str().c_str());
-    hhr_sherpa16[ip]->Reset();
+    hhr_sherpa16[ip]->Reset();    
     hhr_standard[ip] = (TH1 *)hh_standard[ip]->Clone(histo.str().c_str());
     hhr_standard[ip]->Reset();
     for (unsigned int iv = 0; iv <= 345; iv++)
     {
       hhr_sherpa16_ww[iv] = (TH1 *)hh_sherpa16_ww[iv]->Clone(histo.str().c_str());
-      hhr_sherpa16_ww[iv]->Reset();      
+      hhr_sherpa16_ww[iv]->Reset();
       hhr_standard_ww[iv] = (TH1 *)hh_sherpa16_ww[iv]->Clone(histo.str().c_str());
       hhr_standard_ww[iv]->Reset();
     }
-
-    // OLD 2.2.2 SAMPLES
-    /*
-      'MUR0.5_MUF0.5_PDF261000': 4, --> muRandmuFdw
-      'MUR0.5_MUF1_PDF261000': 5,   --> muRdw
-      'MUR1_MUF0.5_PDF261000': 6,   --> muFdw
-      'MUR1_MUF1_PDF261000': 7,     --> Nominal
-      'MUR1_MUF2_PDF261000': 8,     --> muFup
-      'MUR2_MUF1_PDF261000': 9,     --> muRup
-      'MUR2_MUF2_PDF261000': 10,    --> muRandmuFup
-    */
-
-    // NEW 2.2.11 SAMPLES
-    /*
-      'MUR0.5_MUF0.5_PDF303200_PSMUR0.5_PSMUF0.5': 4,         --> muRandmuFdw
-      'MUR0.5_MUF1_PDF303200_PSMUR0.5_PSMUF1': 6,             --> muRdw
-      'MUR1_MUF0.5_PDF303200_PSMUR1_PSMUF0.5': 8,             --> muFdw
-      'MUR1_MUF1_PDF303200': 10,                              --> Nominal
-      'MUR1_MUF2_PDF303200_PSMUR1_PSMUF2': 12,                --> muFup
-      'MUR2_MUF1_PDF303200_PSMUR2_PSMUF1': 14,                --> muRup
-      'MUR2_MUF2_PDF303200_PSMUR2_PSMUF2': 16,                --> muRandmuFup
-    */
 
     // variables definition
     double xbins[500] = {}, ex[500] = {}, exx[500] = {};
     //
     double mc_standard[500] = {}, emc_standard[500] = {};
-    double mc_standard_ww_1[500] = {}, emc_standard_ww_1[500] = {};
-    double mc_standard_ww_2[500] = {}, emc_standard_ww_2[500] = {};
-    double mc_standard_ww_3[500] = {}, emc_standard_ww_3[500] = {};
-    double mc_standard_ww_4[500] = {}, emc_standard_ww_4[500] = {};
-    double mc_standard_ww_5[500] = {}, emc_standard_ww_5[500] = {};
-    double mc_standard_ww_6[500] = {}, emc_standard_ww_6[500] = {};
-    //
     double mc_sherpa16[500] = {}, emc_sherpa16[500] = {};
-    double mc_sherpa16_ww_1[500] = {}, emc_sherpa16_ww_1[500] = {};
-    double mc_sherpa16_ww_2[500] = {}, emc_sherpa16_ww_2[500] = {};
-    double mc_sherpa16_ww_3[500] = {}, emc_sherpa16_ww_3[500] = {};
-    double mc_sherpa16_ww_4[500] = {}, emc_sherpa16_ww_4[500] = {};
-    double mc_sherpa16_ww_5[500] = {}, emc_sherpa16_ww_5[500] = {};
-    double mc_sherpa16_ww_6[500] = {}, emc_sherpa16_ww_6[500] = {};
+    double mc_sherpa16_wwad[500] = {}, emc_sherpa16_wwad[500] = {};
+    double mc_sherpa16_wwmul[500] = {}, emc_sherpa16_wwmul[500] = {};
+    double mc_sherpa16_wwexp[500] = {}, emc_sherpa16_wwexp[500] = {};
 
     int nb = 0, ni = 1;
     nb = hh_sherpa16[ip]->GetNbinsX();
@@ -513,6 +486,20 @@ void phjet_05_scaleunc()
     cout << " effentries_standard[0] = " << effentries_standard[0] << endl;
     cout << endl;
 
+    ////// EW corrections ME+PS
+    // 'MUR1_MUF1_PDF303200_ASSEW' : 322 ,
+    // 'MUR1_MUF1_PDF303200_ASSEWLO1' : 328 ,
+    // 'MUR1_MUF1_PDF303200_ASSEWLO1LO2' : 334 ,
+    // 'MUR1_MUF1_PDF303200_ASSEWLO1LO2LO3' : 340 ,
+    // 'MUR1_MUF1_PDF303200_MULTIASSEW' : 324 ,
+    // 'MUR1_MUF1_PDF303200_MULTIASSEWLO1' : 330 ,
+    // 'MUR1_MUF1_PDF303200_MULTIASSEWLO1LO2' : 336 ,
+    // 'MUR1_MUF1_PDF303200_MULTIASSEWLO1LO2LO3' : 342 ,
+    // 'MUR1_MUF1_PDF303200_EXPASSEW' : 326 ,
+    // 'MUR1_MUF1_PDF303200_EXPASSEWLO1' : 332 ,
+    // 'MUR1_MUF1_PDF303200_EXPASSEWLO1LO2' : 338 ,
+    // 'MUR1_MUF1_PDF303200_EXPASSEWLO1LO2LO3' : 344 ,
+
     int ns = 0;
     int i = 0;
     for (int j = ni; j <= nb; j++)
@@ -525,58 +512,40 @@ void phjet_05_scaleunc()
       ex[i] = hh_sherpa16[ip]->GetBinWidth(j);
       exx[i] = 0.0000001;
 
-      // MC SHERPA 2.2.16
-      mc_sherpa16[i] = hh_sherpa16[ip]->GetBinContent(j) / ex[i];
-      emc_sherpa16[i] = hh_sherpa16[ip]->GetBinError(j) / ex[i];
-      // SCALE - muR and muF down
-      mc_sherpa16_ww_1[i] = hh_sherpa16_ww[4 + ikadd]->GetBinContent(j) / ex[i];
-      emc_sherpa16_ww_1[i] = hh_sherpa16_ww[4 + ikadd]->GetBinError(j) / ex[i];
-      // SCALE - muR down
-      mc_sherpa16_ww_2[i] = hh_sherpa16_ww[6 + ikadd]->GetBinContent(j) / ex[i];
-      emc_sherpa16_ww_2[i] = hh_sherpa16_ww[6 + ikadd]->GetBinError(j) / ex[i];
-      // SCALE - muF down
-      mc_sherpa16_ww_3[i] = hh_sherpa16_ww[8 + ikadd]->GetBinContent(j) / ex[i];
-      emc_sherpa16_ww_3[i] = hh_sherpa16_ww[8 + ikadd]->GetBinError(j) / ex[i];
-      // SCALE - muF up
-      mc_sherpa16_ww_4[i] = hh_sherpa16_ww[12 + ikadd]->GetBinContent(j) / ex[i];
-      emc_sherpa16_ww_4[i] = hh_sherpa16_ww[12 + ikadd]->GetBinError(j) / ex[i];
-      // SCALE - muR up
-      mc_sherpa16_ww_5[i] = hh_sherpa16_ww[14 + ikadd]->GetBinContent(j) / ex[i];
-      emc_sherpa16_ww_5[i] = hh_sherpa16_ww[14 + ikadd]->GetBinError(j) / ex[i];
-      // SCALE - muR and muF up
-      mc_sherpa16_ww_6[i] = hh_sherpa16_ww[16 + ikadd]->GetBinContent(j) / ex[i];
-      emc_sherpa16_ww_6[i] = hh_sherpa16_ww[16 + ikadd]->GetBinError(j) / ex[i];
+      // MC sherpa16 2.2.11
+      mc_sherpa16[i] = hh_sherpa16[ip]->GetBinContent(j);
+      emc_sherpa16[i] = hh_sherpa16[ip]->GetBinError(j);
+      mc_sherpa16[i] /= ex[i];
+      emc_sherpa16[i] /= ex[i];
+      // EW CORRECTED - ADDITIVE
+      mc_sherpa16_wwad[i] = hh_sherpa16_ww[322]->GetBinContent(j);
+      emc_sherpa16_wwad[i] = hh_sherpa16_ww[322]->GetBinError(j);
+      mc_sherpa16_wwad[i] /= ex[i];
+      emc_sherpa16_wwad[i] /= ex[i];
+      // EW CORRECTED - MULTIPLICATIVE
+      mc_sherpa16_wwmul[i] = hh_sherpa16_ww[324]->GetBinContent(j);
+      emc_sherpa16_wwmul[i] = hh_sherpa16_ww[324]->GetBinError(j);
+      mc_sherpa16_wwmul[i] /= ex[i];
+      emc_sherpa16_wwmul[i] /= ex[i];
+      // EW CORRECTED - EXPONENTIAL
+      mc_sherpa16_wwexp[i] = hh_sherpa16_ww[326]->GetBinContent(j);
+      emc_sherpa16_wwexp[i] = hh_sherpa16_ww[326]->GetBinError(j);
+      mc_sherpa16_wwexp[i] /= ex[i];
+      emc_sherpa16_wwexp[i] /= ex[i];
 
       // MC STANDARD 2.2.2
-      mc_standard[i] = hh_standard[ip]->GetBinContent(j) / ex[i];
-      emc_standard[i] = hh_standard[ip]->GetBinError(j) / ex[i];
-      // SCALE - muR and muF down
-      mc_standard_ww_1[i] = hh_standard_ww[4]->GetBinContent(j) / ex[i];
-      emc_standard_ww_1[i] = hh_standard_ww[4]->GetBinError(j) / ex[i];
-      // SCALE - muR down
-      mc_standard_ww_2[i] = hh_standard_ww[5]->GetBinContent(j) / ex[i];
-      emc_standard_ww_2[i] = hh_standard_ww[5]->GetBinError(j) / ex[i];
-      // SCALE - muF down
-      mc_standard_ww_3[i] = hh_standard_ww[6]->GetBinContent(j) / ex[i];
-      emc_standard_ww_3[i] = hh_standard_ww[6]->GetBinError(j) / ex[i];
-      // SCALE - muF up
-      mc_standard_ww_4[i] = hh_standard_ww[8]->GetBinContent(j) / ex[i];
-      emc_standard_ww_4[i] = hh_standard_ww[8]->GetBinError(j) / ex[i];
-      // SCALE - muR up
-      mc_standard_ww_5[i] = hh_standard_ww[9]->GetBinContent(j) / ex[i];
-      emc_standard_ww_5[i] = hh_standard_ww[9]->GetBinError(j) / ex[i];
-      // SCALE - muR and muF up
-      mc_standard_ww_6[i] = hh_standard_ww[10]->GetBinContent(j) / ex[i];
-      emc_standard_ww_6[i] = hh_standard_ww[10]->GetBinError(j) / ex[i];
+      mc_standard[i] = hh_standard[ip]->GetBinContent(j);
+      emc_standard[i] = hh_standard[ip]->GetBinError(j);
+      //
+      mc_standard[i] /= ex[i];
+      emc_standard[i] /= ex[i];
     }
 
-    hh_standard[ip]->Reset();
     hh_sherpa16[ip]->Reset();
-    for (unsigned int iv = 4; iv <= 16; iv++)
-    {
-      hh_sherpa16_ww[iv]->Reset();
-      hh_standard_ww[iv]->Reset();
-    }
+    hh_sherpa16_ww[322]->Reset();
+    hh_sherpa16_ww[324]->Reset();
+    hh_sherpa16_ww[326]->Reset();
+    hh_standard[ip]->Reset();
 
     ns = 0;
     i = 0;
@@ -589,61 +558,36 @@ void phjet_05_scaleunc()
       // sherpa16
       hh_sherpa16[ip]->SetBinContent(j, mc_sherpa16[i]);
       hh_sherpa16[ip]->SetBinError(j, emc_sherpa16[i]);
-      // sherpa16 - ww_1
-      hh_sherpa16_ww[4]->SetBinContent(j, mc_sherpa16_ww_1[i]);
-      hh_sherpa16_ww[4]->SetBinError(j, emc_sherpa16_ww_1[i]);
-      // sherpa16 - ww_2
-      hh_sherpa16_ww[6]->SetBinContent(j, mc_sherpa16_ww_2[i]);
-      hh_sherpa16_ww[6]->SetBinError(j, emc_sherpa16_ww_2[i]);
-      // sherpa16 - ww_3
-      hh_sherpa16_ww[8]->SetBinContent(j, mc_sherpa16_ww_3[i]);
-      hh_sherpa16_ww[8]->SetBinError(j, emc_sherpa16_ww_3[i]);
-      // sherpa16 - ww_4
-      hh_sherpa16_ww[12]->SetBinContent(j, mc_sherpa16_ww_4[i]);
-      hh_sherpa16_ww[12]->SetBinError(j, emc_sherpa16_ww_4[i]);
-      // sherpa16 - ww_5
-      hh_sherpa16_ww[14]->SetBinContent(j, mc_sherpa16_ww_5[i]);
-      hh_sherpa16_ww[14]->SetBinError(j, emc_sherpa16_ww_5[i]);
-      // sherpa16 - ww_6
-      hh_sherpa16_ww[16]->SetBinContent(j, mc_sherpa16_ww_6[i]);
-      hh_sherpa16_ww[16]->SetBinError(j, emc_sherpa16_ww_6[i]);
+      // sherpa16 - EWADD
+      hh_sherpa16_ww[322]->SetBinContent(j, mc_sherpa16_wwad[i]);
+      hh_sherpa16_ww[322]->SetBinError(j, emc_sherpa16_wwad[i]);
+      // sherpa16 - EWMUL
+      hh_sherpa16_ww[324]->SetBinContent(j, mc_sherpa16_wwmul[i]);
+      hh_sherpa16_ww[324]->SetBinError(j, emc_sherpa16_wwmul[i]);
+      // sherpa16 - EWXP
+      hh_sherpa16_ww[326]->SetBinContent(j, mc_sherpa16_wwexp[i]);
+      hh_sherpa16_ww[326]->SetBinError(j, emc_sherpa16_wwexp[i]);
 
       // STANDARD
       hh_standard[ip]->SetBinContent(j, mc_standard[i]);
       hh_standard[ip]->SetBinError(j, emc_standard[i]);
-      // STANDARD - ww_1
-      hh_standard_ww[4]->SetBinContent(j, mc_standard_ww_1[i]);
-      hh_standard_ww[4]->SetBinError(j, emc_standard_ww_1[i]);
-      // STANDARD - ww_2
-      hh_standard_ww[5]->SetBinContent(j, mc_standard_ww_2[i]);
-      hh_standard_ww[5]->SetBinError(j, emc_standard_ww_2[i]);
-      // STANDARD - ww_3
-      hh_standard_ww[6]->SetBinContent(j, mc_standard_ww_3[i]);
-      hh_standard_ww[6]->SetBinError(j, emc_standard_ww_3[i]);
-      // STANDARD - ww_4
-      hh_standard_ww[8]->SetBinContent(j, mc_standard_ww_4[i]);
-      hh_standard_ww[8]->SetBinError(j, emc_standard_ww_4[i]);
-      // STANDARD - ww_5
-      hh_standard_ww[9]->SetBinContent(j, mc_standard_ww_5[i]);
-      hh_standard_ww[9]->SetBinError(j, emc_standard_ww_5[i]);
-      // STANDARD - ww_6
-      hh_standard_ww[10]->SetBinContent(j, mc_standard_ww_6[i]);
-      hh_standard_ww[10]->SetBinError(j, emc_standard_ww_6[i]);
     }
 
-    // Normalisation [from pb to nb]
+    // Normalisation [from pb-1 to nb-1]
     hh_sherpa16[ip]->Scale(1 / 1000.);
+    hh_sherpa16_ww[322]->Scale(1 / 1000.);
+    hh_sherpa16_ww[324]->Scale(1 / 1000.);
+    hh_sherpa16_ww[326]->Scale(1 / 1000.);
     hh_standard[ip]->Scale(1 / 1000.);
-    for (unsigned int iv = 4; iv <= 16; iv++)
-    {
-      hh_sherpa16_ww[iv]->Scale(1 / 1000.);
-      hh_standard_ww[iv]->Scale(1 / 1000.);
-    }
 
     ////// Ratio and error of the ratio
 
-    double rat_standard[100][50] = {}, erat_standard[100][50] = {};
-    double rat_sherpa16[100][50] = {}, erat_sherpa16[100][50] = {};
+    double rat_standard[500] = {}, erat_standard[500] = {};
+    double rat_sherpa16[500] = {}, erat_sherpa16[500] = {};
+    //
+    double rat_sherpa16_wwad[500] = {}, erat_sherpa16_wwad[500] = {};
+    double rat_sherpa16_wwmul[500] = {}, erat_sherpa16_wwmul[500] = {};
+    double rat_sherpa16_wwexp[500] = {}, erat_sherpa16_wwexp[500] = {};
 
     ns = 0;
     i = 0;
@@ -653,41 +597,66 @@ void phjet_05_scaleunc()
       i = ns;
       ns += 1;
 
+      // RATIO 1,2,3:
+      rat_sherpa16[i] = 0;
+      erat_sherpa16[i] = 0;
+      rat_standard[i] = 0;
+      erat_standard[i] = 0;
       if (mc_standard[i] > 0)
       {
-        rat_standard[i][1] = (mc_standard_ww_1[i] - mc_standard[i]) / (mc_standard[i]);
-        rat_standard[i][2] = (mc_standard_ww_2[i] - mc_standard[i]) / (mc_standard[i]);
-        rat_standard[i][3] = (mc_standard_ww_3[i] - mc_standard[i]) / (mc_standard[i]);
-        rat_standard[i][4] = (mc_standard_ww_4[i] - mc_standard[i]) / (mc_standard[i]);
-        rat_standard[i][5] = (mc_standard_ww_5[i] - mc_standard[i]) / (mc_standard[i]);
-        rat_standard[i][6] = (mc_standard_ww_6[i] - mc_standard[i]) / (mc_standard[i]);
+        rat_sherpa16[i] = mc_sherpa16[i] / mc_standard[i];
+        // erat_sherpa16[i]  = emc_sherpa16[i] / mc_standard[i];
+        erat_sherpa16[i] = rat_sherpa16[i] * sqrt(pow(emc_sherpa16[i] / mc_sherpa16[i], 2) + pow(emc_standard[i] / mc_standard[i], 2));        
+        //
+        rat_standard[i] = mc_standard[i] / mc_standard[i];
+        erat_standard[i] = emc_standard[i] / mc_standard[i];
       }
+      hhr_sherpa16[ip]->SetBinContent(j, rat_sherpa16[i]);
+      hhr_sherpa16[ip]->SetBinError(j, erat_sherpa16[i]);
       //
+      hhr_standard[ip]->SetBinContent(j, rat_standard[i]);
+      hhr_standard[ip]->SetBinError(j, erat_standard[i]);
+
+      // RATIO 4,5,6:
+      rat_sherpa16_wwad[i] = 0;
+      erat_sherpa16_wwad[i] = 0;
+      rat_sherpa16_wwmul[i] = 0;
+      erat_sherpa16_wwmul[i] = 0;
+      rat_sherpa16_wwexp[i] = 0;
+      erat_sherpa16_wwexp[i] = 0;
       if (mc_sherpa16[i] > 0)
       {
-        rat_sherpa16[i][1] = (mc_sherpa16_ww_1[i] - mc_sherpa16[i]) / (mc_sherpa16[i]);
-        rat_sherpa16[i][2] = (mc_sherpa16_ww_2[i] - mc_sherpa16[i]) / (mc_sherpa16[i]);
-        rat_sherpa16[i][3] = (mc_sherpa16_ww_3[i] - mc_sherpa16[i]) / (mc_sherpa16[i]);
-        rat_sherpa16[i][4] = (mc_sherpa16_ww_4[i] - mc_sherpa16[i]) / (mc_sherpa16[i]);
-        rat_sherpa16[i][5] = (mc_sherpa16_ww_5[i] - mc_sherpa16[i]) / (mc_sherpa16[i]);
-        rat_sherpa16[i][6] = (mc_sherpa16_ww_6[i] - mc_sherpa16[i]) / (mc_sherpa16[i]);
+        rat_sherpa16_wwad[i] = mc_sherpa16_wwad[i] / mc_sherpa16[i];
+        // erat_sherpa16_wwad[i]  = emc_sherpa16_wwad[i] / mc_sherpa16[i];
+        // erat_sherpa16_wwad[i] = rat_sherpa16_wwad[i] * sqrt( pow(emc_sherpa16_wwad[i]/mc_sherpa16_wwad[i],2) + pow(emc_sherpa16[i]/mc_sherpa16[i],2) );
+        erat_sherpa16_wwad[i] = (1 / mc_sherpa16[i]) * sqrt(pow(emc_sherpa16_wwad[i], 2) + pow(rat_sherpa16_wwad[i] * emc_sherpa16[i], 2) - rat_sherpa16_wwad[i] * (emc_sherpa16_wwad[i]) * (emc_sherpa16[i]));
+        //
+        rat_sherpa16_wwmul[i] = mc_sherpa16_wwmul[i] / mc_sherpa16[i];
+        // erat_sherpa16_wwmul[i]  = emc_sherpa16_wwmul[i] / mc_sherpa16[i];
+        // erat_sherpa16_wwmul[i] = rat_sherpa16_wwmul[i] * sqrt( pow(emc_sherpa16_wwmul[i]/mc_sherpa16_wwmul[i],2) + pow(emc_sherpa16[i]/mc_sherpa16[i],2) );
+        erat_sherpa16_wwmul[i] = (1 / mc_sherpa16[i]) * sqrt(pow(emc_sherpa16_wwmul[i], 2) + pow(rat_sherpa16_wwmul[i] * emc_sherpa16[i], 2) - rat_sherpa16_wwmul[i] * (emc_sherpa16_wwmul[i]) * (emc_sherpa16[i]));
+        //
+        rat_sherpa16_wwexp[i] = mc_sherpa16_wwexp[i] / mc_sherpa16[i];
+        // erat_sherpa16_wwexp[i]  = emc_sherpa16_wwexp[i] / mc_sherpa16[i];
+        // erat_sherpa16_wwexp[i] = rat_sherpa16_wwexp[i] * sqrt( pow(emc_sherpa16_wwexp[i]/mc_sherpa16_wwexp[i],2) + pow(emc_sherpa16[i]/mc_sherpa16[i],2) );
+        erat_sherpa16_wwexp[i] = (1 / mc_sherpa16[i]) * sqrt(pow(emc_sherpa16_wwexp[i], 2) + pow(rat_sherpa16_wwexp[i] * emc_sherpa16[i], 2) - rat_sherpa16_wwexp[i] * (emc_sherpa16_wwexp[i]) * (emc_sherpa16[i]));
       }
-      for (unsigned int iv = 1; iv <= 6; iv++)
-      {
-        hhr_standard_ww[iv]->SetBinContent(j, rat_standard[i][iv]);
-        hhr_sherpa16_ww[iv]->SetBinContent(j, rat_sherpa16[i][iv]);
-      }
+      hhr_sherpa16_ww[322]->SetBinContent(j, rat_sherpa16_wwad[i]);
+      hhr_sherpa16_ww[322]->SetBinError(j, erat_sherpa16_wwad[i]);
+      //
+      hhr_sherpa16_ww[324]->SetBinContent(j, rat_sherpa16_wwmul[i]);
+      // hhr_sherpa16_ww[324]->SetBinError(j,erat_sherpa16_wwmul[i]);
+      hhr_sherpa16_ww[324]->SetBinError(j, 0);
+      //
+      hhr_sherpa16_ww[326]->SetBinContent(j, rat_sherpa16_wwexp[i]);
+      // hhr_sherpa16_ww[326]->SetBinError(j,erat_sherpa16_wwexp[i]);
+      hhr_sherpa16_ww[326]->SetBinError(j, 0);
     }
 
-    double bl = hh_standard[ip]->GetBinCenter(ni) - hh_standard[ip]->GetBinWidth(ni) / 2.;
-    double bu = hh_standard[ip]->GetBinCenter(nb) + hh_standard[ip]->GetBinWidth(nb) / 2.;
+    double bl = hh_sherpa16[ip]->GetBinCenter(ni) - hh_sherpa16[ip]->GetBinWidth(ni) / 2.;
+    double bu = hh_sherpa16[ip]->GetBinCenter(nb) + hh_sherpa16[ip]->GetBinWidth(nb) / 2.;
 
     cout << " Limits: bl = " << bl << "; bu = " << bu << ";" << endl;
-
-    TLine ll0(bl, 1., bu, 1.);
-    ll0.SetLineWidth(3);
-    ll0.SetLineStyle(1);
-    ll0.SetLineColor(0);
 
     TLine ll(bl, 1., bu, 1.);
     ll.SetLineWidth(2);
@@ -777,7 +746,10 @@ void phjet_05_scaleunc()
 
       TH1F *h1;
 
-      h1 = canvas_1->DrawFrame(bl, -0.5, bu, 0.6);
+      if (ratn == 1)
+        h1 = canvas_1->DrawFrame(bl, 0.5, bu, 1.5);
+      if (ratn == 2 or ratn == 3)
+        h1 = canvas_1->DrawFrame(bl, 0.7, bu, 1.3);
 
       ////// Axes configuration
 
@@ -790,7 +762,11 @@ void phjet_05_scaleunc()
       h1->GetXaxis()->SetLabelOffset(0.005);
 
       histo.str("");
-      histo << "Relative uncertainty";
+      if (ratn == 1)
+        histo << "Ratio to SHERPA 222";
+      if (ratn == 2 or ratn == 3)
+        histo << "Ratio to nominal prediction";
+
       // histo.str(""); histo << yt[id[ip]];
       h1->SetYTitle(histo.str().c_str());
       h1->GetYaxis()->SetTitleSize(0.05);
@@ -808,68 +784,35 @@ void phjet_05_scaleunc()
 
       h1->Draw();
 
-      ll0.DrawLine(bl, 0, bu, 0);
-
-      if (ratn == 1)
-      {
-        myhhdate(hhr_standard_ww[1], "same][", 0, 0, 0, 3., 2, kRed, 0, 0);      // muRandmuFdw
-        myhhdate(hhr_standard_ww[2], "same][", 0, 0, 0, 3., 1, kRed + 2, 0, 0);  // muRdw
-        myhhdate(hhr_standard_ww[3], "same][", 0, 0, 0, 3., 3, kRed - 2, 0, 0);  // muFdw
-        myhhdate(hhr_standard_ww[4], "same][", 0, 0, 0, 3., 3, kBlue - 2, 0, 0); // muFup
-        myhhdate(hhr_standard_ww[5], "same][", 0, 0, 0, 3., 1, kBlue + 2, 0, 0); // muRup
-        myhhdate(hhr_standard_ww[6], "same][", 0, 0, 0, 3., 2, kBlue, 0, 0);     // muRandmuFup
-      }
-      else if (ratn == 2)
-      {
-        myhhdate(hhr_sherpa16_ww[1], "same][", 0, 0, 0, 3., 2, kRed, 0, 0);      // muRandmuFdw
-        myhhdate(hhr_sherpa16_ww[2], "same][", 0, 0, 0, 3., 1, kRed + 2, 0, 0);  // muRdw
-        myhhdate(hhr_sherpa16_ww[3], "same][", 0, 0, 0, 3., 3, kRed - 2, 0, 0);  // muFdw
-        myhhdate(hhr_sherpa16_ww[4], "same][", 0, 0, 0, 3., 3, kBlue - 2, 0, 0); // muFup
-        myhhdate(hhr_sherpa16_ww[5], "same][", 0, 0, 0, 3., 1, kBlue + 2, 0, 0); // muRup
-        myhhdate(hhr_sherpa16_ww[6], "same][", 0, 0, 0, 3., 2, kBlue, 0, 0);     // muRandmuFup
-      }
-
-      histo.str("");
-      histo << "#mu_{R}/2, #mu_{F}/2";
-      myLine(0.26, 0.325, 0.03, kRed, 2, histo.str().c_str(), 0.03, 0.04);
-      histo.str("");
-      histo << "#mu_{R}/2";
-      myLine(0.26, 0.275, 0.03, kRed + 2, 1, histo.str().c_str(), 0.03, 0.04);
-      histo.str("");
-      histo << "#mu_{F}/2";
-      myLine(0.26, 0.225, 0.03, kRed - 2, 3, histo.str().c_str(), 0.03, 0.04);
-
-      histo.str("");
-      histo << "2*#mu_{R}, 2*#mu_{F}";
-      myLine(0.46, 0.325, 0.03, kBlue, 2, histo.str().c_str(), 0.03, 0.04);
-      histo.str("");
-      histo << "2*#mu_{R}";
-      myLine(0.46, 0.275, 0.03, kBlue + 2, 1, histo.str().c_str(), 0.03, 0.04);
-      histo.str("");
-      histo << "2*#mu_{F}";
-      myLine(0.46, 0.225, 0.03, kBlue - 2, 3, histo.str().c_str(), 0.03, 0.04);
-
-      ll.DrawLine(bl, 0, bu, 0);
-      // llup1.DrawLine(bl,1.10,bu,1.10);
-      // lldown1.DrawLine(bl,0.90,bu,0.90);
-
       histo.str("");
       histo << wt[1];
-      myText(0.22, 0.89, 1, histo.str().c_str(), 0.035);
+      myText(0.23, 0.89, 1, histo.str().c_str(), 0.035);
 
       if (ratn == 1)
-      {
-
-        histo.str("");
-        histo << "SHERPA 2.2.2";
-        myText(0.22, 0.84, 1, histo.str().c_str(), 0.035);
-      }
-      else if (ratn == 2)
       {
 
         histo.str("");
         histo << "SHERPA 2.2.16";
-        myText(0.22, 0.84, 1, histo.str().c_str(), 0.035);
+        myMarkerText(0.23, 0.85, kRed, 24, histo.str().c_str(), 1.3, 0.03, 0.04);        
+
+        histo.str("");
+        histo << "SHERPA 2.2.2";
+        myMarkerText(0.23, 0.80, kGreen + 2, 20, histo.str().c_str(), 1.0, 0.03, 0.04);
+      }
+      else if (ratn == 2)
+      {
+
+        histo.str("");
+        histo << "SHERPA 2.2.16 - ASSEW";
+        myMarkerText(0.23, 0.85, kBlack, 20, histo.str().c_str(), 1.2, 0.03, 0.04);
+
+        histo.str("");
+        histo << "SHERPA 2.2.16 - MULTIASSEW";
+        myLine(0.23, 0.81, 0.03, kCyan + 1, 1, histo.str().c_str(), 0.03, 0.04);
+
+        histo.str("");
+        histo << "SHERPA 2.2.16 - EXPASSEW";
+        myLine(0.23, 0.77, 0.03, kRed, 2, histo.str().c_str(), 0.03, 0.04);
       }
 
       // Extra labels
@@ -894,77 +837,107 @@ void phjet_05_scaleunc()
       if (ip == 0 or ip == 1 or ip == 2 or ip == 3)
       {
 
-        /*
-          histo.str(""); histo << anal[id[ip]];
-          myText(0.20,0.26,1,histo.str().c_str(),0.03);
+        histo.str("");
+        histo << anal[id[ip]];
+        myText(0.20, 0.26, 1, histo.str().c_str(), 0.03);
 
-          histo.str(""); histo << zt[3];
-          myText(0.20,0.21,1,histo.str().c_str(),0.03);
-        */
+        histo.str("");
+        histo << zt[3];
+        myText(0.20, 0.21, 1, histo.str().c_str(), 0.03);
       }
       else if (ip == 4 or ip == 5 or ip == 6 or ip == 7 or ip == 8 or ip == 9 or ip == 10 or ip == 11)
       {
 
-        /*
-          histo.str(""); histo << anal[id[ip]];
-          myText(0.20,0.31,1,histo.str().c_str(),0.03);
+        histo.str("");
+        histo << anal[id[ip]];
+        myText(0.20, 0.31, 1, histo.str().c_str(), 0.03);
 
-          histo.str(""); histo << zt[3];
-          myText(0.20,0.26,1,histo.str().c_str(),0.03);
+        histo.str("");
+        histo << zt[3];
+        myText(0.20, 0.26, 1, histo.str().c_str(), 0.03);
 
-          histo.str(""); histo << zt[4];
-          myText(0.20,0.21,1,histo.str().c_str(),0.03);
-        */
+        histo.str("");
+        histo << zt[4];
+        myText(0.20, 0.21, 1, histo.str().c_str(), 0.03);
       }
       else if (ip == 12 or ip == 13)
       {
 
-        /*
-          histo.str(""); histo << anal[id[ip]];
-          myText(0.20,0.37,1,histo.str().c_str(),0.03);
+        histo.str("");
+        histo << anal[id[ip]];
+        myText(0.20, 0.37, 1, histo.str().c_str(), 0.03);
 
-          histo.str(""); histo << zt[3];
-          myText(0.20,0.31,1,histo.str().c_str(),0.03);
+        histo.str("");
+        histo << zt[3];
+        myText(0.20, 0.31, 1, histo.str().c_str(), 0.03);
 
-          histo.str(""); histo << zt[4];
-          myText(0.20,0.26,1,histo.str().c_str(),0.03);
+        histo.str("");
+        histo << zt[4];
+        myText(0.20, 0.26, 1, histo.str().c_str(), 0.03);
 
-          histo.str(""); histo << zt[5];
-          myText(0.20,0.21,1,histo.str().c_str(),0.03);
-        */
+        histo.str("");
+        histo << zt[5];
+        myText(0.20, 0.21, 1, histo.str().c_str(), 0.03);
       }
       else if (ip >= 20 and ip <= 25)
       {
 
-        // histo.str(""); histo << anal[id[ip]];
-        // myText(0.55,0.89,1,histo.str().c_str(),0.03);
+        histo.str("");
+        histo << anal[id[ip]];
+        myText(0.20, 0.26, 1, histo.str().c_str(), 0.03);
 
         histo.str("");
         histo << zt[ip];
-        myText(0.55, 0.89, 1, histo.str().c_str(), 0.03);
+        myText(0.20, 0.21, 1, histo.str().c_str(), 0.03);
       }
       else
       {
 
-        /*
-          histo.str(""); histo << anal[id[ip]];
-          myText(0.20,0.37,1,histo.str().c_str(),0.03);
+        histo.str("");
+        histo << anal[id[ip]];
+        myText(0.20, 0.37, 1, histo.str().c_str(), 0.03);
 
-          histo.str(""); histo << zt[3];
-          myText(0.20,0.31,1,histo.str().c_str(),0.03);
+        histo.str("");
+        histo << zt[3];
+        myText(0.20, 0.31, 1, histo.str().c_str(), 0.03);
 
-          histo.str(""); histo << zt[4];
-          myText(0.20,0.26,1,histo.str().c_str(),0.03);
+        histo.str("");
+        histo << zt[4];
+        myText(0.20, 0.26, 1, histo.str().c_str(), 0.03);
 
-          histo.str(""); histo << zt[ip];
-          myText(0.20,0.21,1,histo.str().c_str(),0.03);
-        */
+        histo.str("");
+        histo << zt[ip];
+        myText(0.20, 0.21, 1, histo.str().c_str(), 0.03);
+      }
+
+      if (ratn == 1)
+      {
+        myhhdate(hhr_sherpa16[ip], "esamex0", 1.3, kRed, 24, 2., 1, kRed, 1, 1);
+        myhhdate(hhr_standard[ip], "esamex0", 1.0, kGreen + 2, 20, 2., 2, kGreen + 2, 1, 1);
+      }
+      else if (ratn == 2)
+      {
+        myhhdate(hhr_sherpa16_ww[322], "esamex0", 1.2, kBlack, 20, 2., 1, kBlack, 1, 1);
+        myhhdate(hhr_sherpa16_ww[324], "esamex0", 0, 0, 0, 3., 1, kCyan + 1, 1, 1);
+        myhhdate(hhr_sherpa16_ww[326], "esamex0", 0, 0, 0, 3., 2, kRed, 1, 1);
+      }
+
+      if (ratn == 1 or ratn == 2)
+      {
+        ll.DrawLine(bl, 1., bu, 1.);
+        llup1.DrawLine(bl, 1.10, bu, 1.10);
+        lldown1.DrawLine(bl, 0.90, bu, 0.90);
+        if (ratn == 1)
+        {
+          llup2.DrawLine(bl, 1.20, bu, 1.20);
+          lldown2.DrawLine(bl, 0.80, bu, 0.80);
+        }
       }
 
       gPad->RedrawAxis();
 
       file.str("");
-      file << "./plots-phjet_05_scaleunc/phjet_05_scaleunc_" << tag << "_" << data_mode;
+      file << "./plots-phjet_04_ewcor/phjet_04_ewcor_" << data_mode;
       file << "_ratn";
       file << ratn;
       file << "_";
@@ -980,9 +953,9 @@ void phjet_05_scaleunc()
 
       delete canvas;
 
-    } // loop over different MC versions
+    } // loop over different ratios
 
-    snlo_2216->Close();
+    snlo_sherpa16->Close();
     snlo_standard->Close();
 
     cout << endl;
@@ -991,4 +964,4 @@ void phjet_05_scaleunc()
 
   } // Loop over observables
 
-} // phjet_05_scaleunc.C
+} // phjet_04_ewcor.C

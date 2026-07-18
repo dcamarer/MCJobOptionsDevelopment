@@ -948,7 +948,7 @@ int main(int argc, char *argv[])
   unsigned int nentries = fChain->GetEntries();
 
   // Checking purposes
-  nentries = 1;
+  //nentries = 5;
   bool debug = false;
 
   outfile << " ************************* " << endl;
@@ -1275,11 +1275,25 @@ int main(int argc, char *argv[])
     for (unsigned int i = 0; i < weightmcVAR->size(); i++)
     {
       wVAR[i] = weightmcVAR->at(i);
-      // cout << "wVAR[" <<i<< "] = " <<wVAR[i]<< endl;
+      //cout << "wVAR[" <<i<< "] = " <<wVAR[i]<< endl;
     }
 
-    // Theory uncertainties
-    //  - From 0 to 317 for Sherpa 2.2.2 NLO
+    // Check wether the weights are healthy
+    if (jentry < 5)
+    {
+      cout << endl;
+      cout <<setprecision(8)<< " w[0] (Weight)              = " << wVAR[0] << endl;
+      cout <<setprecision(8)<< " w[2] (WeightNormalisation) = " << wVAR[2] << endl;
+      cout <<setprecision(8)<< " w[0]/w[2]                  = " << wVAR[0]/wVAR[2] << endl;
+      cout << " - samplexsec = " << samplexsec << endl;
+      cout << " - filtereff  = " << filtereff << endl;
+      cout << " - nEvents    = " << nevents << endl;
+      cout << " - SoW        = " << sow << endl;
+      cout << " - ww_slice   = " << ww_slice << endl;      
+    }
+
+    // Theory uncertainties (modifying weights for Sherpa 2.2.2)
+    //  - From 0 to ? for Sherpa 2.2.2 NLO
     //  - From 0 to 345 for Sherpa 2.2.16 NLO
     for (unsigned int i = 0; i < weightmcVAR->size(); i++)
     {
@@ -1302,19 +1316,6 @@ int main(int argc, char *argv[])
     }
 
     m_TH1_m[5][2]->Fill(m_count_events, ww);
-
-    if (jentry == 0)
-    {
-      cout << endl;
-      cout << " w[0] (Weight)              = " << wVAR[0] << " (check: "<<ww<<")" << endl;
-      cout << " w[2] (WeightNormalisation) = " << wVAR[0] << endl;
-      cout << " w[0]/w[2]                  = " << wVAR[0]/wVAR[2] << endl;
-      cout << " - samplexsec = " << samplexsec << endl;
-      cout << " - filtereff  = " << filtereff << endl;
-      cout << " - nEvents    = " << nevents << endl;
-      cout << " - SoW        = " << sow << endl;
-      cout << " - ww_slice   = " << ww_slice << endl;      
-    }
 
     ////// Define nominal weight
     const double weightmc_only_0 = ww;
