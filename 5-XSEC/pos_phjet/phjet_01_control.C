@@ -7,17 +7,12 @@ void phjet_01_control()
 
   // std::cout << std::scientific;
 
-  string data_mode = "2015+2016";
-  string tag = "a";
-  // string data_mode = "2017"; string tag = "d";
-  // string data_mode = "2018"; string tag = "e";
-  // string data_mode = "run2"; string tag = "run2";
+  string data_mode = "run2"; 
 
-  string mc_alt1 = "", mc_alt2 = "", mc_base = "sherpa222";
-  mc_alt1 = "run2_sherpa2216";
-  mc_alt2 = "run3_sherpa2216";
-
-  string mmc[10];
+  string mc_alt1 = "run2_sherpa2216";
+  string mc_alt2 = "run3_sherpa2216";
+  string mc_base = "sherpa222";  
+  
   string epp = "pdf";
 
   ostringstream histo, file;
@@ -154,37 +149,9 @@ void phjet_01_control()
     yt[i] = histo.str().c_str();
   }
 
-  if (data_mode == "2015+2016")
+  if (data_mode == "run2")
   {
-    wt[1] = "#sqrt{s} = 13 TeV";
-    mmc[0] = "Data 2015+2016";
-    mmc[1] = "PYTHIA";
-    mmc[2] = "SHERPA";
-    mmc[3] = "SHERPA NLO";
-  }
-  else if (data_mode == "2017")
-  {
-    wt[1] = "#sqrt{s} = 13 TeV";
-    mmc[0] = "Data 2017";
-    mmc[1] = "PYTHIA";
-    mmc[2] = "SHERPA";
-    mmc[3] = "SHERPA NLO";
-  }
-  else if (data_mode == "2018")
-  {
-    wt[1] = "#sqrt{s} = 13 TeV";
-    mmc[0] = "Data 2018";
-    mmc[1] = "PYTHIA";
-    mmc[2] = "SHERPA";
-    mmc[3] = "SHERPA NLO";
-  }
-  else if (data_mode == "run2")
-  {
-    wt[1] = "#sqrt{s} = 13 TeV";
-    mmc[0] = "Data 2015-2018";
-    mmc[1] = "PYTHIA";
-    mmc[2] = "SHERPA";
-    mmc[3] = "SHERPA NLO";
+    wt[1] = "#sqrt{s} = 13+13.6 TeV";
   }
 
   // This will be selected afterwards
@@ -206,27 +173,6 @@ void phjet_01_control()
   // Run-2
   double lumR2 = 138971.96; // pb-1
   double elumR2 = 0.017;    // This is valid for 2015-2018
-
-  if (tag == "a")
-  {
-    lum = lum1516;
-    elum = elum1516;
-  }
-  if (tag == "d")
-  {
-    lum = lum17;
-    elum = elum17;
-  }
-  if (tag == "e")
-  {
-    lum = lum18;
-    elum = elum18;
-  }
-  if (tag == "run2")
-  {
-    lum = lumR2;
-    elum = elumR2;
-  }
 
   double maxi[200] = {0};
   double mini[200] = {0};
@@ -406,10 +352,10 @@ void phjet_01_control()
     // SNLO 2.2.2 MC
 
     histo.str("");
-    histo << "/Users/danielcamarero/PostDoc/PMG/MCJobOptionsDevelopment/4-NTUPLES/MC_phjet/SAMPLES/";
+    histo << "/Users/danielcamarero/PostDoc/PMG/MCJobOptionsDevelopment/4-NTUPLES/MC_phjet/pos/";
     if (mc_base == "sherpa222")
     {
-      histo << "sherpa222/ph_validation_sherpa222_TRUTH1_r2_wSyes_wRno_wSFno_01.root";
+      histo << "ph_validation_sherpa222_r2_wSyes_wRno_wSFno_01.root";
     }
     snlo_mc0 = new TFile(histo.str().c_str(), "read");
 
