@@ -1281,14 +1281,15 @@ int main(int argc, char *argv[])
     // Check wether the weights are healthy
     if (jentry < 5)
     {
+      // Note: it's interesting to note that in 2.2.16, the Sum(w[0])/Sum(w[3]) gives the XSEC of the sample,
+      //       where w[3] is the NTrials 
+
       cout << endl; 
       cout <<setprecision(8)<< " w[0] (Weight)              = " << wVAR[0] << endl;
       cout <<setprecision(8)<< " w[2] (WeightNormalisation) = " << wVAR[2] << endl;
       cout <<setprecision(8)<< " w[0]/w[2]                  = " << wVAR[0]/wVAR[2] << endl;
-      cout <<setprecision(8)<< " w[3] (NTrials)             = " << wVAR[3] << endl;
-      cout <<setprecision(8)<< " w[0]/w[3]                  = " << wVAR[0]/wVAR[3] << endl;
 
-      cout << " - samplexsec = " << samplexsec << endl;
+      cout << " - samplexsec = " << samplexsec << " nb" << endl;
       cout << " - filtereff  = " << filtereff << endl;
       cout << " - nEvents    = " << nevents << endl;
       cout << " - SoW        = " << sow << endl;
