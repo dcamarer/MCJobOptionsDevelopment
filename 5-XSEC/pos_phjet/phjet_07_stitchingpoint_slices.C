@@ -6,39 +6,47 @@ void phjet_07_stitchingpoint_slices()
 {
 
   string data_mode = "run2";
-
   int stitching = 6;
+
   int slice_1 = 999;
   int slice_2 = 999;
+  double multiplyfac = 1;
+
   if (stitching == 1)
   {
     slice_1 = 17;
     slice_2 = 35;
+    multiplyfac = 1000;
   }
   else if (stitching == 2)
   {
     slice_1 = 35;
     slice_2 = 70;
+    multiplyfac = 100;
   }
   else if (stitching == 3)
   {
     slice_1 = 70;
     slice_2 = 140;
+    multiplyfac = 1;
   }
   else if (stitching == 4)
   {
     slice_1 = 140;
     slice_2 = 280;
+    multiplyfac = 0.1;
   }
   else if (stitching == 5)
   {
     slice_1 = 280;
     slice_2 = 500;
+    multiplyfac = 0.01;
   }
   else if (stitching == 6)
   {
     slice_1 = 500;
     slice_2 = 1000;
+    multiplyfac = 0.001;
   }
 
   string epp = "pdf";
@@ -741,7 +749,13 @@ void phjet_07_stitchingpoint_slices()
     gmc_mc2 = new TGraphErrors(ns, xbins, mc_mc2, ex, emc_mc2);
     gmcrat_mc2 = new TGraphErrors(ns, xbins, rat_mc2, ex, erat_mc2);
 
-    TLine ll(140, 1, 140, 20);
+
+    double multiplyfaclow = 1;
+    if (stitching == 4) multiplyfaclow = 1E-3;
+    if (stitching == 5) multiplyfaclow = 1E-6;
+    if (stitching == 6) multiplyfaclow = 1E-9;
+
+    TLine ll(slice_2, 1*multiplyfaclow, slice_2, 20*multiplyfac);
     ll.SetLineWidth(1.);
     ll.SetLineStyle(2.);
     ll.SetLineColor(kRed);

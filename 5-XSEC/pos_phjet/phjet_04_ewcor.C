@@ -7,7 +7,7 @@ void phjet_04_ewcor()
 
   // std::cout << std::scientific;
 
-  string data_mode = "run3";
+  string data_mode = "run2";
 
   string mmc[10];
   string epp = "pdf";
@@ -501,6 +501,15 @@ void phjet_04_ewcor()
     // 'MUR1_MUF1_PDF303200_EXPASSEWLO1LO2' : 338 ,
     // 'MUR1_MUF1_PDF303200_EXPASSEWLO1LO2LO3' : 344 ,
 
+    //// Nominal
+    // int assew = 322;
+    // int multiassew = 324;
+    // int expasew = 326;
+    //// With LO1LO2LO3
+    int assew = 340;
+    int multiassew = 342;
+    int expasew = 344;
+
     int ns = 0;
     int i = 0;
     for (int j = ni; j <= nb; j++)
@@ -519,18 +528,18 @@ void phjet_04_ewcor()
       mc_sherpa16[i] /= ex[i];
       emc_sherpa16[i] /= ex[i];
       // EW CORRECTED - ADDITIVE
-      mc_sherpa16_wwad[i] = hh_sherpa16_ww[322]->GetBinContent(j);
-      emc_sherpa16_wwad[i] = hh_sherpa16_ww[322]->GetBinError(j);
+      mc_sherpa16_wwad[i] = hh_sherpa16_ww[assew]->GetBinContent(j);
+      emc_sherpa16_wwad[i] = hh_sherpa16_ww[assew]->GetBinError(j);
       mc_sherpa16_wwad[i] /= ex[i];
       emc_sherpa16_wwad[i] /= ex[i];
       // EW CORRECTED - MULTIPLICATIVE
-      mc_sherpa16_wwmul[i] = hh_sherpa16_ww[324]->GetBinContent(j);
-      emc_sherpa16_wwmul[i] = hh_sherpa16_ww[324]->GetBinError(j);
+      mc_sherpa16_wwmul[i] = hh_sherpa16_ww[multiassew]->GetBinContent(j);
+      emc_sherpa16_wwmul[i] = hh_sherpa16_ww[multiassew]->GetBinError(j);
       mc_sherpa16_wwmul[i] /= ex[i];
       emc_sherpa16_wwmul[i] /= ex[i];
       // EW CORRECTED - EXPONENTIAL
-      mc_sherpa16_wwexp[i] = hh_sherpa16_ww[326]->GetBinContent(j);
-      emc_sherpa16_wwexp[i] = hh_sherpa16_ww[326]->GetBinError(j);
+      mc_sherpa16_wwexp[i] = hh_sherpa16_ww[expasew]->GetBinContent(j);
+      emc_sherpa16_wwexp[i] = hh_sherpa16_ww[expasew]->GetBinError(j);
       mc_sherpa16_wwexp[i] /= ex[i];
       emc_sherpa16_wwexp[i] /= ex[i];
 
@@ -543,9 +552,9 @@ void phjet_04_ewcor()
     }
 
     hh_sherpa16[ip]->Reset();
-    hh_sherpa16_ww[322]->Reset();
-    hh_sherpa16_ww[324]->Reset();
-    hh_sherpa16_ww[326]->Reset();
+    hh_sherpa16_ww[assew]->Reset();
+    hh_sherpa16_ww[multiassew]->Reset();
+    hh_sherpa16_ww[expasew]->Reset();
     hh_standard[ip]->Reset();
 
     ns = 0;
@@ -560,14 +569,14 @@ void phjet_04_ewcor()
       hh_sherpa16[ip]->SetBinContent(j, mc_sherpa16[i]);
       hh_sherpa16[ip]->SetBinError(j, emc_sherpa16[i]);
       // sherpa16 - EWADD
-      hh_sherpa16_ww[322]->SetBinContent(j, mc_sherpa16_wwad[i]);
-      hh_sherpa16_ww[322]->SetBinError(j, emc_sherpa16_wwad[i]);
+      hh_sherpa16_ww[assew]->SetBinContent(j, mc_sherpa16_wwad[i]);
+      hh_sherpa16_ww[assew]->SetBinError(j, emc_sherpa16_wwad[i]);
       // sherpa16 - EWMUL
-      hh_sherpa16_ww[324]->SetBinContent(j, mc_sherpa16_wwmul[i]);
-      hh_sherpa16_ww[324]->SetBinError(j, emc_sherpa16_wwmul[i]);
+      hh_sherpa16_ww[multiassew]->SetBinContent(j, mc_sherpa16_wwmul[i]);
+      hh_sherpa16_ww[multiassew]->SetBinError(j, emc_sherpa16_wwmul[i]);
       // sherpa16 - EWXP
-      hh_sherpa16_ww[326]->SetBinContent(j, mc_sherpa16_wwexp[i]);
-      hh_sherpa16_ww[326]->SetBinError(j, emc_sherpa16_wwexp[i]);
+      hh_sherpa16_ww[expasew]->SetBinContent(j, mc_sherpa16_wwexp[i]);
+      hh_sherpa16_ww[expasew]->SetBinError(j, emc_sherpa16_wwexp[i]);
 
       // STANDARD
       hh_standard[ip]->SetBinContent(j, mc_standard[i]);
@@ -576,9 +585,9 @@ void phjet_04_ewcor()
 
     // Normalisation [from pb-1 to nb-1]
     hh_sherpa16[ip]->Scale(1 / 1000.);
-    hh_sherpa16_ww[322]->Scale(1 / 1000.);
-    hh_sherpa16_ww[324]->Scale(1 / 1000.);
-    hh_sherpa16_ww[326]->Scale(1 / 1000.);
+    hh_sherpa16_ww[assew]->Scale(1 / 1000.);
+    hh_sherpa16_ww[multiassew]->Scale(1 / 1000.);
+    hh_sherpa16_ww[expasew]->Scale(1 / 1000.);
     hh_standard[ip]->Scale(1 / 1000.);
 
     ////// Ratio and error of the ratio
@@ -642,16 +651,16 @@ void phjet_04_ewcor()
         // erat_sherpa16_wwexp[i] = rat_sherpa16_wwexp[i] * sqrt( pow(emc_sherpa16_wwexp[i]/mc_sherpa16_wwexp[i],2) + pow(emc_sherpa16[i]/mc_sherpa16[i],2) );
         erat_sherpa16_wwexp[i] = (1 / mc_sherpa16[i]) * sqrt(pow(emc_sherpa16_wwexp[i], 2) + pow(rat_sherpa16_wwexp[i] * emc_sherpa16[i], 2) - rat_sherpa16_wwexp[i] * (emc_sherpa16_wwexp[i]) * (emc_sherpa16[i]));
       }
-      hhr_sherpa16_ww[322]->SetBinContent(j, rat_sherpa16_wwad[i]);
-      hhr_sherpa16_ww[322]->SetBinError(j, erat_sherpa16_wwad[i]);
+      hhr_sherpa16_ww[assew]->SetBinContent(j, rat_sherpa16_wwad[i]);
+      hhr_sherpa16_ww[assew]->SetBinError(j, erat_sherpa16_wwad[i]);
       //
-      hhr_sherpa16_ww[324]->SetBinContent(j, rat_sherpa16_wwmul[i]);
-      // hhr_sherpa16_ww[324]->SetBinError(j,erat_sherpa16_wwmul[i]);
-      hhr_sherpa16_ww[324]->SetBinError(j, 0);
+      hhr_sherpa16_ww[multiassew]->SetBinContent(j, rat_sherpa16_wwmul[i]);
+      // hhr_sherpa16_ww[multiassew]->SetBinError(j,erat_sherpa16_wwmul[i]);
+      hhr_sherpa16_ww[multiassew]->SetBinError(j, 0);
       //
-      hhr_sherpa16_ww[326]->SetBinContent(j, rat_sherpa16_wwexp[i]);
-      // hhr_sherpa16_ww[326]->SetBinError(j,erat_sherpa16_wwexp[i]);
-      hhr_sherpa16_ww[326]->SetBinError(j, 0);
+      hhr_sherpa16_ww[expasew]->SetBinContent(j, rat_sherpa16_wwexp[i]);
+      // hhr_sherpa16_ww[expasew]->SetBinError(j,erat_sherpa16_wwexp[i]);
+      hhr_sherpa16_ww[expasew]->SetBinError(j, 0);
     }
 
     double bl = hh_sherpa16[ip]->GetBinCenter(ni) - hh_sherpa16[ip]->GetBinWidth(ni) / 2.;
@@ -918,9 +927,9 @@ void phjet_04_ewcor()
       }
       else if (ratn == 2)
       {
-        myhhdate(hhr_sherpa16_ww[322], "esamex0", 1.2, kBlack, 20, 2., 1, kBlack, 1, 1);
-        myhhdate(hhr_sherpa16_ww[324], "esamex0", 0, 0, 0, 3., 1, kCyan + 1, 1, 1);
-        myhhdate(hhr_sherpa16_ww[326], "esamex0", 0, 0, 0, 3., 2, kRed, 1, 1);
+        myhhdate(hhr_sherpa16_ww[assew], "esamex0", 1.2, kBlack, 20, 2., 1, kBlack, 1, 1);
+        myhhdate(hhr_sherpa16_ww[multiassew], "esamex0", 0, 0, 0, 3., 1, kCyan + 1, 1, 1);
+        myhhdate(hhr_sherpa16_ww[expasew], "esamex0", 0, 0, 0, 3., 2, kRed, 1, 1);
       }
 
       if (ratn == 1 or ratn == 2)
