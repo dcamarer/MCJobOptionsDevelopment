@@ -11,11 +11,6 @@ Document the MC job options developments made for ATLAS PMG.
 
 - TWiki: https://twiki.cern.ch/twiki/bin/view/AtlasProtected/PmgGeneratorInfrastructureAndTools#Supported_MC_generators
 - Athena page: https://gitlab.cern.ch/atlas/athena/-/tree/main/Generators/Pythia8_i#pythia-8-in-atlas
-- Simple running instructions:
-
-```Console
-Gen_tf.py --ecmEnergy=13600 --jobConfig=MC23_dev/801166 --maxEvents=10 --outputEVNTFile=test_Pythia8JZ1SoftQCD.EVNT.pool.root
-```
 
 ## SHERPA for ATLAS:
 
@@ -27,8 +22,3 @@ Gen_tf.py --ecmEnergy=13600 --jobConfig=MC23_dev/801166 --maxEvents=10 --outputE
   - Sherpa 3 example JOs
   - Sherpa 2.2.16
   - Sherpa 3.0.3
-- Simple running instructions:
-
-```Console
-sherpaTarCreator.py 900004 -d --ecm 13.0
-```
