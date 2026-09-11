@@ -13,6 +13,8 @@ asetup AthGeneration,23.6.49,here
 mkdir COMBO_EVNT; cd COMBO_EVNT;
 ```
 
+### Sherpa 2.2.16 NLO photon + jets
+
 For the Run 2 samples:
 
 ```Console
@@ -37,7 +39,20 @@ EVNTMerge_tf.py --inputEVNTFile ../run3_900006_part* --outputEVNT_MRGFile run3_S
 EVNTMerge_tf.py --inputEVNTFile ../run3_900007_part* --outputEVNT_MRGFile run3_Sh2216_900007.EVNT.root
 ```
 
+### Pythia8 multijet
+
+```Console
+setupATLAS -c centos7
+asetup AthGeneration,23.6.3,here
+```
+
+```Console
+EVNTMerge_tf.py --inputEVNTFile ../run3_801166_part* --outputEVNT_MRGFile run3_801166.EVNT.root
+```
+
 ## Compute the sample cross-section by averaging the log.generate parts
+
+### Sherpa 2.2.16 NLO photon + jets
 
 For the Run 2 samples:
 
@@ -86,3 +101,9 @@ Results:
 - **900007 :** events = 12000, xsec (nb) = 2.7071366785235e-05
 
 Total statistics: 300000*2 + 230000 + 150000 + 35000 + 30000 + 12000 = 1 057 000 events
+
+### Pythia8 multijet
+
+All subjobs have cross-section (nb) = 7.858e+07
+
+- 801166 : events = 10x10000 + 9x20000 = 280000

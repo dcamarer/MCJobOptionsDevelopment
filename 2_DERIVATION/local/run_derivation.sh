@@ -16,12 +16,13 @@ if [[ -z "${wmode}" ]]; then
 	echo "  1 = SHERPA 2.2.16 Run 2 samples"
 	echo "  2 = SHERPA 2.2.16 Run 3 samples"
 	echo "  3 = SHERPA 2.2.2"
+	echo "  4 = Pythia8"
 	exit 1
 fi
 
-if [[ "${wmode}" != "1" && "${wmode}" != "2" && "${wmode}" != "3" ]]; then
+if [[ "${wmode}" != "1" && "${wmode}" != "2" && "${wmode}" != "3" && "${wmode}" != "4" ]]; then
 	echo "ERROR: invalid working mode '${wmode}'"
-	echo "Allowed values: 1, 2, 3"
+	echo "Allowed values: 1, 2, 3, 4"
 	exit 1
 fi
 
@@ -145,7 +146,28 @@ elif [ $wmode -eq "3" ]; then
 		echo ""
 
 	done
+
+elif [ $wmode -eq "4" ]; then
     
+	OUTNAME=Pythia8EvtGen_A14NNPDF23LO_jetjet_JZ1WithSW_SoftQCD
+
+	for ((k=801166;k<=801166;k++))
+	do
+		echo "OUTPUTNAME = ${OUTNAME}"		
+	
+		FILE_IN=run3_${k}.EVNT.root
+		FILE_OUT=run3.${k}.${OUTNAME}.TRUTH1_v01.root
+
+		echo "FILE IN      = ${FILE_IN}"
+		echo "FILE OUT     = ${FILE_OUT}"
+		echo ""
+		
+		Derivation_tf.py --inputAODFile ${FILE_IN} --outputDAODFile ${FILE_OUT} --formats TRUTH1
+		
+		echo ""
+
+	done
+        
 fi
 
 date
