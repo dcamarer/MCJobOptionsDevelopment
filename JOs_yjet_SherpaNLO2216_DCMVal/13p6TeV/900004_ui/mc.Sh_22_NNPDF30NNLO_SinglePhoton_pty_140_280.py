@@ -12,7 +12,6 @@ genSeq.Sherpa_i.RunCard="""
   FSF:=1.; RSF:=1.; QSF:=1.;
   SCALES STRICT_METS{FSF*MU_F2}{RSF*MU_R2}{QSF*MU_Q2};
   CORE_SCALE VAR{PPerp2(p[2])};
-  ALPHAQED_DEFAULT_SCALE=0.0;
   
   # ME generator settings
   ME_SIGNAL_GENERATOR Comix Amegic LOOPGEN;
@@ -24,9 +23,7 @@ genSeq.Sherpa_i.RunCard="""
   # EW corrections setup
   ASSOCIATED_CONTRIBUTIONS_VARIATIONS=EW EW|LO1 EW|LO1|LO2 EW|LO1|LO2|LO3;
   METS_BBAR_MODE=5;
-  EW_SCHEME=3;
-  GF=1.166397e-5;
-  KFACTOR VAR{128.802/137.03599976};
+  KFACTOR VAR{132.346/137.03599976};
 
   # Speed and neg weight fraction improvements
   PP_RS_SCALE VAR{H_T2/4};
@@ -58,6 +55,6 @@ genSeq.Sherpa_i.RunCard="""
 }(selector)
 """
 
-genSeq.Sherpa_i.NCores = 3
-genSeq.Sherpa_i.Parameters += [ "OL_PARAMETERS=write_parameters=1" ]
+genSeq.Sherpa_i.NCores = 12
+genSeq.Sherpa_i.Parameters += [ "OL_PARAMETERS=ew_renorm_scheme=1 write_parameters=1" ]
 genSeq.Sherpa_i.Parameters += [ "EW_SCHEME=3", "GF=1.166397e-5" ]
