@@ -37,7 +37,6 @@ cat > Run.dat <<EOL
   FSF:=1.; RSF:=1.; QSF:=1.;
   SCALES STRICT_METS{FSF*MU_F2}{RSF*MU_R2}{QSF*MU_Q2};
   CORE_SCALE VAR{PPerp2(p[2])};
-  ALPHAQED_DEFAULT_SCALE=0.0;
   
   # ME generator settings
   ME_SIGNAL_GENERATOR Comix Amegic LOOPGEN;
@@ -49,13 +48,11 @@ cat > Run.dat <<EOL
   # EW corrections setup
   ASSOCIATED_CONTRIBUTIONS_VARIATIONS=EW EW|LO1 EW|LO1|LO2 EW|LO1|LO2|LO3;
   METS_BBAR_MODE=5;
-  EW_SCHEME=3;
-  GF=1.166397e-5;
-  KFACTOR VAR{128.802/137.03599976};
+  KFACTOR VAR{132.346/137.03599976};
 
   # Speed and neg weight fraction improvements
   PP_RS_SCALE VAR{H_T2/4};
-  NLO_CSS_PSMODE=1
+  NLO_CSS_PSMODE=1;
 }(run)
 
 (processes){
@@ -143,7 +140,7 @@ sed '/.*\}(run).*/i\ \ PDF_LIBRARY=LHAPDFSherpa' -i Run.dat
 sed '/.*\}(run).*/i\ \ USE_PDF_ALPHAS=1' -i Run.dat
 sed '/.*\}(run).*/i\ \ PDF_SET=NNPDF30_nnlo_as_0118_hessian' -i Run.dat
 sed '/.*\}(run).*/i\ \ PDF_VARIATIONS=NNPDF30_nnlo_as_0118_hessian[all] NNPDF30_nnlo_as_0117 NNPDF30_nnlo_as_0119 MSHT20nnlo_as118 CT18NNLO_as_0118 PDF4LHC21_40_pdfas[all] NNPDF31_nnlo_as_0118_hessian NNPDF40_nnlo_as_01180_hessian CT18ANNLO CT18XNNLO CT18ZNNLO' -i Run.dat
-sed '/.*\}(run).*/i\ \ OL_PARAMETERS=redlib1=5=redlib2=5=write_parameters=1' -i Run.dat
+sed '/.*\}(run).*/i\ \ OL_PARAMETERS=ew_renorm_scheme=1 write_parameters=1' -i Run.dat
 sed '/.*\}(run).*/i\ \ EW_SCHEME=3' -i Run.dat
 sed '/.*\}(run).*/i\ \ GF=1.166397e-5' -i Run.dat
 sed "/.*\\}(run).*/i\\  BEAM_ENERGY_1=${ENERGY_BEAM}" -i Run.dat

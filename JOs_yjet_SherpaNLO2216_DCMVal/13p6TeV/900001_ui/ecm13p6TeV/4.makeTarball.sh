@@ -3,7 +3,7 @@
 # Default configuration
 BASE_DIR="/home/dcamarero/PostDoc/PMG/MCJobOptionsDevelopment/JOs_yjet_SherpaNLO2216_DCMVal/13p6TeV/900001_ui"
 BASE_DIR_ext="${BASE_DIR}/ecm13p6TeV"
-BASE_JO="Sh_2216_NNPDF30NNLO_SinglePhoton_pty_17_35"
+BASE_JO="Sh_22_NNPDF30NNLO_SinglePhoton_pty_17_35"
 
 echo "$BASE_DIR"
 echo "$BASE_DIR_ext"
