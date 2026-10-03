@@ -104,6 +104,37 @@ Total statistics: 300000*2 + 230000 + 150000 + 35000 + 30000 + 12000 = 1 057 000
 
 ### Pythia8 multijet
 
+grep "| Processed " log.generate_part*
+grep "cross" log.generate_part*
+grep "INFO Filter Efficiency = " log.generate_part*
+
 All subjobs have cross-section (nb) = 7.858e+07
 
-- 801166 : events = 10x10000 + 9x20000 = 280000
+- 801166 : events = 10x10000 + 10x20000 = 300000
+
+log.generate_part01:11:49:37 Py:EvgenFilterSeq    INFO Filter Efficiency = 0.026263 [10000 / 380765]
+log.generate_part02:13:06:48 Py:EvgenFilterSeq    INFO Filter Efficiency = 0.025856 [10000 / 386760]
+log.generate_part03:12:32:02 Py:EvgenFilterSeq    INFO Filter Efficiency = 0.025717 [10000 / 388852]
+log.generate_part04:12:15:06 Py:EvgenFilterSeq    INFO Filter Efficiency = 0.025648 [10000 / 389900]
+log.generate_part05:12:32:21 Py:EvgenFilterSeq    INFO Filter Efficiency = 0.025629 [10000 / 390179]
+log.generate_part06:12:21:44 Py:EvgenFilterSeq    INFO Filter Efficiency = 0.026065 [10000 / 383661]
+log.generate_part07:13:14:29 Py:EvgenFilterSeq    INFO Filter Efficiency = 0.026223 [10000 / 381338]
+log.generate_part08:11:35:22 Py:EvgenFilterSeq    INFO Filter Efficiency = 0.025816 [10000 / 387351]
+log.generate_part09:11:48:33 Py:EvgenFilterSeq    INFO Filter Efficiency = 0.026304 [10000 / 380177]
+log.generate_part10:11:58:07 Py:EvgenFilterSeq    INFO Filter Efficiency = 0.025674 [10000 / 389497]
+log.generate_part11:16:57:34 Py:EvgenFilterSeq    INFO Filter Efficiency = 0.026084 [20000 / 766749]
+log.generate_part12:17:17:01 Py:EvgenFilterSeq    INFO Filter Efficiency = 0.026112 [20000 / 765926]
+log.generate_part13:17:17:27 Py:EvgenFilterSeq    INFO Filter Efficiency = 0.026098 [20000 / 766332]
+log.generate_part14:17:05:37 Py:EvgenFilterSeq    INFO Filter Efficiency = 0.026109 [20000 / 766017]
+log.generate_part15:15:30:59 Py:EvgenFilterSeq    INFO Filter Efficiency = 0.025988 [20000 / 769579]
+log.generate_part16:17:45:33 Py:EvgenFilterSeq    INFO Filter Efficiency = 0.026254 [20000 / 761780]
+log.generate_part17:16:57:47 Py:EvgenFilterSeq    INFO Filter Efficiency = 0.026130 [20000 / 765393]
+log.generate_part18:16:33:21 Py:EvgenFilterSeq    INFO Filter Efficiency = 0.026185 [20000 / 763807]
+log.generate_part19:16:49:26 Py:EvgenFilterSeq    INFO Filter Efficiency = 0.025982 [20000 / 769766]
+log.generate_part20:15:03:45 Py:EvgenFilterSeq    INFO Filter Efficiency = 0.026237 [20000 / 762282]
+
+It should be 
+
+300000 / (380765 + 386760 + 388852 + 389900 + 390179 + 383661 + 381338 + 387351 + 380177 + 389497 + 766749 + 765926 + 766332 + 766017 + 769579 + 761780 + 765393 + 763807 + 769766 + 762282) = 0.02605046095856491831
+
+So 2.605046e-02
