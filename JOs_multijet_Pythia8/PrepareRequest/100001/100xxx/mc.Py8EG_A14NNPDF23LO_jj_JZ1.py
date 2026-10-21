@@ -3,7 +3,7 @@
 evgenConfig.description = "Dijet truth jet slice JZ1, with the A14 NNPDF23 LO tune"
 evgenConfig.keywords = ["QCD", "jets", "SM"]
 evgenConfig.contact = ["amoroso@cern.ch", "jan.kretzschmar@cern.ch", "daniel.camarero.munoz@cern.ch"]
-evgenConfig.nEventsPerJob = 10000
+evgenConfig.nEventsPerJob = 2000
 
 include("Pythia8_i/Pythia8_A14_NNPDF23LO_EvtGen_Common.py")
 include("Pythia8_i/Pythia8_ShowerWeights.py")
