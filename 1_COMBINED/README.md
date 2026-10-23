@@ -52,7 +52,57 @@ EVNTMerge_tf.py --inputEVNTFile ../run3_801166_part* --outputEVNT_MRGFile run3_8
 
 ## Compute the sample cross-section by averaging the log.generate parts
 
-### Sherpa 2.2.16 NLO photon + jets
+### (Fall 2026) Sherpa 2.2.16 NLO photon + jets
+
+For the Run 2 samples:
+
+```Console
+root -l -q 'averagexsec.C("/userdata/dcamarero/validation_results/photonjet_validation_Sherpa2216/final_13TeV/PROD_sherpaTarCreator/900001_merging/",20)'
+root -l -q 'averagexsec.C("/userdata/dcamarero/validation_results/photonjet_validation_Sherpa2216/final_13TeV/PROD_sherpaTarCreator/900002_merging/",20)'
+root -l -q 'averagexsec.C("/userdata/dcamarero/validation_results/photonjet_validation_Sherpa2216/final_13TeV/PROD_sherpaTarCreator/900003_merging/",20)'
+root -l -q 'averagexsec.C("/userdata/dcamarero/validation_results/photonjet_validation_Sherpa2216/final_13TeV/PROD_sherpaTarCreator/900004_merging/",20)'
+root -l -q 'averagexsec.C("/userdata/dcamarero/validation_results/photonjet_validation_Sherpa2216/final_13TeV/PROD_sherpaTarCreator/900005_merging/",20)'
+root -l -q 'averagexsec.C("/userdata/dcamarero/validation_results/photonjet_validation_Sherpa2216/final_13TeV/PROD_sherpaTarCreator/900006_merging/",20)'
+root -l -q 'averagexsec.C("/userdata/dcamarero/validation_results/photonjet_validation_Sherpa2216/final_13TeV/PROD_sherpaTarCreator/900007_merging/",20)'
+```
+
+Results:
+
+- **900001 :** events = 150000, xsec (nb) = 299.75928810695
+- **900002 :** events = 150000, xsec (nb) = 34.46965988626
+- **900003 :** events = 150000, xsec (nb) = 3.6820357016115
+- **900004 :** events = 90000, xsec (nb) = 0.3078761812632
+- **900005 :** events = 25000, xsec (nb) = 0.01752322998072
+- **900006 :** events = 20000, xsec (nb) = 0.001135336144525
+- **900007 :** events = 8000, xsec (nb) = 2.272134190504e-05
+
+Total statistics: 3*150000 + 90000 + 25000 + 20000 + 8000 = 593000
+
+For the Run 3 samples:
+
+```Console
+root -l -q 'averagexsec.C("/userdata/dcamarero/validation_results/photonjet_validation_Sherpa2216/final_13p6TeV/PROD_sherpaTarCreator/900001_merging/",20)'
+root -l -q 'averagexsec.C("/userdata/dcamarero/validation_results/photonjet_validation_Sherpa2216/final_13p6TeV/PROD_sherpaTarCreator/900002_merging/",20)'
+root -l -q 'averagexsec.C("/userdata/dcamarero/validation_results/photonjet_validation_Sherpa2216/final_13p6TeV/PROD_sherpaTarCreator/900003_merging/",20)'
+root -l -q 'averagexsec.C("/userdata/dcamarero/validation_results/photonjet_validation_Sherpa2216/final_13p6TeV/PROD_sherpaTarCreator/900004_merging/",20)'
+root -l -q 'averagexsec.C("/userdata/dcamarero/validation_results/photonjet_validation_Sherpa2216/final_13p6TeV/PROD_sherpaTarCreator/900005_merging/",20)'
+root -l -q 'averagexsec.C("/userdata/dcamarero/validation_results/photonjet_validation_Sherpa2216/final_13p6TeV/PROD_sherpaTarCreator/900006_merging/",20)'
+root -l -q 'averagexsec.C("/userdata/dcamarero/validation_results/photonjet_validation_Sherpa2216/final_13p6TeV/PROD_sherpaTarCreator/900007_merging/",20)'
+```
+
+Results:
+
+- **900001 :** events = 150000, xsec (nb) = 320.8660563769
+- **900002 :** events = 150000, xsec (nb) = 36.51389841262
+- **900003 :** events = 150000, xsec (nb) = 3.915272185505
+- **900004 :** events = 90000, xsec (nb) = 0.3278156417466
+- **900005 :** events = 25000, xsec (nb) = 0.019479531036575
+- **900006 :** events = 20000, xsec (nb) = 0.001322499251438
+- **900007 :** events = 8000, xsec (nb) = 2.7935428606585e-05
+
+Total statistics: 3*150000 + 90000 + 25000 + 20000 + 8000 = 593000
+
+### (Summer 2026) Sherpa 2.2.16 NLO photon + jets
 
 For the Run 2 samples:
 
