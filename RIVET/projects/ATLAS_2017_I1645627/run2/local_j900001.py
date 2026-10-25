@@ -9,7 +9,7 @@ nfiles=0
 
 period="run2"
 joboption="900001"
-rangelimit=40
+rangelimit=20
 
 if period == "run2":
     energy = "13TeV"
@@ -33,7 +33,7 @@ elif joboption == "900007":
 else:
     joboption_msg = "unknown"
 
-dir="/eos/user/d/dcamarer/PostDoc/PMG/SherpaNLO2216/" + energy + "/PROD_sherpaTarCreator/" + joboption + "_merging"
+dir="/userdata/dcamarero/validation_results/photonjet_validation_Sherpa2216/final_" + energy + "/PROD_sherpaTarCreator/" + joboption + "_merging"
 for part in range(1, rangelimit+1):
     evntfile=dir+"/" + period + "_" + joboption + "_part" + str(part).zfill(2) + ".EVNT.root"
     print(f"Checking part {part}: {evntfile}")
