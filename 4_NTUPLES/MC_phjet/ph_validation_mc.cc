@@ -1115,64 +1115,64 @@ int main(int argc, char *argv[])
       {
         if (ptmccut == 17)
         {
-          samplexsec = 296.1161446776;
+          samplexsec = 299.75928810695;
           filtereff = 1;
           sow = 5.5197207e+15;
-          nevents = 300000;
+          nevents = 150000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
           // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 35)
         {
-          samplexsec = 33.5378645278883;
+          samplexsec = 34.46965988626;
           filtereff = 1;
           sow = 3.5580971e+14;
-          nevents = 230000;
+          nevents = 150000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
           // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 70)
         {
-          samplexsec = 3.575765450338;
+          samplexsec = 3.6820357016115;
           filtereff = 1;
           sow = 6.6317324e+13;
-          nevents = 300000;
+          nevents = 150000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
           // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 140)
         {
-          samplexsec = 0.29805978056574;
+          samplexsec = 0.3078761812632;
           filtereff = 1;
           sow = 4.9664862e+12;
-          nevents = 150000;
+          nevents = 90000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
           // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 280)
         {
-          samplexsec = 0.0173283436938171;
+          samplexsec = 0.01752322998072;
           filtereff = 1;
           sow = 1.2293309e+11;
-          nevents = 35000;
+          nevents = 25000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
           // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 500)
         {
-          samplexsec = 0.00111853366340933;
+          samplexsec = 0.001135336144525;
           filtereff = 1;
           sow = 8.4008953e+09;
-          nevents = 30000;
+          nevents = 20000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
           // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 1000)
         {
-          samplexsec = 2.08355533615433e-05;
+          samplexsec = 2.272134190504e-05;
           filtereff = 1;
           sow = 2.0933516e+08;
-          nevents = 12000;
+          nevents = 8000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
           // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
@@ -1181,64 +1181,64 @@ int main(int argc, char *argv[])
       {
         if (ptmccut == 17)
         {
-          samplexsec = 310.32386595705;
+          samplexsec = 320.8660563769;
           filtereff = 1;
           sow = 4.5326852e+15;
-          nevents = 300000;
+          nevents = 150000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
           // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 35)
         {
-          samplexsec = 35.423878046302;
+          samplexsec = 36.51389841262;
           filtereff = 1;
           sow = 5.0174638e+14;
-          nevents = 230000;
+          nevents = 150000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
           // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 70)
         {
-          samplexsec = 3.79918676603325;
+          samplexsec = 3.915272185505;
           filtereff = 1;
           sow = 8.1171275e+13;
-          nevents = 300000;
+          nevents = 150000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
           // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 140)
         {
-          samplexsec = 0.32366425630798;
+          samplexsec = 0.3278156417466;
           filtereff = 1;
           sow = 3.8816069e+12;
-          nevents = 150000;
+          nevents = 90000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
           // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 280)
         {
-          samplexsec = 0.0185982042850464;
+          samplexsec = 0.019479531036575;
           filtereff = 1;
           sow = 9.7788403e+10;
-          nevents = 35000;
+          nevents = 25000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
           // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 500)
         {
-          samplexsec = 0.001278100925494;
+          samplexsec = 0.001322499251438;
           filtereff = 1;
           sow = 1.3447262e+10;
-          nevents = 30000;
+          nevents = 20000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
           // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }
         else if (ptmccut == 1000)
         {
-          samplexsec = 2.7071366785235e-05;
+          samplexsec = 2.7935428606585e-05;
           filtereff = 1;
           sow = 3.6156054e+08;
-          nevents = 12000;
+          nevents = 8000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
           // ww_slice = samplexsec * filtereff * 1000 / nevents;
         }

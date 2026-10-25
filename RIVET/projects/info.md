@@ -60,9 +60,9 @@ rivet-mkhtml --no-errs -o my_plots prediction1.yoda:"Title=MC 1" prediction2.yod
 
 //// Commands for the photon+2jets analysis
 
-rivet-mkhtml -o my_plots_run2 run2_snlo222/run2_sh222_stacked.yoda.gz:"Title=SNLO 2.2.2" run2/run2_stacked.yoda.gz:"Title=SNLO 2.2.16 [1-7]"
+rivet-mkhtml -o my_plots_run2 run2_snlo222/run2_sh222_stacked.yoda.gz:"Title=SNLO 2.2.2" run2/run2_stacked.yoda.gz:"Title=SNLO 2.2.16 new [3-7]"
 
-rivet-mkhtml -o my_plots_run3 --no-rivet-refs run2/run2_stacked.yoda.gz:"Title=SNLO 2.2.16 [1-7], 13 TeV" run3/run3_stacked.yoda.gz:"Title=SNLO 2.2.16 [1-7], 13.6 TeV"
+rivet-mkhtml -o my_plots_run3 --no-rivet-refs run2/run2_stacked.yoda.gz:"Title=SNLO 2.2.16 new [3-7], 13 TeV" run3/run3_stacked.yoda.gz:"Title=SNLO 2.2.16 new [3-7], 13.6 TeV"
 
 //// Commands for the ssWW analysis
 

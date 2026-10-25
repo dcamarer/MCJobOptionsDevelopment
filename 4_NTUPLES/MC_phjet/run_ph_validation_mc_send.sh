@@ -64,7 +64,7 @@ then
         #Creates it empty
         touch run_ph_validation_${mc}_pt${ptmccut}_r${rad}_wS${swgt}_wR${rew}_wSF${sfac}.log
         
-        ls /home/dcamarero/MCJobOptionsDevelopment/3-DxAOD/run/posNTP/NTP_run2_sherpa2216_TRUTH1.mcvalidation_${slcnum}.root > nrootfiles.txt
+        ls /home/dcamarero/MCJobOptionsDevelopment/3_DxAOD/run/posNTP/NTP_run2_sherpa2216_TRUTH1.mcvalidation_${slcnum}.root > nrootfiles.txt
         
         # removing existing file
         rm -f files.txt
@@ -118,7 +118,7 @@ then
         #Creates it empty
         touch run_ph_validation_${mc}_pt${ptmccut}_r${rad}_wS${swgt}_wR${rew}_wSF${sfac}.log
         
-        ls /home/dcamarero/MCJobOptionsDevelopment/3-DxAOD/run/posNTP/NTP_run3_sherpa2216_TRUTH1.mcvalidation_${slcnum}.root > nrootfiles.txt
+        ls /home/dcamarero/MCJobOptionsDevelopment/3_DxAOD/run/posNTP/NTP_run3_sherpa2216_TRUTH1.mcvalidation_${slcnum}.root > nrootfiles.txt
         
         # removing existing file
         rm -f files.txt
