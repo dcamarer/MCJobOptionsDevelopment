@@ -318,7 +318,7 @@ void phjet_01_control()
     // SNLO 2.2.16 MC Run 2
 
     histo.str("");
-    histo << "/Users/danielcamarero/PostDoc/PMG/MCJobOptionsDevelopment/4-NTUPLES/MC_phjet/pos/";
+    histo << "/Users/danielcamarero/PostDoc/PMG/MCJobOptionsDevelopment/4_NTUPLES/MC_phjet/pos/";
     if (mc_alt1 == "run2_sherpa2216")
     {
       histo << "ph_validation_run2_sherpa2216_r2_wSyes_wRno_wSFno_01.root";
@@ -335,7 +335,7 @@ void phjet_01_control()
     // SNLO 2.2.16 MC Run 3
 
     histo.str("");
-    histo << "/Users/danielcamarero/PostDoc/PMG/MCJobOptionsDevelopment/4-NTUPLES/MC_phjet/pos/";
+    histo << "/Users/danielcamarero/PostDoc/PMG/MCJobOptionsDevelopment/4_NTUPLES/MC_phjet/pos/";
     if (mc_alt2 == "run3_sherpa2216")
     {
       histo << "ph_validation_run3_sherpa2216_r2_wSyes_wRno_wSFno_01.root";
@@ -352,7 +352,7 @@ void phjet_01_control()
     // SNLO 2.2.2 MC
 
     histo.str("");
-    histo << "/Users/danielcamarero/PostDoc/PMG/MCJobOptionsDevelopment/4-NTUPLES/MC_phjet/pos/";
+    histo << "/Users/danielcamarero/PostDoc/PMG/MCJobOptionsDevelopment/4_NTUPLES/MC_phjet/pos/";
     if (mc_base == "sherpa222")
     {
       histo << "ph_validation_sherpa222_r2_wSyes_wRno_wSFno_01.root";

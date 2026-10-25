@@ -7,7 +7,7 @@ void phjet_04_ewcor()
 
   // std::cout << std::scientific;
 
-  string data_mode = "run2";
+  string data_mode = "run3";
 
   string mmc[10];
   string epp = "pdf";
@@ -319,7 +319,7 @@ void phjet_04_ewcor()
 
     // SNLO 2.2.16
 
-    histo.str(""); histo << "/Users/danielcamarero/PostDoc/PMG/MCJobOptionsDevelopment/4-NTUPLES/MC_phjet/pos/ph_validation_" << data_mode << "_sherpa2216_r2_wSyes_wRno_wSFno_01.root";
+    histo.str(""); histo << "/Users/danielcamarero/PostDoc/PMG/MCJobOptionsDevelopment/4_NTUPLES/MC_phjet/pos/ph_validation_" << data_mode << "_sherpa2216_r2_wSyes_wRno_wSFno_01.root";
     snlo_sherpa16 = new TFile(histo.str().c_str(), "read");
 
     // nominal prediction
@@ -339,7 +339,7 @@ void phjet_04_ewcor()
 
     // SNLO 2.2.2 MC
 
-    histo.str(""); histo << "/Users/danielcamarero/PostDoc/PMG/MCJobOptionsDevelopment/4-NTUPLES/MC_phjet/pos/ph_validation_sherpa222_r2_wSyes_wRno_wSFno_01.root";
+    histo.str(""); histo << "/Users/danielcamarero/PostDoc/PMG/MCJobOptionsDevelopment/4_NTUPLES/MC_phjet/pos/ph_validation_sherpa222_r2_wSyes_wRno_wSFno_01.root";
 
     snlo_standard = new TFile(histo.str().c_str(), "read");
 

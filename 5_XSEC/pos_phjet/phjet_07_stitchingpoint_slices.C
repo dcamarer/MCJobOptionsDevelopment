@@ -5,7 +5,7 @@
 void phjet_07_stitchingpoint_slices()
 {
 
-  string data_mode = "run2";
+  string data_mode = "run3";
   int stitching = 6;
 
   int slice_1 = 999;
@@ -386,7 +386,7 @@ void phjet_07_stitchingpoint_slices()
 
     // SNLO 2.2.16 MC
     histo.str("");
-    histo << "/Users/danielcamarero/PostDoc/PMG/MCJobOptionsDevelopment/4-NTUPLES/MC_phjet/pos/ph_validation_" << data_mode << "_sherpa2216_r2_wSyes_wRno_wSFno_01.root";
+    histo << "/Users/danielcamarero/PostDoc/PMG/MCJobOptionsDevelopment/4_NTUPLES/MC_phjet/pos/ph_validation_" << data_mode << "_sherpa2216_r2_wSyes_wRno_wSFno_01.root";
     snlo_mc2 = new TFile(histo.str().c_str(), "read");
 
     for (int ij = 2; ij <= 2; ij++)
@@ -401,7 +401,7 @@ void phjet_07_stitchingpoint_slices()
 
     // SNLO 2.2.16 MC slice 1
     histo.str("");
-    histo << "/Users/danielcamarero/PostDoc/PMG/MCJobOptionsDevelopment/4-NTUPLES/MC_phjet/pos/r2_" << data_mode << "/";
+    histo << "/Users/danielcamarero/PostDoc/PMG/MCJobOptionsDevelopment/4_NTUPLES/MC_phjet/pos/r2_" << data_mode << "/";
     histo << "ph_validation_" << data_mode << "_sherpa2216_pt"<<slice_1<<"_r2_wSyes_wRno_wSFno_01.root";
     snlo_mc1_slice1 = new TFile(histo.str().c_str(), "read");
 
@@ -414,7 +414,7 @@ void phjet_07_stitchingpoint_slices()
 
     // SNLO 2.2.16 MC slice 2
     histo.str("");
-    histo << "/Users/danielcamarero/PostDoc/PMG/MCJobOptionsDevelopment/4-NTUPLES/MC_phjet/pos/r2_" << data_mode << "/";
+    histo << "/Users/danielcamarero/PostDoc/PMG/MCJobOptionsDevelopment/4_NTUPLES/MC_phjet/pos/r2_" << data_mode << "/";
     histo << "ph_validation_" << data_mode << "_sherpa2216_pt"<<slice_2<<"_r2_wSyes_wRno_wSFno_01.root";
     snlo_mc1_slice2 = new TFile(histo.str().c_str(), "read");
 
