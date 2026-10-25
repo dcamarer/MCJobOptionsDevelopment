@@ -22,7 +22,7 @@ do
     if [ $mc = "run2_sherpa2216_TRUTH1" ]
     then
 	
-        sample_dir="inputFilePath = '/userdata/dcamarero/validation_results/photonjet_validation_Sherpa2216/TRUTH1/final_13TeV/'"
+        sample_dir="inputFilePath = '/userdata/dcamarero/validation_results/photonjet_validation_Sherpa2216/final_13TeV/TRUTH1/'"
 
         # slice 17_35
         if [ $run = '01' ]
@@ -78,7 +78,7 @@ do
     if [ $mc = "run3_sherpa2216_TRUTH1" ]
     then
 	
-        sample_dir="inputFilePath = '/userdata/dcamarero/validation_results/photonjet_validation_Sherpa2216/TRUTH1/final_13p6TeV/'"
+        sample_dir="inputFilePath = '/userdata/dcamarero/validation_results/photonjet_validation_Sherpa2216/final_13p6TeV/TRUTH1/'"
 
         # slice 17_35
         if [ $run = '01' ]
