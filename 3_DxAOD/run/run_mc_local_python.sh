@@ -14,9 +14,9 @@ echo ""
 for run in 01 02 03 04 05 06 07 # SNLO 2216
 do
 
-    dir1=/home/dcamarero/PostDoc/PMG/MCJobOptionsDevelopment/3-DxAOD/source/MyAnalysis/Root/configFile
+    dir1=/home/dcamarero/PostDoc/PMG/MCJobOptionsDevelopment/3_DxAOD/source/MyAnalysis/Root/configFile
     rm -f $dir1
-    dir2=/home/dcamarero/PostDoc/PMG/MCJobOptionsDevelopment/3-DxAOD/source/MyAnalysis/share/input_sample_local.py
+    dir2=/home/dcamarero/PostDoc/PMG/MCJobOptionsDevelopment/3_DxAOD/source/MyAnalysis/share/input_sample_local.py
     rm -f $dir2
 
     if [ $mc = "run2_sherpa2216_TRUTH1" ]
