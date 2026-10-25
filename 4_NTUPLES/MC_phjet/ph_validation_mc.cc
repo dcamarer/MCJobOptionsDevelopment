@@ -1117,7 +1117,7 @@ int main(int argc, char *argv[])
         {
           samplexsec = 299.75928810695;
           filtereff = 1;
-          sow = 5.5197207e+15;
+          sow = 2.2801866e+15;
           nevents = 150000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
           // ww_slice = samplexsec * filtereff * 1000 / nevents;
@@ -1126,7 +1126,7 @@ int main(int argc, char *argv[])
         {
           samplexsec = 34.46965988626;
           filtereff = 1;
-          sow = 3.5580971e+14;
+          sow = 2.3539123e+14;
           nevents = 150000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
           // ww_slice = samplexsec * filtereff * 1000 / nevents;
@@ -1135,7 +1135,7 @@ int main(int argc, char *argv[])
         {
           samplexsec = 3.6820357016115;
           filtereff = 1;
-          sow = 6.6317324e+13;
+          sow = 3.6218781e+13;
           nevents = 150000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
           // ww_slice = samplexsec * filtereff * 1000 / nevents;
@@ -1144,7 +1144,7 @@ int main(int argc, char *argv[])
         {
           samplexsec = 0.3078761812632;
           filtereff = 1;
-          sow = 4.9664862e+12;
+          sow = 3.3133886e+12;
           nevents = 90000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
           // ww_slice = samplexsec * filtereff * 1000 / nevents;
@@ -1153,7 +1153,7 @@ int main(int argc, char *argv[])
         {
           samplexsec = 0.01752322998072;
           filtereff = 1;
-          sow = 1.2293309e+11;
+          sow = 6.6289139e+10;
           nevents = 25000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
           // ww_slice = samplexsec * filtereff * 1000 / nevents;
@@ -1162,7 +1162,7 @@ int main(int argc, char *argv[])
         {
           samplexsec = 0.001135336144525;
           filtereff = 1;
-          sow = 8.4008953e+09;
+          sow = 7.8813374e+09;
           nevents = 20000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
           // ww_slice = samplexsec * filtereff * 1000 / nevents;
@@ -1171,7 +1171,7 @@ int main(int argc, char *argv[])
         {
           samplexsec = 2.272134190504e-05;
           filtereff = 1;
-          sow = 2.0933516e+08;
+          sow = 1.0209173e+08;
           nevents = 8000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
           // ww_slice = samplexsec * filtereff * 1000 / nevents;
@@ -1183,7 +1183,7 @@ int main(int argc, char *argv[])
         {
           samplexsec = 320.8660563769;
           filtereff = 1;
-          sow = 4.5326852e+15;
+          sow = 2.8367846e+15;
           nevents = 150000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
           // ww_slice = samplexsec * filtereff * 1000 / nevents;
@@ -1192,7 +1192,7 @@ int main(int argc, char *argv[])
         {
           samplexsec = 36.51389841262;
           filtereff = 1;
-          sow = 5.0174638e+14;
+          sow = 3.4614754e+14;
           nevents = 150000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
           // ww_slice = samplexsec * filtereff * 1000 / nevents;
@@ -1201,7 +1201,7 @@ int main(int argc, char *argv[])
         {
           samplexsec = 3.915272185505;
           filtereff = 1;
-          sow = 8.1171275e+13;
+          sow = 4.1140098e+13;
           nevents = 150000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
           // ww_slice = samplexsec * filtereff * 1000 / nevents;
@@ -1210,7 +1210,7 @@ int main(int argc, char *argv[])
         {
           samplexsec = 0.3278156417466;
           filtereff = 1;
-          sow = 3.8816069e+12;
+          sow = 2.9866575e+12;
           nevents = 90000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
           // ww_slice = samplexsec * filtereff * 1000 / nevents;
@@ -1219,7 +1219,7 @@ int main(int argc, char *argv[])
         {
           samplexsec = 0.019479531036575;
           filtereff = 1;
-          sow = 9.7788403e+10;
+          sow = 6.9647032e+10;
           nevents = 25000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
           // ww_slice = samplexsec * filtereff * 1000 / nevents;
@@ -1228,7 +1228,7 @@ int main(int argc, char *argv[])
         {
           samplexsec = 0.001322499251438;
           filtereff = 1;
-          sow = 1.3447262e+10;
+          sow = 5.9712727e+09;
           nevents = 20000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
           // ww_slice = samplexsec * filtereff * 1000 / nevents;
@@ -1237,7 +1237,7 @@ int main(int argc, char *argv[])
         {
           samplexsec = 2.7935428606585e-05;
           filtereff = 1;
-          sow = 3.6156054e+08;
+          sow = 1.4456859e+08;
           nevents = 8000;
           ww_slice = samplexsec * filtereff * 1000 / sow;
           // ww_slice = samplexsec * filtereff * 1000 / nevents;
