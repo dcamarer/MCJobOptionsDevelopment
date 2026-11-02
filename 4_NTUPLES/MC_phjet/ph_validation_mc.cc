@@ -275,25 +275,25 @@ int main(int argc, char *argv[])
   for (unsigned int id = 2; id <= 2; id++)
   {
 
-    for (unsigned int i = 0; i <= 10; i++)
+    for (unsigned int i = 0; i <= 20; i++)
     {
       histo.str("");
       histo << "TH1_m_" << i << "_" << id;
-      if (i == 1)
+      if (i == 1 or i == 11)
       {
         m_TH1_m[i][id] = new TH1D(histo.str().c_str(), "events", 1, 0, 1);
       }
-      else if (i >= 8)
+      else if (i == 8 or i == 18)
       {
-        m_TH1_m[i][id] = new TH1D(histo.str().c_str(), "events", 32, m_mcweigths);
+        m_TH1_m[i][id] = new TH1D(histo.str().c_str(), "events", 1000, -100, 100);
       }
-      else if (i == 9)
+      else if (i == 9 or i == 19)
       {
-        m_TH1_m[i][id] = new TH1D(histo.str().c_str(), "events", 16, m_mcweigths_positive);
+        m_TH1_m[i][id] = new TH1D(histo.str().c_str(), "events", 500, 0, 100);
       }
-      else if (i == 10)
+      else if (i == 10 or i == 20)
       {
-        m_TH1_m[i][id] = new TH1D(histo.str().c_str(), "events", 16, m_mcweigths_positive);
+        m_TH1_m[i][id] = new TH1D(histo.str().c_str(), "events", 500, 0, 100);
       }
       else
       {
@@ -1252,33 +1252,65 @@ int main(int argc, char *argv[])
     // WEIGHT ANALYSIS //
     /////////////////////
 
-    // sum of weight before the sum
-    m_TH1_m[2][2]->Fill(m_count_events, ww);
-    if (fabs(weightmc) <= 100)
-    {
-      m_TH1_m[3][2]->Fill(m_count_events, ww);
-    }
-    if (fabs(weightmc) > 100)
-    {
-      m_TH1_m[4][2]->Fill(m_count_events, ww);
-    }
-    // Negative weights
-    if (weightmc < 0)
-    {
-      m_TH1_m[7][2]->Fill(m_count_events, ww);
-    }
-
-    // large weight cut
-    if (mc == "sherpa222" and fabs(weightmc) > 100)
-      ww = 0;
-
     for (unsigned int i = 0; i < weightmcVAR->size(); i++)
     {
       wVAR[i] = weightmcVAR->at(i);
       //cout << "wVAR[" <<i<< "] = " <<wVAR[i]<< endl;
     }
 
-    // Check wether the weights are healthy
+    double wwnorm = wVAR[0]/wVAR[2];
+
+    //
+    // Code for Sherpa 2.2.2
+    //
+
+    // Sum of weights before the sum
+    m_TH1_m[2][2]->Fill(m_count_events, ww);    
+    if (fabs(ww) <= 100)
+    {
+      m_TH1_m[3][2]->Fill(m_count_events, ww);
+    }
+    if (fabs(ww) > 100)
+    {
+      m_TH1_m[4][2]->Fill(m_count_events, ww);
+    }
+    // Negative weights
+    if (ww < 0)
+    {
+      m_TH1_m[7][2]->Fill(m_count_events, ww);
+    }
+    // Large weight cut
+    if (mc == "sherpa222" and fabs(ww) > 100)
+    {
+      ww = 0;
+    }
+
+    //
+    // Code for Sherpa 2.2.16
+    //
+
+    // Sum of weights before the sum
+    m_TH1_m[12][2]->Fill(m_count_events, wwnorm);    
+    if (fabs(wwnorm) <= 100)
+    {
+      m_TH1_m[13][2]->Fill(m_count_events, wwnorm);
+    }
+    if (fabs(wwnorm) > 100)
+    {
+      m_TH1_m[14][2]->Fill(m_count_events, wwnorm);
+    }
+    // Negative weights
+    if (wwnorm < 0)
+    {
+      m_TH1_m[17][2]->Fill(m_count_events, wwnorm);
+    }
+    // Large weight cut
+    if (mc == "run2_sherpa2216" or mc == "run3_sherpa2216" and fabs(wwnorm) > 100)
+    {
+      ww = 0;
+    }
+
+    // Check whether the weights are healthy
     if (jentry < 5)
     {
       // Note: it's interesting to note that in 2.2.16, the Sum(w[0])/Sum(w[3]) gives the XSEC of the sample,
@@ -1313,10 +1345,22 @@ int main(int argc, char *argv[])
           wVAR[i] = 0;
         }
       }
+      else if (mc == "run2_sherpa2216" or mc == "run3_sherpa2216")
+      {
+        if (fabs(wVAR[i]/wVAR[2]) <= 100)
+        {
+          m_TH1_g[i][2]->Fill(m_count_events, double(wVAR[i]));
+        }
+        else
+        {
+          wVAR[i] = 0;
+        }        
+      }
       else
       {
         m_TH1_g[i][2]->Fill(m_count_events, double(wVAR[i]));
       }
+
     }
 
     m_TH1_m[5][2]->Fill(m_count_events, ww);
@@ -1327,17 +1371,20 @@ int main(int argc, char *argv[])
     // cout << " wfinal = " <<weightmc_0<< "; ww = " <<ww<< "; ww_slice = " <<ww_slice<< endl;
     ww = weightmc_0;
 
-    m_TH1_m[6][2]->Fill(m_count_events, ww);
+    m_TH1_m[6][2]->Fill(m_count_events, ww);    
 
     // Check MC weights
-    m_TH1_m[8][2]->Fill(weightmc_only_0, 1);
+    m_TH1_m[8][2]->Fill(weightmc_only_0,1);
+    m_TH1_m[18][2]->Fill(wwnorm,1);
     if (weightmc_only_0 > 0)
     {
-      m_TH1_m[9][2]->Fill(weightmc_only_0, 1);
+      m_TH1_m[9][2]->Fill(weightmc_only_0,1);
+      m_TH1_m[19][2]->Fill(wwnorm,1);
     }
     else
     {
-      m_TH1_m[10][2]->Fill(fabs(weightmc_only_0), 1);
+      m_TH1_m[10][2]->Fill(fabs(weightmc_only_0),1);
+      m_TH1_m[20][2]->Fill(fabs(wwnorm),1);
     }
 
     // Average number of interactions
